@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `price` VARCHAR(45) NOT NULL,
+  `product_Num` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
