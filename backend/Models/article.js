@@ -2,9 +2,9 @@ const con = require ('../database/index.js')
 
 
 const add = ( Newdata  , callback) =>{
-    const q = 'INSERT INTO `article` (image,name,description,price) VALUES  (?,?,?,?) '
-    const {image,name,description,price} = Newdata
-    con.query(q, [image,name,description,price],(err,result)=>{
+  const q = 'INSERT INTO `article` (image,name,description,price,product_Num) VALUES  (?,?,?,?,?) '
+  const {image,name,description,price,product_Num} = Newdata
+    con.query(q, [image,name,description,price,product_Num],(err,result)=>{
       if(err) 
         
             return     callback(err,null)
@@ -27,9 +27,9 @@ const add = ( Newdata  , callback) =>{
 };
 
 const update = (articleId, updatedData, callback) => {
-    const q = 'UPDATE `article` SET image=?, name=?, description=?, price=? WHERE id=?';
-    const { image, name, description, price } = updatedData;
-    con.query(q, [image, name, description, price, articleId], (err, result) => {
+    const q = 'UPDATE `article` SET image=?, name=?, description=?, price=? ,product_Num=? WHERE id=?';
+    const { image, name, description, price ,product_Num } = updatedData;
+    con.query(q, [image, name, description, price, product_Num , articleId], (err, result) => {
         if (err) {
             callback(err, null);
         } else {
