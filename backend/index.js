@@ -1,17 +1,17 @@
-const express = require('express')
-const app = express()
-const cors = require("cors")
-const PORT = 8000
+const express = require('express');
+const cors = require('cors');
+const carte = require('./routes/carteRoutes');
+const app = express();
+const PORT = 8000;
 
-app.use(cors())
-app.use(express.json())
 
-app.get('/', (req, res) => {
+app.use(cors());
+app.use(express.json());
 
-  res.send('<h1>💳hello group codeBare🛒</h1>')
-  
-})
+
+app.use('/api/carte', carte);
+
 
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`)
+  console.log(`Server listening at http://localhost:${PORT}`)
 })
