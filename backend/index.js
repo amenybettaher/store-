@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 const PORT = 8000;
+const userRoutes = require('../backend/Routes/user');
 
 
 
@@ -9,6 +10,7 @@ const PORT = 8000;
 app.use(cors())
 app.use(express.json())
 
+app.use('/users', userRoutes)
 
 
 
