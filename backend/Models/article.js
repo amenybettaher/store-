@@ -1,4 +1,4 @@
-const con = require ('../database/index.js')
+const con = require ('../database/index')
 
 
 const add = ( Newdata  , callback) =>{
