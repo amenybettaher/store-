@@ -64,7 +64,6 @@ const updateArticle = (req, res) => {
         }
     });
 };
- 
 module.exports = {
   addArticle  , deleteArticle , updateArticle , getbyname ,  getByCategoryHandler
 };
