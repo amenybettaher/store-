@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const carte = require('./routes/carteRoutes')
+const carte = require('./Routes/carteRoutes')
 const app = express()
 const PORT = 8000
 

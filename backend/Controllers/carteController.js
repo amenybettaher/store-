@@ -17,14 +17,14 @@ else{
     })
     },
     addcarte: function(req, res) {
-      var { cin, points } = req.body;
+      var { cin, points } = req.body
       carte.add(cin, points, function(err, results){
          if(err){
           res.status(500).send(err)
          } else {
           res.json(results)
          }
-      });
+      })
     },
    
         getOnecarte: function(req, res) {
@@ -49,7 +49,7 @@ else{
           } else {
             res.json(results)
           }
-        });
+        })
         },
         
         supp:(req, res) => {
@@ -61,6 +61,6 @@ else{
               } else {
                 res.json(results)
               }
-            });
+            })
             },
 }
