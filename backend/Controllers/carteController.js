@@ -43,7 +43,7 @@ else{
         var x = req.body
         var y = req.params.id
       
-        carte.updateproduct(x, y, function (err, results) {
+        carte.updatePoints(x, y, function (err, results) {
           if (err) {
             res.status(500).send(err)
           } else {
@@ -55,7 +55,7 @@ else{
         supp:(req, res) => {
             var id= req.params.id
           
-            carte.deleteproduct( id, function (err, results) {
+            carte.deleteBycin( id, function (err, results) {
               if (err) {
                 res.status(500).send(err)
               } else {
