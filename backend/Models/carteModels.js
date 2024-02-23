@@ -1,4 +1,4 @@
-const connection = require("../Database")
+const connection = require('../database/index')
 
 module.exports = {
   getAll: function (callback) {
@@ -8,7 +8,7 @@ module.exports = {
     })
   },
   getOne: function (cin, callback) {
-    const sql = 'SELECT * FROM `carte` WHERE `cin`=?' 
+    const sql = 'SELECT * FROM `carte` WHERE `cin`=?'
     connection.query(sql, [cin], function (error, results) {
       callback(error, results)
     })
@@ -20,7 +20,7 @@ module.exports = {
     })
   },
   updatePoints: function (points, cin, callback) {
-    const sql = 'UPDATE `carte` SET `points`=? WHERE `cin`=?' 
+    const sql = 'UPDATE `carte` SET `points`=? WHERE `cin`=?'
     connection.query(sql, [points, cin], function (error, results) {
       callback(error, results)
     })

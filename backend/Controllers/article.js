@@ -1,4 +1,4 @@
-const {   getArticles , deleteA , update}  = require('../Models/article');
+const {   add , deleteA , update}  = require('../Models/article');
 
 
 const addArticle = (req, res) => {
