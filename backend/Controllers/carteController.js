@@ -1,6 +1,6 @@
 
 
-const carte=require('../models/carteModels')
+const carte=require('../Models/carteModels')
 
 
 
@@ -17,17 +17,15 @@ else{
     })
     },
     addcarte: function(req, res) {
-        var x=req.body
-        carte.add(x,function(err,results){
-           if(err){
-            res.status(500).send(err)
-           
-           }
-           else{
-            res.json(results)
-           }
-        })
-        },
+      var { cin, points } = req.body
+      carte.add(cin, points, function(err, results){
+         if(err){
+          res.status(500).send(err)
+         } else {
+          res.json(results)
+         }
+      })
+    },
    
         getOnecarte: function(req, res) {
         var w=req.params.title
@@ -51,10 +49,10 @@ else{
           } else {
             res.json(results)
           }
-        });
+        })
         },
         
-        fassakh:(req, res) => {
+        supp:(req, res) => {
             var id= req.params.id
           
             carte.deleteproduct( id, function (err, results) {
@@ -63,6 +61,6 @@ else{
               } else {
                 res.json(results)
               }
-            });
+            })
             },
 }
