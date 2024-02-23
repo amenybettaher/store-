@@ -27,8 +27,10 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   `description` VARCHAR(500) NOT NULL,
   `price` VARCHAR(45) NOT NULL,
   `product_Num` VARCHAR(200) NOT NULL,
+  `category` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -39,6 +41,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `market`.`carte` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `points` VARCHAR(1000) NOT NULL,
+  `cin` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -57,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `market`.`user` (
   `password` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
