@@ -1,4 +1,33 @@
-const {   add , deleteA , update}  = require('../Models/article');
+const {   add , deleteA , update , getbyone , getByCategory}  = require('../Models/article');
+
+const getbyname = (req, res) => {
+    const name = req.params.name; 
+    getbyone(name, (err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (result.length === 0) {
+                res.status(404).send("Article not found"); 
+            } else {
+                res.status(200).json(result);
+            }
+        }
+    });
+};
+const getByCategoryHandler = (req, res) => {
+    const category = req.params.category;
+    getByCategory(category, (err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (result.length === 0) {
+                res.status(404).send("No articles found for the specified category.");
+            } else {
+                res.status(200).json(result);
+            }
+        }
+    });
+};
 
 
 const addArticle = (req, res) => {
@@ -37,5 +66,5 @@ const updateArticle = (req, res) => {
 };
  
 module.exports = {
-  addArticle  , deleteArticle , updateArticle
+  addArticle  , deleteArticle , updateArticle , getbyname ,  getByCategoryHandler
 };
