@@ -60,7 +60,7 @@ const addArticle = (req, res) => {
 
 
 const deleteArticle = (req, res) => {
-    const articleId = req.params.id; 
+    const articleId = req.params.id;
     deleteA(articleId, (err, result) => {
         if (err) {
             res.status(500).send(err);

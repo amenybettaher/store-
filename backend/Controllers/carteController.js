@@ -1,6 +1,6 @@
 
 
-const carte=require('../Models/carteModels')
+const carte = require('../Models/carteModels');
 
 
 
@@ -26,8 +26,7 @@ else{
          }
       })
     },
-   
-        getOnecarte: function(req, res) {
+    getOnecarte: function(req, res) {
         var w=req.params.title
         carte.getOne(w,(err,results)=>{
             if(err)
@@ -41,9 +40,11 @@ else{
     },
     update:(req, res) => {
         var x = req.body
-        var y = req.params.id
+        var y = req.params.cin
       
+
         carte.updatePoints(x, y, function (err, results) {
+
           if (err) {
             res.status(500).send(err)
           } else {
@@ -53,10 +54,12 @@ else{
         },
         
         supp:(req, res) => {
-            var id= req.params.id
+          var cin = req.params.cin
           
+
             carte.deleteBycin( id, function (err, results) {
               if (err) {
+
                 res.status(500).send(err)
               } else {
                 res.json(results)
