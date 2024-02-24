@@ -42,7 +42,9 @@ else{
         var x = req.body
         var y = req.params.cin
       
-        carte.updatePoints(x.points, y, function (err, results) {
+
+        carte.updatePoints(x, y, function (err, results) {
+
           if (err) {
             res.status(500).send(err)
           } else {
@@ -54,8 +56,10 @@ else{
         supp:(req, res) => {
           var cin = req.params.cin
           
-          carte.deletecarte(cin, function(err, results) {
-            if (err) {
+
+            carte.deleteBycin( id, function (err, results) {
+              if (err) {
+
                 res.status(500).send(err)
               } else {
                 res.json(results)

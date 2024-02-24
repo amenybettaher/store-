@@ -1,6 +1,20 @@
 const con = require ('../database/index')
 
 
+const getAll = ( callback) => {
+  const q = 'SELECT * FROM `article` ';
+  con.query(q,  (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result);
+    }
+  });
+};
+
+
+
+
 const getbyone = (name, callback) => {
   const q = 'SELECT * FROM `article` WHERE name = ?';
   con.query(q, [name], (err, result) => {
@@ -25,9 +39,9 @@ const getByCategory = (category, callback) => {
 
 
 const add = ( Newdata  , callback) =>{
-  const q = 'INSERT INTO `article` (image,name,description,price,product_Num) VALUES  (?,?,?,?,?) '
-  const {image,name,description,price,product_Num} = Newdata
-    con.query(q, [image,name,description,price,product_Num],(err,result)=>{
+  const q = 'INSERT INTO `article` (image,name,description,price,product_Num,category) VALUES  (?,?,?,?,?,?) '
+  const {image,name,description,price,product_Num,category} = Newdata
+    con.query(q, [image,name,description,price,product_Num,category],(err,result)=>{
       if(err) 
         
             return     callback(err,null)
@@ -50,9 +64,9 @@ const add = ( Newdata  , callback) =>{
 };
 
 const update = (articleId, updatedData, callback) => {
-    const q = 'UPDATE `article` SET image=?, name=?, description=?, price=? ,product_Num=? WHERE id=?';
-    const { image, name, description, price ,product_Num } = updatedData;
-    con.query(q, [image, name, description, price, product_Num , articleId], (err, result) => {
+    const q = 'UPDATE `article` SET image=?, name=?, description=?, price=? ,product_Num=?, category=? WHERE id=?';
+    const { image, name, description, price ,product_Num ,category} = updatedData;
+    con.query(q, [image, name, description, price, product_Num , articleId,category], (err, result) => {
         if (err) {
             callback(err, null);
         } else {
@@ -64,5 +78,5 @@ const update = (articleId, updatedData, callback) => {
 
 
   module.exports = {
-    add , deleteA , update , getbyone , getByCategory
+    add , deleteA , update , getbyone ,getAll, getByCategory
   }
