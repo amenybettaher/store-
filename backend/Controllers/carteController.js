@@ -57,7 +57,7 @@ else{
           var cin = req.params.cin
           
 
-            carte.deleteBycin( id, function (err, results) {
+            carte.deletecarte( cin, function (err, results) {
               if (err) {
 
                 res.status(500).send(err)
