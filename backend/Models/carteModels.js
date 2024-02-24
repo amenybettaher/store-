@@ -20,16 +20,15 @@ module.exports = {
     })
   },
   updatePoints: function (points, cin, callback) {
-    const sql = 'UPDATE `carte` SET `points`=? WHERE `cin`=?'
+    const sql = 'UPDATE `carte` SET `points`=? WHERE `cin`=?';
     connection.query(sql, [points, cin], function (error, results) {
-      callback(error, results)
-    })
+      callback(error, results);
+    });
   },
-  deleteBycin: function (cin, callback) {
+  deletecarte: function(cin, callback) {
     const sql = 'DELETE FROM `carte` WHERE `cin`=?'
     connection.query(sql, [cin], function (error, results) {
       callback(error, results)
     })
   },
 }
-console.log('HI');
