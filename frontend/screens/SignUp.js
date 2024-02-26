@@ -37,7 +37,7 @@ const SignUp = () => {
         return;
       }
 
-      const registerResponse = await axios.post('http://localhost:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.50.151:8000/users/register', {
         firstName,
         lastName,
         email,
