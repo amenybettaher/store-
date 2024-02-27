@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
@@ -16,3 +17,12 @@ export default function App() {
     </NavigationContainer>
   );
 }
+/*
+import AppNavigator from './navigation/AppNavigator';
+
+const App = () => {
+  return <AppNavigator />;
+};
+*/
+export default App;
+
