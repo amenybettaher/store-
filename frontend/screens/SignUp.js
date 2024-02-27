@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, GoogleProvider } from '../firebase/config';
+
+import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
+import { FacebookProvider } from '../firebase/config';
+
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
@@ -15,6 +19,7 @@ const SignUp = () => {
 
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithFacebook] = useSignInWithFacebook(auth);
 
   const navigation = useNavigation();
 
@@ -37,7 +42,7 @@ const SignUp = () => {
         return;
       }
 
-      const registerResponse = await axios.post('http://192.168.137.1:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.1.17:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -67,11 +72,21 @@ const SignUp = () => {
   const handleGoogleSignUp = async () => {
     try {
       const res = await signInWithGoogle(GoogleProvider);
-      console.log({ res });
+      console.log('Google Sign-Up Response:', res);
     } catch (e) {
-      console.error(e);
+      console.error('Google Sign-Up Error:', e);
     }
   };
+  
+  const handleFacebookSignUp = async () => {
+    try {
+      const res = await signInWithFacebook(FacebookProvider);
+      console.log('Facebook Sign-Up Response:', res);
+    } catch (e) {
+      console.error('Facebook Sign-Up Error:', e);
+    }
+  };
+  
 
   return (
     <ImageBackground
@@ -136,35 +151,35 @@ const SignUp = () => {
         </View>
 
         <Button title="Sign Up" onPress={handleSignUp} color="#7D0C43" />
-        <TouchableOpacity onPress={handleGoogleSignUp}>
-          <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/270/270014.png' }}
-            style={styles.googleImage}
-          />
-        </TouchableOpacity>
+
+        
         <View style={styles.frameParent}>
-        <View style={styles.lineParent}>
-          <View style={styles.frameBorder} />
-          <Text style={styles.orSignupWith}>Or signup with</Text>
-          <View style={[styles.frameItem, styles.frameBorder]} />
-        </View>
-        <View style={styles.btnParent}>
-          <View style={styles.btnShadowBox}>
-            <Image
-              style={styles.grommetIconsgoogle}
-              resizeMode="cover"
-              source={require("../assets/grommeticonsgoogle1.png")}
-            />
+          <View style={styles.lineParent}>
+            <View style={[styles.frameBorder, { backgroundColor: 'red' }]} />
+            <Text style={styles.orSignupWith}>Or signup with</Text>
+            <View style={[styles.frameItem, styles.frameBorder, { backgroundColor: 'blue' }]} />
           </View>
-          <View style={[styles.btn2, styles.btnShadowBox]}>
-            <Image
-              style={styles.vectorIcon}
-              resizeMode="cover"
-              source={require("../assets/fb.png")}
-            />
-          </View>
+          <View style={styles.btnParent}>
+          <TouchableOpacity onPress={handleGoogleSignUp}>
+            <View style={[styles.btnShadowBox, { backgroundColor: '#484848' }]}>
+              <Image
+                style={styles.grommetIconsgoogle}
+                resizeMode="cover"
+                source={require("../assets/grommeticonsgoogle1.png")}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleFacebookSignUp}>
+            <View style={[styles.btn2, styles.btnShadowBox, { backgroundColor: '#484848' }]}>
+              <Image
+                style={styles.vectorIcon}
+                resizeMode="cover"
+                source={require("../assets/fb.png")}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
-      </View>
+        </View>
         <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" />
       </View>
     </ImageBackground>
@@ -199,6 +214,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: 'rgba(255, 255, 255, 0.6)', // Adjust the background color and opacity as needed
     borderRadius: 5,
+    width: 250,
   },
 
   icon: {
@@ -209,7 +225,7 @@ const styles = StyleSheet.create({
 
   input: {
     // flex: 1,
-    width: 200,
+
     height: 40,
     padding: 10,
     color: 'black',
@@ -221,6 +237,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.latoRegular,
     fontSize: FontSize.size_base,
     textAlign: "center",
+    top:20
   },
   frameItem: {
     marginLeft: 16,
@@ -231,14 +248,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+
   grommetIconsgoogle: {
-    width: 18,
-    height: 18,
+    width: 30,
+    height: 30,
     overflow: "hidden",
+    margin :5,
+ 
   },
   vectorIcon: {
-    width: 10,
-    height: 19,
+    width: 36,
+    height: 36,
   },
   btn2: {
     marginLeft: 10,
@@ -247,11 +267,6 @@ const styles = StyleSheet.create({
     width: 335,
     marginTop: 15,
     flexDirection: "row",
-  },
-  frameParent: {
-    top: 689,
-    left: 39,
-    position: "absolute",
   },
 });
 
