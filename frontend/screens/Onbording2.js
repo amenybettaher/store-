@@ -1,10 +1,18 @@
 import * as React from "react";
 import { Image } from "expo-image";
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 
-const Onbording = () => {
+const Onbording2 = () => {
+  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+
+  const handleStartPress = () => {
+    navigation.navigate('SignIn'); // Navigate to 'Onbording2' screen
+  
+
+  
   return (
     <LinearGradient
     style={styles.onbording2}
@@ -40,9 +48,12 @@ const Onbording = () => {
         >{`this New technologie you can sacan our product and see more information about the product `}</Text>
       </View>
       <View style={styles.rectangleView} />
-      <Text style={styles.getStarted}>Get Started</Text>
+      <Pressable onPress={handleStartPress}>
+        <Text style={styles.getStarted}>Get Started</Text>
+      </Pressable>
     </LinearGradient>
   );
+};
 };
 
 const styles = StyleSheet.create({
@@ -137,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onbording;
+export default Onbording2;

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 
-const Onboridng = () => {
+const Onbording = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
   const handleStartPress = () => {
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboridng;
+export default Onbording;
