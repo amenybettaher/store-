@@ -29,8 +29,7 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
-
-      navigation.navigate('home');
+    
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
@@ -45,7 +44,7 @@ const SignUp = () => {
         return;
       }
 
-      const registerResponse = await axios.post('http://192.168.1.17:8000/users/register', {
+      const registerResponse = await axios.post('http:// 192.168.1.17:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -64,11 +63,12 @@ const SignUp = () => {
       setFirst('');
       setLast('');
 
-      navigation.navigate('home');
       alert("Sign up successful");
+      navigation.navigate('Onbording');
+
     } catch (e) {
       console.error(e);
-      alert("Sign up failed. Please try again.");
+      alert("Sign up failed. Please try again.");  
     }
   };
 
