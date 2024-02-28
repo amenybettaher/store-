@@ -10,7 +10,7 @@ const Page1 = () => {
         <Image
           style={[styles.instanceChild, styles.instanceLayout]}
           contentFit="cover"
-          source={require("../assets/Rectangle 2206.png")}
+          source={require("../assets/rectangle-2206.png")}
         />
         <Text style={[styles.echrili, styles.echriliPosition]}>ECHRILI</Text>
         <Image
