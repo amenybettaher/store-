@@ -17,9 +17,11 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
    
-      <Stack.Navigator initialRouteName="onboridng2">
-      {/* <Stack.Screen name='we' component={Page} /> */}
-      {/* <Stack.Screen name='Abdelhak Barbouche ' component={Onboridng} /> */}
+      <Stack.Navigator initialRouteName="Page">
+      <Stack.Screen name='we' component={Page} />
+      <Stack.Screen name='Onbording ' component={Onbording} />
+      <Stack.Screen name='Onbording2' component={Onbording2} />
+
       <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Home" component={HomeScreen} />

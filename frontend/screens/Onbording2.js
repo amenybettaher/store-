@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 
-const Onbording = () => {
+const Onbording2 = () => {
   return (
     <LinearGradient
     style={styles.onbording2}
@@ -137,4 +137,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onbording;
+export default Onbording2;
