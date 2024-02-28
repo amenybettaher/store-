@@ -1,16 +1,15 @@
-
+// AppNavigator.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';
 // import home from '../screens/home'
-import Page from '../screens/Page.js';
-import Onboridng from '../screens/Onbording.js';
-import Onboridng2 from '../screens/Onbording2.js';
+import Page from '../screens/Page';
+import Onbording2 from '../screens/Onbording2';
+import SignUp from '../screens/SignUp'
+import Onbording from '../screens/Onbording';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
-
 
 const Stack = createStackNavigator();
 
