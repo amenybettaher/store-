@@ -1,12 +1,16 @@
 import * as React from "react";
 import { Image } from "expo-image";
-import { StyleSheet, View, Text,Button } from "react-native";
+import { StyleSheet, View, Text,Button} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 
 
-
+const h= () => {
+  navigation.navigate('Onbording2');
+};
 const Onboridng = () => {
+  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+
   return (
     <View style={styles.onboridng}>
       <Image
@@ -50,11 +54,8 @@ Your Self`}</Text>
         source={require("../assets/ellipse-6.png")}
         
       />
-      <Text
-        style={styles.arrowIcon}
+ <Button title="hello" style={styles.arrowIcon} onPress={h}  />
       
-      > Start
-      </Text>
       <Text style={[styles.scanYourProduct, styles.getThePriceClr]}>
         Scan Your Product
       </Text>
