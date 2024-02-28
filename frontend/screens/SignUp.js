@@ -29,6 +29,9 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
+
+      navigation.navigate('home');
+
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
         alert("Password must contain at least one capital letter, one number, and one symbol (!@#$%^&*)");
