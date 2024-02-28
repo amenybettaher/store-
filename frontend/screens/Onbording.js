@@ -1,15 +1,15 @@
 import * as React from "react";
-import { Image } from "expo-image";
-import { StyleSheet, View, Text,Button} from "react-native";
+import { StyleSheet,Image, View, Text, Pressable } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 
-
-const h= () => {
-  navigation.navigate('Onbording2');
-};
 const Onboridng = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+
+  const handleStartPress = () => {
+    navigation.navigate('Onbording2'); // Navigate to 'Onbording2' screen
+  };
 
   return (
     <View style={styles.onboridng}>
@@ -35,8 +35,7 @@ const Onboridng = () => {
       />
       <Text
         style={[styles.getThePrice, styles.getThePriceClr]}
-      >{`Get the Price By
-Your Self`}</Text>
+      >{`Get the Price By Your Self`}</Text>
       <Image
         style={styles.onboridngInner}
         contentFit="cover"
@@ -52,10 +51,11 @@ Your Self`}</Text>
         style={styles.onboridngChild1}
         contentFit="cover"
         source={require("../assets/ellipse-6.png")}
-        
       />
- <Button title="hello" style={styles.arrowIcon} onPress={h}  />
-      
+      <Pressable onPress={handleStartPress}>
+        <Text style={styles.arrowIcon}>Start</Text>
+      </Pressable>
+
       <Text style={[styles.scanYourProduct, styles.getThePriceClr]}>
         Scan Your Product
       </Text>

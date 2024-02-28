@@ -1,20 +1,21 @@
 import * as React from "react";
 import { useEffect } from "react"; // Import useEffect hook
 import { Image } from "expo-image";
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View } from "react-native";
 import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
 
-const Page1 = () => {
-  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+const Page = () => {
+  const navigation = useNavigation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('Onbording'); // Navigate to 'Onbording' screen after 5 seconds
-    }, 5000);
+      navigation.navigate('Onbording');
+    }, 7000);
 
-    return () => clearTimeout(timer); // Cleanup the timer
-  }, []);  // Empty dependency array to run only once
+    return () => clearTimeout(timer);
+  }, []);
+  // Empty dependency array to run only once
 
   return (
     <View style={styles.page2}>
@@ -94,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Page1;
+export default Page;
