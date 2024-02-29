@@ -1,28 +1,27 @@
-
 export const FontFamily = {
-    montserratBold: "Montserrat-Bold",
-    manropeBold: "Manrope-Bold",
-    manropeRegular: "Manrope-Regular",
-    manropeMedium: "Manrope-Medium",
-    manropeSemiBold: "Manrope-SemiBold",
-    manropeLight: "Manrope-Light",
-    mandali: "Mandali",
-    latoRegular: "Lato-Regular",
-    robotoBold: "Roboto-Bold",
-    robotoRegular: "Roboto-Regular",
-    latoBold: "Lato-Bold",
-    proximaNova: "Proxima Nova",
-    poppinsSemiBold: "Poppins-SemiBold",
-    poppinsMedium: "Poppins-Medium",
-    poppinsRegular: "Poppins-Regular",
-    poppinsBold: "Poppins-Bold",
-    montserratMedium: "Montserrat-Medium",
-    sFProDisplay: "SF Pro Display",
-    interMedium: "Inter-Medium",
-    interSemiBold: "Inter-SemiBold",
-    interBold: "Inter-Bold",
-  };
-  /* font sizes */
+  montserratBold: "Montserrat-Bold",
+  manropeBold: "Manrope-Bold",
+  manropeRegular: "Manrope-Regular",
+  manropeMedium: "Manrope-Medium",
+  manropeSemiBold: "Manrope-SemiBold",
+  manropeLight: "Manrope-Light",
+  mandali: "Mandali",
+  latoRegular: "Lato-Regular",
+  robotoBold: "Roboto-Bold",
+  robotoRegular: "Roboto-Regular",
+  latoBold: "Lato-Bold",
+  proximaNova: "Proxima Nova",
+  poppinsSemiBold: "Poppins-SemiBold",
+  poppinsMedium: "Poppins-Medium",
+  poppinsRegular: "Poppins-Regular",
+  poppinsBold: "Poppins-Bold",
+  montserratMedium: "Montserrat-Medium",
+  sFProDisplay: "SF Pro Display",
+  interMedium: "Inter-Medium",
+  interSemiBold: "Inter-SemiBold",
+  interBold: "Inter-Bold",
+};
+
   export const FontSize = {
     size_17xl: 36,
     size_sm: 14,
@@ -33,7 +32,7 @@ export const FontFamily = {
     size_8xl: 27,
     size_mid: 17,
   };
-  /* Colors */
+
   export const Color = {
     themeWhiteThemeCoreTokensPrimaryBlack: "#262626",
     neutral800: "#191d23",
@@ -67,7 +66,7 @@ export const FontFamily = {
     gray4: "#bdbdbd",
     colorSilver_300: "rgba(196, 196, 196, 0)",
   };
-  /* Paddings */
+
   export const Padding = {
     p_5xs: 8,
     p_xs: 12,
@@ -78,7 +77,7 @@ export const FontFamily = {
     p_base: 16,
     p_xl: 20,
   };
-  /* border radiuses */
+
   export const Border = {
     br_11xl: 30,
     br_81xl: 100,

@@ -30,7 +30,7 @@ const SignUp = () => {
   const handleSignUp = async () => {
 
     try {
-      navigation.navigate('home');
+      navigation.navigate('Article');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
@@ -64,7 +64,7 @@ const SignUp = () => {
       setBirth('');
   
       alert("Sign up successful");
-      navigation.navigate('home');
+      navigation.navigate('Article');
   
     } catch (e) {
     console.error(e);
