@@ -1,15 +1,17 @@
 import * as React from "react";
 import { Image } from "expo-image";
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text,Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 
 const Onbording2 = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
-  const handleStartPress = () => {
-    navigation.navigate('SignIn'); // Navigate to 'Onbording2' screen
+  const handle = () => {
+    navigation.navigate('SignIn'); // Navigate to 'SignUp' screen
+  };
+  
   
 
   
@@ -48,17 +50,18 @@ const Onbording2 = () => {
         >{`this New technologie you can sacan our product and see more information about the product `}</Text>
       </View>
       <View style={styles.rectangleView} />
-      <Pressable onPress={handleStartPress}>
-        <Text style={styles.getStarted}>Get Started</Text>
-      </Pressable>
+      <Pressable onPress={handle}>
+  <Text style={styles.getStarted}>Get Started</Text>
+</Pressable>
+
     </LinearGradient>
   );
 };
-};
+
 
 const styles = StyleSheet.create({
   onbording2Position: {
-    height: 521,
+    height: 621,
     top: 323,
     width: 398,
     left: 0,
@@ -68,7 +71,9 @@ const styles = StyleSheet.create({
   welcomeToEchriliLayout: {
     width: 342,
     textAlign: "left",
-    color: "white"
+    color: "#DCDCDC",
+    fontSize:19,
+    top:-30,
   },
   ramadanGroceryShoppingCovIcon: {
     top: 0,
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     top: 323,
   },
   onbording2Item: {
-    top: 409,
+    top: 609,
     height: 435,
     width: 390,
     left: 0,
@@ -113,25 +118,26 @@ const styles = StyleSheet.create({
   thisNewTechnologie: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.outfitRegular,
-    marginTop: 8,
+    marginTop: 2,
+    
   },
   welcomeToEchriliParent: {
-    top: 593,
+    top: 653,
     left: 48,
     position: "absolute",
   },
   rectangleView: {
-    top: 730,
-    left: 48,
+    top: 722,
+    left: 97,
     borderRadius: Border.br_5xs,
     backgroundColor: "#7d0c42",
-    width: 308,
+    width: 208,
     height: 51,
     position: "absolute",
   },
   getStarted: {
-    top: 750,
-    left: 159,
+    top: 740,
+    left: 169,
     fontSize: FontSize.size_mini,
     fontWeight: "600",
     fontFamily: FontFamily.outfitSemiBold,

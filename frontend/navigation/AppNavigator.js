@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignIn from '../screens/SignIn';
 // import home from '../screens/home'
-import Page from '../screens/Page';
+import Page from '../screens/Page.js';
 import Onbording2 from '../screens/Onbording2.js';
 import SignUp from '../screens/SignUp'
 import Onbording from '../screens/Onbording.js';
@@ -17,7 +17,7 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
    
-      <Stack.Navigator initialRouteName="Page">
+      <Stack.Navigator initialRouteName="Page"screenOptions={{ headerShown: false}}>
       <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />

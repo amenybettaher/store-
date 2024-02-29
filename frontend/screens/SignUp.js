@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, GoogleProvider } from '../firebase/config';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
 import { FacebookProvider } from '../firebase/config';
@@ -93,8 +94,9 @@ const SignUp = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/rectangle-22061.png")}
+      source={require("../assets/360_F_434190838_3FCCIiag1LYlL1IA6pb0WPEEqxiZVfPO.jpeg")}
       style={styles.backgroundImage}
+      blurRadius={2}
     >
       <View style={styles.overlay} />
       <View style={styles.signup}>
@@ -105,9 +107,11 @@ const SignUp = () => {
             placeholder="First Name"
             value={firstName}
             onChangeText={setFirst}
-            placeholderTextColor="#000000"
+            placeholderTextColor="white"
           />
         </View>
+        <View style={[styles.lineView, styles.iphone13ChildLayout1]} />
+
 
         <View style={styles.inputContainer}>
           <Image source={require("../assets/user.png")} style={styles.icon} />
@@ -116,9 +120,13 @@ const SignUp = () => {
             placeholder="Last Name"
             value={lastName}
             onChangeText={setLast}
-            placeholderTextColor="#000000"
+            placeholderTextColor="white"
+            colors={['rgb(76, 160, 252)', 'rgb(224, 47, 238)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
           />
         </View>
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
 
         <View style={styles.inputContainer}>
           <Image source={require("../assets/mail.png")} style={styles.icon} />
@@ -127,9 +135,10 @@ const SignUp = () => {
             placeholder="Email"
             value={email}
             onChangeText={setEmail}
-            placeholderTextColor="#000000"
+            placeholderTextColor="white"
           />
         </View>
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
 
         <View style={styles.inputContainer}>
           <Image source={require("../assets/calendar.png")} style={styles.icon} />
@@ -138,9 +147,10 @@ const SignUp = () => {
             placeholder="Birth"
             value={birth}
             onChangeText={setBirth}
-            placeholderTextColor="#000000"
+            placeholderTextColor="white"
           />
         </View>
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
 
         <View style={styles.inputContainer}>
           <Image source={require("../assets/lock.png")} style={styles.icon} />
@@ -149,11 +159,12 @@ const SignUp = () => {
             placeholder="Password"
             value={password}
             onChangeText={setPassword}
-            placeholderTextColor="#000000"
+            placeholderTextColor="white"
           />
         </View>
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
 
-        <Button title="Sign Up" onPress={handleSignUp} color="#7D0C43" />
+        <Button title="Sign Up" onPress={handleSignUp} color="#7D0C43" /> 
 
         
         <View style={styles.frameParent}>
@@ -194,6 +205,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   backgroundImage: {
     flex: 1,
@@ -210,14 +222,15 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.6)', // Adjust the opacity as needed
+    
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.6)', // Adjust the background color and opacity as needed
     borderRadius: 5,
     width: 250,
+    marginLeft:50,
   },
 
   icon: {
@@ -232,6 +245,7 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 10,
     color: 'black',
+    color:"white",
   },
   orSignupWith: {
     lineHeight: 21,
@@ -257,6 +271,7 @@ const styles = StyleSheet.create({
     height: 30,
     overflow: "hidden",
     margin :5,
+    
  
   },
   vectorIcon: {
@@ -264,12 +279,25 @@ const styles = StyleSheet.create({
     height: 36,
   },
   btn2: {
-    marginLeft: 10,
+    marginLeft: 190,
   },
   btnParent: {
     width: 335,
     marginTop: 15,
     flexDirection: "row",
+  },
+  lineView: {
+    top: 40,
+    left: 1,
+    position: "absolute",
+  },
+  iphone13ChildLayout1: {
+    height: 1,
+    width: 220,
+    borderTopWidth: 1,
+    borderColor: Color.shadesWhite,
+    borderStyle: "solid",
+    left: 50,
   },
 });
 

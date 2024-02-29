@@ -66,6 +66,7 @@ const Onbording = () => {
 const styles = StyleSheet.create({
   onboridngChildPosition: {
     width: 394,
+    height: 621,
     left: 0,
     position: "absolute",
   },
@@ -95,30 +96,30 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   getThePrice: {
-    top: 500,
+    top: 600,
     left: 18,
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "700",
     fontFamily: FontFamily.markaziTextBold,
     textAlign: "center",
     width: 354,
   },
   onboridngInner: {
-    top: 580,
+    top: 659,
     left: 138,
     width: 115,
     height: 115,
     position: "absolute",
   },
   onboridngChild1: {
-    top: 600,
+    top: 677,
     left: 158,
     width: 75,
     height: 75,
     position: "absolute",
   },
   arrowIcon: {
-    top: 616,
+    top: 705,
     left: 183,
     maxHeight: "100%",
     width: 27,
@@ -127,8 +128,8 @@ const styles = StyleSheet.create({
    
   },
   scanYourProduct: {
-    top: 700,
-    left: 139,
+    top: 800,
+    left: 146,
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.outfitRegular,
     textAlign: "left",
