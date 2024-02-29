@@ -28,50 +28,54 @@ const SignUp = () => {
   };
 
   const handleSignUp = async () => {
+
     try {
-    
+      navigation.navigate('home');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
         alert("Password must contain at least one capital letter, one number, and one symbol (!@#$%^&*)");
         return;
       }
-
+  
       const res = await createUserWithEmailAndPassword(email, password);
-
+  
       if (!res || !res.user) {
-        alert("User creation failed. Please try again.");
-        return;
+        throw new Error("User creation failed. Please try again.");
       }
-
-      const registerResponse = await axios.post('http:// 192.168.1.17:8000/users/register', {
+  
+      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
         firstName,
         lastName,
         email,
         birth,
         password
       });
-
+  
       console.log('Registration API response:', registerResponse);
-
+  
       // Store the user's email in session storage
       sessionStorage.setItem('userEmail', email);
-
+  
+      setFirst('');
+      setLast('');
       setEmail('');
       setPassword('');
       setBirth('');
-      setFirst('');
-      setLast('');
-
+  
       alert("Sign up successful");
-      navigation.navigate('Onbording');
-
+      navigation.navigate('home');
+  
     } catch (e) {
-      console.error(e);
-      alert("Sign up failed. Please try again.");  
+    console.error(e);
+    alert(e.message || "Sign up failed. Please try again.");
+    // Log the specific Firebase error
+    if (e.code) {
+      console.error("Firebase Error Code:", e.code);
     }
+  }
   };
-
+  
   const handleGoogleSignUp = async () => {
     try {
       const res = await signInWithGoogle(GoogleProvider);

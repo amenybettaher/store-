@@ -10,14 +10,14 @@ import SignUp from '../screens/SignUp'
 import Onbording from '../screens/Onbording.js';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
-
+// import Map from '../screens/Map.js';
 const Stack = createStackNavigator();
 
 export default function AppNavigator() {
   return (
     <NavigationContainer>
    
-      <Stack.Navigator initialRouteName="Page">
+      <Stack.Navigator initialRouteName="SignUp">
       <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
@@ -25,6 +25,8 @@ export default function AppNavigator() {
       <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Scanner" component={ScannerScreen} />
+        {/* <Stack.Screen name="Map" component={Map} /> */}
+
         {/* <Stack.Screen name="home" component={home} /> */}
 
         {/* Add more screens as neededs */}

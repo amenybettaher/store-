@@ -1,15 +1,17 @@
 import * as React from "react";
 import { Image } from "expo-image";
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text,Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontSize, FontFamily } from "../GlobalStyles";
 
 const Onbording2 = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
-  const handleStartPress = () => {
-    navigation.navigate('SignIn'); // Navigate to 'Onbording2' screen
+  const handle = () => {
+    navigation.navigate('SignIn'); // Navigate to 'SignUp' screen
+  };
+  
   
 
   
@@ -48,13 +50,14 @@ const Onbording2 = () => {
         >{`this New technologie you can sacan our product and see more information about the product `}</Text>
       </View>
       <View style={styles.rectangleView} />
-      <Pressable onPress={handleStartPress}>
-        <Text style={styles.getStarted}>Get Started</Text>
-      </Pressable>
+      <Pressable onPress={handle}>
+  <Text style={styles.getStarted}>Get Started</Text>
+</Pressable>
+
     </LinearGradient>
   );
 };
-};
+
 
 const styles = StyleSheet.create({
   onbording2Position: {
