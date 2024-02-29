@@ -1,6 +1,6 @@
 // TabBar.js
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 const TabBar = ({ navigation }) => {
   const handleTabPress = (screen) => {
@@ -9,11 +9,24 @@ const TabBar = ({ navigation }) => {
 
   return (
     <View style={styles.tabbar}>
-      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Home')}><Text>Home</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Articles')}><Text>Articles</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Map')}><Text>Map</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Card')}><Text>Card</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Profile')}><Text>Profile</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Home')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Articles')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Map')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('total')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Card')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tabItem} onPress={() => handleTabPress('Profile')}>
+        <Image source={require("../assets/user.png")} style={styles.icon} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -29,6 +42,10 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     padding: 10,
+  },
+  icon: {
+    width: 24, // adjust the width and height according to your image dimensions
+    height: 24,
   },
 };
 
