@@ -10,6 +10,7 @@ import Onbording from '../screens/Onbording.js';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
+import Article from '../screens/Article.js'
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ function MainStack() {
       <Stack.Screen name='Onbording2' component={Onbording2} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="Home" component={HomeScreenWithTabBar} />
       <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
     </Stack.Navigator>
