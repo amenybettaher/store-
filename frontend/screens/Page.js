@@ -11,7 +11,7 @@ const Page = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Onbording');
-    }, 7000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -23,7 +23,7 @@ const Page = () => {
         <Image
           style={[styles.instanceChild, styles.instanceLayout]}
           contentFit="cover"
-          source={require("../assets/rectangle-2206.png")}
+          source={require("../assets/Rectangle-2206.png")}
         />
         <Text style={[styles.echrili, styles.echriliPosition]}>ECHRILI</Text>
         <Image
