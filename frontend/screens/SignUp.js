@@ -35,8 +35,8 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
 
+
     try {
-      navigation.navigate('SignIn');
       navigation.navigate('Article');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
@@ -69,10 +69,11 @@ const SignUp = () => {
       setEmail('');
       setPassword('');
       setBirth('');
-  
-      alert("Sign up successful");
+      setFirst('');
+      setLast('');
+
       navigation.navigate('home');
-  
+      alert("Sign up successful");
     } catch (e) {
     console.error(e);
     alert(e.message || "Sign up failed. Please try again.");

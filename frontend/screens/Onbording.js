@@ -4,7 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 
-const Onbording = () => {
+const 
+Onbording = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
   const handleStartPress = () => {
