@@ -97,7 +97,7 @@ const SignUp = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/rectangle-22061.png")}
+      source={require("../assets/Rectangle-22061.png")}
       style={styles.backgroundImage}
     >
       <View style={styles.overlay} />
