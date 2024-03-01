@@ -61,7 +61,7 @@ const Onbording2 = () => {
 
 const styles = StyleSheet.create({
   onbording2Position: {
-    height: 521,
+    height: 621,
     top: 323,
     width: 398,
     left: 0,
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
   welcomeToEchriliLayout: {
     width: 342,
     textAlign: "left",
-    color: "white"
+    color: "#DCDCDC",
+    fontSize:19,
+    top:-30,
   },
   ramadanGroceryShoppingCovIcon: {
     top: 0,
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     top: 323,
   },
   onbording2Item: {
-    top: 409,
+    top: 609,
     height: 435,
     width: 390,
     left: 0,
@@ -116,25 +118,26 @@ const styles = StyleSheet.create({
   thisNewTechnologie: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.outfitRegular,
-    marginTop: 8,
+    marginTop: 2,
+    
   },
   welcomeToEchriliParent: {
-    top: 593,
+    top: 653,
     left: 48,
     position: "absolute",
   },
   rectangleView: {
-    top: 730,
-    left: 48,
+    top: 722,
+    left: 97,
     borderRadius: Border.br_5xs,
     backgroundColor: "#7d0c42",
-    width: 308,
+    width: 208,
     height: 51,
     position: "absolute",
   },
   getStarted: {
-    top: 750,
-    left: 159,
+    top: 740,
+    left: 169,
     fontSize: FontSize.size_mini,
     fontWeight: "600",
     fontFamily: FontFamily.outfitSemiBold,

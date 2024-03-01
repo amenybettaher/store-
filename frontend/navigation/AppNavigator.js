@@ -1,4 +1,3 @@
-// AppNavigator.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,12 +10,14 @@ import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
 import Article from '../screens/Article.js'
-
+//import Map from '../screens/Map.js';
 const Stack = createStackNavigator();
 
 function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
+      {/* <Stack.Screen name='w' component={Map} /> */}
+
       <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
