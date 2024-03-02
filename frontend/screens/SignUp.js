@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, GoogleProvider } from '../firebase/config';
-import LinearGradient from 'react-native-linear-gradient';
+// import LinearGradient from 'react-native-linear-gradient';
 
 import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
 import { FacebookProvider } from '../firebase/config';
@@ -106,7 +106,7 @@ const SignUp = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/360_F_434190838_3FCCIiag1LYlL1IA6pb0WPEEqxiZVfPO.jpeg")}
+      source={require("../assets/Rectangle-22061.png")}
       style={styles.backgroundImage}
       blurRadius={2}>
         

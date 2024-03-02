@@ -37,7 +37,8 @@ const SignIn = () => {
       console.log('user:', loginResponse);
       setEmail('');
       setPassword('');
-      navigation.navigate('home');
+      navigation.navigate('Article');
+      
       Alert.alert("Sign in successful");
     } catch (e) {
       console.error(e);

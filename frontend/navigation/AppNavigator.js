@@ -9,22 +9,26 @@ import Onbording from '../screens/Onbording.js';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
-import Article from '../screens/Article.js'
-//import Map from '../screens/Map.js';
+import Map from '../screens/Map.js';
+import Magasine from '../screens/Article.js'
+import HomePage from '../screens/Home.js'
 const Stack = createStackNavigator();
 
 function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name='w' component={Map} /> */}
 
       <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Home" component={Home} />
+
+      {/* <Stack.Screen name='w' component={Map} /> */}
+
       <Stack.Screen name="Article" component={Article} />
-      <Stack.Screen name="Home" component={HomeScreenWithTabBar} />
+      <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} />
       <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
     </Stack.Navigator>
   );
@@ -48,6 +52,23 @@ function ScannerScreenWithTabBar({ navigation }) {
   );
 }
 
+function Article({ navigation }) {
+  return (
+    <>
+      <Magasine/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+
+function Home({ navigation }) {
+  return (
+    <>
+      <HomePage/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
 export default function AppNavigator() {
   return (
     <NavigationContainer>
