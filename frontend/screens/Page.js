@@ -15,7 +15,7 @@ const Page = () => {
 
     return () => clearTimeout(timer);
   }, []);
-  // Empty dependency array to run only once
+  
 
   return (
     <View style={styles.page2}>
@@ -25,7 +25,7 @@ const Page = () => {
           contentFit="cover"
           source={require("../assets/zz.jpg")}
         />
-        <Text style={[styles.echrili, styles.echriliPosition]}>ECHRILI</Text>
+        <Text style={[styles.echrili, styles.echriliPosition]} >ECHRILI</Text>
         <Image
           style={[styles.instanceItem, styles.echriliPosition]}
           contentFit="cover"
@@ -41,24 +41,25 @@ const styles = StyleSheet.create({
   instanceLayout: {
     maxHeight: "100%",
     maxWidth: "100%",
-    overflow: "hidden",
+    
   },
   echriliPosition: {
     position: "absolute",
   },
   instanceChild: {
     height: "100%",
-    width: "122.95%",
+    width: "100%",
     top: "0%",
     right: "-22.95%",
     bottom: "0%",
     left: "0%",
     position: "absolute",
+    
   },
   echrili: {
     height: "6.03%",
     width: "55.07%",
-    top: "43.97%",
+    top: "45.97%",
     left: "29.95%",
     fontSize: FontSize.size_17xl,
     fontWeight: "700",
