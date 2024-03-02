@@ -12,11 +12,7 @@ app.use(express.json())
 
 
 app.use('/api/carte', carte)
-
-
-
 app.use('/users', userRoutes)
-
 app.use('/article', articleRoutes)
 
 
