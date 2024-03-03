@@ -401,6 +401,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
   },
+  
 });
 
 export default SignUp;
