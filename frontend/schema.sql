@@ -23,7 +23,7 @@ USE `market` ;
 CREATE TABLE IF NOT EXISTS `market`.`article` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(505) NOT NULL,
-  `image` VARCHAR(1000) NOT NULL,
+  `image` VARCHAR(10000) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `price` VARCHAR(45) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
