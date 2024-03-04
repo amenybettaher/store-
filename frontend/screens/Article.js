@@ -16,7 +16,7 @@ const Magasine = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.1.114:8000/article/getAll');
+        const response = await axios.get('http://192.168.43.151:8000/article/get');
         setArticles(response.data);
         setFilteredArticles(response.data); 
       } catch (error) {
