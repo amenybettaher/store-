@@ -123,7 +123,7 @@ const SignUp = () => {
         </View>
         <View style={[styles.lineView, styles.iphone13ChildLayout1]} />
         <View style={styles.h1}>
-          <Text style={styles.signup1}>Signup</Text>
+          <Text style={styles.signup1}>SignUp</Text>
         </View>
 
         <View style={styles.inputContainer}>

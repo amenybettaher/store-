@@ -5,9 +5,8 @@ import { auth } from '../firebase/config';
 import { useNavigation } from '@react-navigation/native';
 import { Color, Border, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import axios from 'axios';
-import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -53,22 +52,29 @@ const SignIn = () => {
       <View style={styles.overlay} />
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',  }}>
       <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          style={styles.input}
-          placeholderTextColor="white"/>
-      <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry
-          style={styles.input}
-          placeholderTextColor="white" />
-              <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
-              <Entypo name="eye-with-line" size={20} color="white" style={styles.eye}/>
+        <View style={styles.inputWithIcon}>
+          <Feather name="mail" size={20} color="white" style={styles.icon1} />
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            style={styles.input}
+            placeholderTextColor="white"/>
+        </View>
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
+        <View style={styles.inputWithIcon}>
+          <Feather name="lock" size={20} color="white" style={styles.icon1} />
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry
+            style={styles.input}
+            placeholderTextColor="white" />
+        </View>
+        
+        <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
+        <Entypo name="eye-with-line" size={20} color="white" style={styles.eye}/>
 
         <TouchableOpacity
           onPress={handleSignIn}
@@ -110,8 +116,6 @@ const SignIn = () => {
                 Remember me
               </Text>
             </View>
-            <Feather name="mail" size={20} color="white" style={styles.icon1}/>
-            <FontAwesome6 name="unlock-keyhole" size={20} color="white"style={styles.icon2} />
 
           </View>
     </View>
@@ -187,7 +191,7 @@ const styles = StyleSheet.create({
 
     forgotPassword: {
        color: Color.sthLightgrey,
-      left: 65,
+      left: 78,
       top: -150,
     },
     backgroundImage: {
@@ -214,6 +218,9 @@ const styles = StyleSheet.create({
       marginLeft:20,
       top:129,
     },
+    inputWithIcon: {
+      position: 'relative',
+    },
     iphone13ChildLayout1: {
       height: 1,
       width: 250,
@@ -238,11 +245,12 @@ const styles = StyleSheet.create({
       shadowColor: "#000",
     },
     h2: {
-      top: 140,
+      top: 90,
       left: 120,
       paddingHorizontal: 0,
       flexDirection: "row",
       position: "absolute",
+      
     },
     signup1: {
       fontSize: FontSize.size_17xl,
@@ -324,16 +332,13 @@ width:420,
    },
    eye:{
     top:83,
-    marginLeft:222,
+    marginLeft:226,
    },
    icon1:{
-    top:-121,
-    marginLeft:-135,
+    position: 'absolute',
+    top: 145,
+    left: 0,
    },
-   icon2:{
-    top:-60,
-    marginLeft:-17,
-    
-   }
+  
   });
 export default SignIn;
