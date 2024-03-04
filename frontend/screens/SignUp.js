@@ -37,7 +37,7 @@ const SignUp = () => {
 
 
     try {
-      navigation.navigate('HomePage');
+      navigation.navigate('Home');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
@@ -51,7 +51,7 @@ const SignUp = () => {
         throw new Error("User creation failed. Please try again.");
       }
   
-      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
+      const registerResponse = await axios.post('http:// 192.168.43.151:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -72,7 +72,7 @@ const SignUp = () => {
       setFirst('');
       setLast('');
 
-      navigation.navigate('HomePage');
+      navigation.navigate('Home');
       alert("Sign up successful");
     } catch (e) {
     console.error(e);

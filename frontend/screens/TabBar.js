@@ -15,7 +15,7 @@ const TabBar = ({navigation}) => {
             <View style={{
                 position: 'absolute',
                 alignSelf: 'center',
-                backgroundColor: 'red',
+                backgroundColor: 'white',
                 width: 70,
                 height: 70,
                 borderRadius: 55,
