@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, Alert, Image } from 'react-native';
+import { Card } from 'react-native-elements';  // Import the Card component
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from 'axios';
+
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
-  const [scanning, setScanning] = useState(true); // Initial state set to true
+  const [scanning, setScanning] = useState(true);
   const [barcodeData, setBarcodeData] = useState(null);
+  const [productDetails, setProductDetails] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -16,14 +20,49 @@ export default function ScannerScreen() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setBarcodeData(data);
-    setScanning(false); // Disable scanning after successful scan
-    // Perform any additional logic here (e.g., add barcode data to a list, show a success message)
-    alert(`Barcode ${data} scanned successfully!`);
+    setScanning(false);
+
+    Alert.alert(
+      'Add Item Confirmation',
+      `Are you sure you want to add this product: ${data}?`,
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            Alert.alert('Product cancelled');
+            // Add your cancellation logic here
+          },
+        },
+        {
+          text: 'Confirm',
+          onPress: () => {
+            // Proceed with the intended action
+            Alert.alert('Product confirmed');
+            // Add your confirmation logic here
+            fetchProductDetails(data);
+          },
+        },
+      ]
+    );
+  };
+
+  const fetchProductDetails = (barcode) => {
+    axios
+      .get(`http://192.168.1.110:8000/article/get/${barcode}`)
+      .then((response) => {
+        setProductDetails(response.data[0]);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        Alert.alert('Error', 'Failed to fetch product details');
+      });
   };
 
   const startScanning = () => {
-    setScanning(true); // Enable scanning
-    setBarcodeData(null); // Reset barcode data
+    setScanning(true);
+    setBarcodeData(null);
+    setProductDetails(null); // Reset product details when scanning a new product
   };
 
   if (hasPermission === null) {
@@ -31,20 +70,36 @@ export default function ScannerScreen() {
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
-  }
+  } 
 
   return (
     <View style={styles.container}>
-      {scanning && ( // Render BarCodeScanner only if scanning is enabled
+      {scanning && (
         <BarCodeScanner
           onBarCodeScanned={handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
+          flashMode="torch"
         />
       )}
       {barcodeData && (
         <View style={styles.dataContainer}>
-          <Text>Data: {barcodeData}</Text>
-          <Button title="Scan Again" onPress={startScanning} />
+          <Card>
+            <Card.Title>قفتي</Card.Title>
+            <Card.Divider />
+            {productDetails && (
+              <>
+                <Image
+                  style={{ width: '100%', height: 100 }}
+                  resizeMode="contain"
+                  source={{ uri: productDetails.image }}  // Use the product image URI
+                />
+                <Text>Product Name: {productDetails.name}</Text>
+                <Text>Price: {productDetails.price}</Text>
+                {/* Add more details as needed */}
+              </>
+            )}
+            <Button title="Scan other product" onPress={startScanning} />
+          </Card>
         </View>
       )}
     </View>
