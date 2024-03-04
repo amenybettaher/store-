@@ -13,7 +13,7 @@ const Notifications = () => {
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
   const handleStartPress = () => {
-    navigation.navigate('Profile'); // Navigate to 'Onbording2' screen
+    navigation.navigate('Profil'); // Navigate to 'Onbording2' screen
   };
    // First toggle switch state and handler
    const [toggleState1, setToggleState1] = useState(false);

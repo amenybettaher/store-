@@ -11,7 +11,7 @@ const EditProfile = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const handleStartPresss = () => {
-        navigation.navigate('Profile');
+        navigation.navigate('Profil');
     };
 
     const handleChangePicture = async () => {
