@@ -21,8 +21,10 @@ const Stack = createStackNavigator();
 
 function MainStack() {
   return (
+
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Page' component={Page} />
+
 
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
