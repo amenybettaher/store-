@@ -35,8 +35,8 @@ function MainStack() {
 
       <Stack.Screen name='Map' component={Map} />
       <Stack.Screen name="Article" component={Article} />
-      <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} />
-      <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Scanner" component={ScannerScreen} />
     </Stack.Navigator>
   );
 }
