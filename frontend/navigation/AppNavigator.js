@@ -21,8 +21,8 @@ const Stack = createStackNavigator();
 
 function MainStack() {
   return (
-    <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
-<Stack.Screen name='welcome' component={HomeScreen} />
+    <Stack.Navigator initialRouteName="Article" screenOptions={{ headerShown: false }}>
+<Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
       <Stack.Screen name="SignIn" component={SignIn} />
