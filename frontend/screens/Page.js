@@ -23,7 +23,7 @@ const Page = () => {
         <Image
           style={[styles.instanceChild, styles.instanceLayout]}
           contentFit="cover"
-          source={require("../assets/zz.jpg")}
+          source={require("../assets/hh.png")}
         />
         <Text style={[styles.echrili, styles.echriliPosition]} >ECHRILI</Text>
         <Image

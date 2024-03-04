@@ -4,7 +4,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Shop Scanner App </Text>
-      <Button style={styles.buttonStyle} title="Start Scan" onPress={() => navigation.navigate('ScannerScreen')} />
+      <Button style={styles.buttonStyle} title="Start Scan" onPress={() => navigation.navigate('Scanner')} />
     </View>
   );
 }
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#8640f0',
     padding: 20,
   },
   title: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     position: 'absolute',
-    bottom: 20, 
+    bottom: 20, // Position 20px from the bottom
     left: 50,
 
   },
