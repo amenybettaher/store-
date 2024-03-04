@@ -9,23 +9,34 @@ import Onbording from '../screens/Onbording.js';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
-import Article from '../screens/Article.js'
-//import Map from '../screens/Map.js';
+import MapPage from '../screens/Map.js';
+import Magasine from '../screens/Article.js'
+import HomePage from '../screens/Home.js'
+import  Profile  from '../screens//Profil.js';
+import Notifications from '../screens/Notifications.js';
+import Language from '../screens/Language.js';
+import EditProfile from '../screens/EditProfile.js';
+
 const Stack = createStackNavigator();
 
 function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name='w' component={Map} /> */}
-
-      <Stack.Screen name='welcome' component={Page} />
+<Stack.Screen name='welcome' component={HomeScreen} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Profil" component={Profil} />
+      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Language" component={Language} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+
+      <Stack.Screen name='Map' component={Map} />
       <Stack.Screen name="Article" component={Article} />
-      <Stack.Screen name="Home" component={HomeScreenWithTabBar} />
-      <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Scanner" component={ScannerScreen} />
     </Stack.Navigator>
   );
 }
@@ -48,6 +59,39 @@ function ScannerScreenWithTabBar({ navigation }) {
   );
 }
 
+function Article({ navigation }) {
+  return (
+    <>
+      <Magasine/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+
+function Home({ navigation }) {
+  return (
+    <>
+      <HomePage/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+function Map({ navigation }) {
+  return (
+    <>
+      <MapPage/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+function Profil({ navigation }) {
+  return (
+    <>
+      <Profile/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
 export default function AppNavigator() {
   return (
     <NavigationContainer>

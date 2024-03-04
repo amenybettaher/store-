@@ -48,7 +48,7 @@ export default function ScannerScreen() {
 
   const fetchProductDetails = (barcode) => {
     axios
-      .get(`http://192.168.1.7:8000/article/get/${barcode}`)
+      .get(`http://192.168.43.151:8000/article/get/${barcode}`)
       .then((response) => {
         setProductDetails(response.data[0]);
         console.log(response.data);

@@ -1,5 +1,14 @@
 const con = require ('../database/index')
-
+const getAll = (callback) => {
+  const q = 'SELECT * FROM `article`';
+  con.query(q, (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result);
+    }
+  });
+};
 
 const getbyone = (code, callback) => {
   const q = 'SELECT * FROM `article` WHERE code = ?';
@@ -63,6 +72,6 @@ const update = (articleId, updatedData, callback) => {
 
 
 
-  module.exports = {
+  module.exports = {getAll,
     add , deleteA , update , getbyone , getByCategory
   }
