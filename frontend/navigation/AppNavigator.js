@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
-<Stack.Screen name='welcome' component={Page} />
+<Stack.Screen name='welcome' component={HomeScreen} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
       <Stack.Screen name="SignIn" component={SignIn} />
@@ -35,8 +35,8 @@ function MainStack() {
 
       <Stack.Screen name='Map' component={Map} />
       <Stack.Screen name="Article" component={Article} />
-      <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} />
-      <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Scanner" component={ScannerScreen} />
     </Stack.Navigator>
   );
 }
