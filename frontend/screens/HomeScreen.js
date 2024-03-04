@@ -4,7 +4,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Shop Scanner App </Text>
-      <Button style={styles.buttonStyle} title="Start Scan" onPress={() => navigation.navigate('Scanner')} />
+      <Button style={styles.buttonStyle} title="Start Scan" onPress={() => navigation.navigate('ScannerScreen')} />
     </View>
   );
 }

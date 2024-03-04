@@ -9,9 +9,12 @@ import Onbording from '../screens/Onbording.js';
 import HomeScreen from '../screens/HomeScreen';
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
-import Map from '../screens/Map.js';
+import MapPage from '../screens/Map.js';
 import Magasine from '../screens/Article.js'
 import HomePage from '../screens/Home.js'
+
+
+
 const Stack = createStackNavigator();
 
 function MainStack() {
@@ -24,9 +27,7 @@ function MainStack() {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={Home} />
-
-      {/* <Stack.Screen name='w' component={Map} /> */}
-
+      <Stack.Screen name='Map' component={Map} />
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} />
       <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
@@ -65,6 +66,14 @@ function Home({ navigation }) {
   return (
     <>
       <HomePage/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+function Map({ navigation }) {
+  return (
+    <>
+      <MapPage/>
       <TabBar navigation={navigation} />
     </>
   );
