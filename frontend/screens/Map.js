@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, View, Text, Dimensions,Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button } from 'react-native';
 import * as Location from 'expo-location';
-import { useNavigation } from '@react-navigation/native';
-
+import Geocoder from 'react-native-geocoding';
 
 export default function MapPage() {
-  const navigation = useNavigation();
   const [mapRegion, setMapRegion] = useState({
-    // latitude: 36.806389,
-    // longitude: 10.181667,
-    latitudeDelta: 4.0, // Adjust this value for zoom level
-    longitudeDelta: 4.0, // Adjust this value for zoom level
+    latitudeDelta: 0.08,
+    longitudeDelta: 0.01,
   });
   const [markers, setMarkers] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-
 
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -28,64 +23,78 @@ export default function MapPage() {
     setMapRegion({
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
-      latitudeDelta: 0.08, // You may want to adjust this for user location zoom level
-      longitudeDelta: 0.01, // You may want to adjust this for user location zoom level
+      latitudeDelta: 0.08,
+      longitudeDelta: 0.01,
     });
-    console.log(location.coords.latitude, location.coords.longitude);
   };
 
   const addMarker = (event) => {
-    // Get the latitude and longitude of the long-pressed location
     const { latitude, longitude } = event.nativeEvent.coordinate;
-
-    // Create a new marker at the long-pressed location
     const newMarker = {
       latitude,
       longitude,
-      id: Date.now().toString(), // Assign a unique ID to the marker
+      id: Date.now().toString(),
     };
-
-    // Add the new marker to the markers array
     setMarkers([...markers, newMarker]);
   };
 
   const removeMarker = (markerId) => {
-    // Filter out the marker with the specified ID and update the markers array
     const updatedMarkers = markers.filter((marker) => marker.id !== markerId);
     setMarkers(updatedMarkers);
+  };
+
+  const searchSupermarkets = async () => {
+    try {
+      // Geocoding API request using fetch
+      const response = await fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
+          searchQuery
+        )}&apiKey=30244598c9a24a42b3551f2d75de7850`
+      );
+      const result = await response.json();
+
+      // Extract latitude and longitude from the API response
+      const location = result.features[0].geometry.coordinates;
+
+      // Create a new marker at the geocoded location
+      const newMarker = {
+        latitude: location[1],
+        longitude: location[0],
+        id: Date.now().toString(),
+      };
+
+      // Add the new marker to the markers array
+      setMarkers([...markers, newMarker]);
+    } catch (error) {
+      console.error('Error searching supermarkets:', error);
+    }
   };
 
   useEffect(() => {
     userLocation();
   }, []);
 
-  const searchSupermarkets = async () => {
-        try {
-          const response = await Geocoder.from(searchQuery);
-          const { results } = response;
-    
-          const locations = results.map((result) => ({
-            name: result.formatted_address,
-            latitude: result.geometry.location.lat,
-            longitude: result.geometry.location.lng,
-          }));
-    
-          setSupermarketLocations(locations);
-        } catch (error) {
-          console.error('Error searching supermarkets:', error);
-        }
-      };
+  // useEffect(() => {
+  //   Geocoder.init('30244598c9a24a42b3551f2d75de7850'); // Initialize Geocoder with your API key
+  // }, []);
 
   return (
     <View style={styles.container}>
-          <Button title="Search" onPress={searchSupermarkets} />
+      <TextInput
+        style={styles.input}
+        placeholder="Enter country or supermarket name"
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
+      <Button title="Search" onPress={searchSupermarkets} />
+
       <MapView style={styles.map} region={mapRegion} onLongPress={addMarker}>
         {markers.map((marker, index) => (
           <Marker
-            key={marker.id}
+            key={index.toString()}
             coordinate={marker}
             title={`Marker ${index + 1}`}
-            onPress={() => removeMarker(marker.id)} // Remove the marker when tMaped
+            onPress={() => removeMarker(marker.id)}
           />
         ))}
       </MapView>
@@ -98,8 +107,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   map: {
-    width: '100%',
-    height: '92%',
-    top:30
+    flex: 1,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 10,
+    marginTop:50
   },
 });
