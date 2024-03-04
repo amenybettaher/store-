@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions,Button } from 'react-native';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,13 +8,15 @@ import { useNavigation } from '@react-navigation/native';
 export default function MapPage() {
   const navigation = useNavigation();
   const [mapRegion, setMapRegion] = useState({
-    latitude: 36.806389,
-    longitude: 10.181667,
+    // latitude: 36.806389,
+    // longitude: 10.181667,
     latitudeDelta: 4.0, // Adjust this value for zoom level
     longitudeDelta: 4.0, // Adjust this value for zoom level
   });
   const [markers, setMarkers] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -26,8 +28,8 @@ export default function MapPage() {
     setMapRegion({
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
-      latitudeDelta: 0.5, // You may want to adjust this for user location zoom level
-      longitudeDelta: 0.5, // You may want to adjust this for user location zoom level
+      latitudeDelta: 0.08, // You may want to adjust this for user location zoom level
+      longitudeDelta: 0.01, // You may want to adjust this for user location zoom level
     });
     console.log(location.coords.latitude, location.coords.longitude);
   };
@@ -57,8 +59,26 @@ export default function MapPage() {
     userLocation();
   }, []);
 
+  const searchSupermarkets = async () => {
+        try {
+          const response = await Geocoder.from(searchQuery);
+          const { results } = response;
+    
+          const locations = results.map((result) => ({
+            name: result.formatted_address,
+            latitude: result.geometry.location.lat,
+            longitude: result.geometry.location.lng,
+          }));
+    
+          setSupermarketLocations(locations);
+        } catch (error) {
+          console.error('Error searching supermarkets:', error);
+        }
+      };
+
   return (
     <View style={styles.container}>
+          <Button title="Search" onPress={searchSupermarkets} />
       <MapView style={styles.map} region={mapRegion} onLongPress={addMarker}>
         {markers.map((marker, index) => (
           <Marker
@@ -80,5 +100,6 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '92%',
+    top:30
   },
 });
