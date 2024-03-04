@@ -37,7 +37,7 @@ const SignUp = () => {
 
 
     try {
-      navigation.navigate('Home');
+      navigation.navigate('HomePage');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
@@ -72,7 +72,7 @@ const SignUp = () => {
       setFirst('');
       setLast('');
 
-      navigation.navigate('Home');
+      navigation.navigate('HomePage');
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
@@ -123,7 +123,7 @@ const SignUp = () => {
         </View>
         <View style={[styles.lineView, styles.iphone13ChildLayout1]} />
         <View style={styles.h1}>
-          <Text style={styles.signup1}>Signup</Text>
+          <Text style={styles.signup1}>SignUp</Text>
         </View>
 
         <View style={styles.inputContainer}>

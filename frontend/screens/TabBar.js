@@ -12,16 +12,15 @@ const TabBar = ({navigation}) => {
 
     return (
         <View >
-
             <View style={{
                 position: 'absolute',
                 alignSelf: 'center',
-                backgroundColor: 'white',
+                backgroundColor: 'red',
                 width: 70,
                 height: 70,
                 borderRadius: 55,
                 bottom: 35,
-                zIndex: 10
+                zIndex: 10,
             }}>
 
                 <TouchableWithoutFeedback onPress={toggleOpen}>
