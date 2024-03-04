@@ -21,7 +21,7 @@ const getByCategory = (category, callback) => {
           callback(null, result);
       }
   });
-};
+};  
 
 
 const add = ( Newdata  , callback) =>{

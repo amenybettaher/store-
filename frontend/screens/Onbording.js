@@ -6,10 +6,10 @@ import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 
 const 
 Onbording = () => {
-  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+  const navigation = useNavigation(); 
 
   const handleStartPress = () => {
-    navigation.navigate('Onbording2'); // Navigate to 'Onbording2' screen
+    navigation.navigate('Onbording2'); 
   };
 
   return (
