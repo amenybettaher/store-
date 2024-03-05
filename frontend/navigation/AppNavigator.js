@@ -57,7 +57,7 @@ function HomeScreenWithTabBar({ navigation }) {
 function ScannerScreenWithTabBar({ navigation }) {
   return (
     <>
-      <ScannerScreen />
+      <ScannerScreen/>
       <TabBar navigation={navigation} />
     </>
   );
