@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 
 function MainStack() {
   return (
-    <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Map" screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Page' component={Page} />
 
       <Stack.Screen name='Onbording' component={Onbording} />

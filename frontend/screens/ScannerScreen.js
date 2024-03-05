@@ -8,7 +8,7 @@ import axios from 'axios';
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanning, setScanning] = useState(true);
-  const [barcodeData, setBarcodeData] = useState(null);
+  const [barcodeData, setBarcodeData] = useState(null);   
   const [productDetails, setProductDetails] = useState(null);
 
   useEffect(() => {
