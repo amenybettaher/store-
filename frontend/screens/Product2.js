@@ -1,57 +1,65 @@
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+  ImageBackground,
+} from "react-native";
 import React from "react";
-import { SliderBox } from "react-native-image-slider-box";
-import Product from "./Product";
-import Product2 from "./Product2";
+import data from "../assets/data";
+import { MaterialIcons } from "@expo/vector-icons";
 
-function HomePage() {
-  const images = [
-    "https://cdn4.vectorstock.com/i/1000x1000/74/98/promotion-sign-in-modern-supermarket-background-vector-22427498.jpg",
-    "https://media.istockphoto.com/id/155443388/photo/dairy-discount-in-grocery-store.jpg?s=612x612&w=0&k=20&c=zpSo5vC7jQHzsJju0Y48E-a5TQItSRDJbz4vF7WuCWc=",
-    "https://img.freepik.com/premium-photo/fresh-food-vegetables-shopping-basket-mobile-smartphone-wood-table-with-supermarket-aisle-blurred-background-grocery-online-concept_293060-4950.jpg",
-  ];
-
+const Product2 = () => {
   return (
-    <ScrollView>
-      <View style={{marginTop: 45, marginBottom: 650}}>
-
-        <SliderBox
-          images={images}
-          dotColor="#7D0C43"
-          inactiveDotColor="#13274F"
-          imageLoadingColor="black"
-          autoPlay={true}
-          autoplayInterval={1000}
-          circleLoop={true}
-          onCurrentImagePressed={(index) => alert(index + 1)}
-          firstItem={4}
-          paginationBoxVerticalPadding={20}
-          ImageComponentStyle={{
-            borderRadius: 30,
-            width: "94%",
-          }}
-        />
-        <Text style={styles.upc}>upcoming product</Text>
-
-        <Product />
-
-        <Product2 />
-        <Product2 />
-      </View>
-    </ScrollView>
+    <View style={{ margin: 10 }}>
+      <Text style={ styles.get}>Get it Quickly</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {data.map((item, index) => (
+          <Pressable style={{ margin: 10 }} key={index}>
+            <ImageBackground
+              imageStyle={{ borderRadius: 6 }}
+              style={{ aspectRatio: 5 / 6, height: 170 }}
+              source={{ uri: item.image }}
+            >
+              <Text
+                style={{
+                  position: "absolute",
+                  bottom: 10,
+                  left: 10,
+                  fontSize: 27,
+                  fontWeight: "900",
+                  color: "white",
+                }}
+              >
+                {item.offer} OFF
+              </Text>
+            </ImageBackground>
+            <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "500" }}>
+              {item.name}
+            </Text>
+            <View style={{flexDirection:"row",alignItems:"center",marginTop:3}}>
+              <MaterialIcons name="stars" size={24} color="green" />
+              <Text style={{marginLeft:3,fontSize:15,fontWeight:"400"}}>{item.rating}</Text>
+              <Text style={{marginLeft:3}}>•</Text>
+              <Text style={{marginLeft:3,fontSize:15,fontWeight:"400"}}>{item.time}mins</Text>
+            </View>
+          </Pressable>
+        ))}
+      </ScrollView>
+    </View>
   );
-}
+};
 
-export default HomePage;
+export default Product2;
 
 const styles = StyleSheet.create({
-  upc: {
+  get:{
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
-    marginTop: 20,
     marginBottom: 10,
-    marginLeft: -240,
+    marginLeft: -270,
   },
 });
