@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 
-
 function HomePage() {
   const images = [
     "https://cdn4.vectorstock.com/i/1000x1000/74/98/promotion-sign-in-modern-supermarket-background-vector-22427498.jpg",
@@ -11,28 +10,43 @@ function HomePage() {
   ];
 
   return (
-    <View style={{marginTop:45, marginBottom: 515  }}>
-     <SliderBox
-  images={images}
-  dotColor="#7D0C43"
-  inactiveDotColor="#13274F"
-  imageLoadingColor="black"
-  autoPlay={true}
-  autoplayInterval={1000}
-  circleLoop={true}
-  onCurrentImagePressed={(index)=> alert(index+1)}
-  firstItem={4}
-  paginationBoxVerticalPadding={20}
-  ImageComponentStyle={{
-    borderRadius: 30,
-    width: "94%",
-  }}
-/>
-
-      
-    
+    <View style={{ marginTop: 45, marginBottom: 650 }}>
+      <SliderBox
+        images={images} 
+        sliderBoxHeight={200}
+        onCurrentImagePressed={(index) =>
+          console.warn(`image ${index} pressed`)
+        }
+        dotColor="#FFEE58"
+        inactiveDotColor="#90A4AE"
+        paginationBoxVerticalPadding={20}
+        autoplay
+        circleLoop
+        resizeMethod={"resize"}
+        resizeMode={"cover"}
+        paginationBoxStyle={{
+          position: "absolute",
+          bottom: 0,
+          padding: 0,
+          alignItems: "center",
+          alignSelf: "center",
+          justifyContent: "center",
+          paddingVertical: 10,
+        }}
+        dotStyle={{
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          marginHorizontal: 0,
+          padding: 0,
+          margin: 0,
+          backgroundColor: "rgba(128, 128, 128, 0.92)",
+        }}
+        ImageComponentStyle={{ borderRadius: 15, width: "97%", marginTop: 5 }}
+        imageLoadingColor="#2196F3"
+      />
     </View>
   );
 }
 
-export default HomePage
+export default HomePage;
