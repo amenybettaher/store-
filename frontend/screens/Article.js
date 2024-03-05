@@ -17,7 +17,9 @@ const Magasine = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         const response = await axios.get('http://192.168.1.15:8000/article/get');
+
         setArticles(response.data);
         setFilteredArticles(response.data);  // Update filteredArticles as well
       } catch (error) {
@@ -50,7 +52,11 @@ const Magasine = () => {
 
   const fetchArticlesByCategory = async (category) => {
     try {
+
       const response = await axios.get(`http://192.168.1.15:8000/article/getByCategory/${category}`);
+
+
+
       const categoryArticles = response.data;
       const filteredCategoryArticles = categoryArticles.filter(article =>
         article.name.toLowerCase().includes(searchText.toLowerCase())
@@ -69,6 +75,7 @@ const Magasine = () => {
   const endIndex = startIndex + items;
   const DataPerPage = filteredArticles.slice(startIndex, endIndex);
 
+
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
@@ -81,6 +88,7 @@ const Magasine = () => {
       setRefreshing(false); // Set refreshing state to false after fetching
     }
   };
+
 
 
 return (

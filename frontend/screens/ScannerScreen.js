@@ -1,109 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button, Alert, Image } from 'react-native';
-import { Card } from 'react-native-elements';  // Import the Card component
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import { BarCodeScanner } from 'expo-barcode-scanner'
+import axios from 'axios'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-
-export default function ScannerScreen() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanning, setScanning] = useState(true);
-  const [barcodeData, setBarcodeData] = useState(null);   
-  const [productDetails, setProductDetails] = useState(null);
+const ScannerScreen = ({ navigation }) => {
+  const [hasPermission, setHasPermission] = useState(null)
+  const [scanned, setScanned] = useState(false)
+  const [barcodeData, setBarcodeData] = useState(null)
+  const [scanItems, setScanItems] = useState([])
+  const [total, setTotal] = useState(0)
+  const [torchEnabled, setTorchEnabled] = useState(false)
 
   useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+    const requestCameraPermission = async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync()
+      setHasPermission(status === 'granted')
+    }
 
-  const handleBarCodeScanned = ({ type, data }) => {
-    setBarcodeData(data);
-    setScanning(false);
+    requestCameraPermission()
+  }, [])
 
-    Alert.alert(
-      'Add Item Confirmation',
-      `Are you sure you want to add this product: ${data}?`,
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {
-            Alert.alert('Product cancelled');
-            // Add your cancellation logic here
-          },
-        },
-        {
-          text: 'Confirm',
-          onPress: () => {
-            // Proceed with the intended action
-            Alert.alert('Product confirmed');
-            // Add your confirmation logic here
-            fetchProductDetails(data);
-          },
-        },
-      ]
-    );
-  };
-
-  const fetchProductDetails = (barcode) => {
-    axios
-      .get(`http://192.168.43.151:8000/article/get/${barcode}`)
-      .then((response) => {
-        setProductDetails(response.data[0]);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-        Alert.alert('Error', 'Failed to fetch product details');
-      });
-  };
-
-  const startScanning = () => {
-    setScanning(true);
-    setBarcodeData(null);
-    setProductDetails(null); // Reset product details when scanning a new product
-  };
-
-  if (hasPermission === null) {
-    return <Text>Requesting camera permission</Text>;
+  const fetchProductDetails = async (barcode) => {
+    try {
+      const response = await axios.get(`http://192.168.43.142:8000/article/get/${barcode}`)
+      const productDetails = response.data[0]
+      setScanItems((prevItems) => [...prevItems, productDetails])
+    } catch (error) {
+      console.error(error)
+      Alert.alert('Error', 'Failed to fetch product details')
+    }
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  } 
+
+  const handleBarCodeScanned = async ({ type, data }) => {
+    setScanned(true)
+    setBarcodeData(data)
+
+    await fetchProductDetails(data)
+
+    const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0)
+    setTotal(newTotal)
+
+    alert(`Bar code with code ${data} has been scanned !`)
+  }
+
+  const toggleTorch = () => {
+    setTorchEnabled((prev) => !prev)
+  }
+
+  const handleScanAgain = async () => {
+    setScanned(false)
+
+    // Check if there's a barcode to fetch details for
+    if (barcodeData) {
+      await fetchProductDetails(barcodeData)
+      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0)
+      setTotal(newTotal)
+    } else {
+      console.error('No barcode data to scan again.')
+    }
+  }
 
   return (
     <View style={styles.container}>
-      {scanning && (
-        <BarCodeScanner
-          onBarCodeScanned={handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-          flashMode="torch"
-        />
-      )}
-      {barcodeData && (
-        <View style={styles.dataContainer}>
-          <Card>
-            <Card.Title>قفتي</Card.Title>
-            <Card.Divider />
-            {productDetails && (
-              <>
-                <Image
-                  style={{ width: '100%', height: 100 }}
-                  resizeMode="contain"
-                  source={{ uri: productDetails.image }}  // Use the product image URI
-                />
-                <Text>Product Name: {productDetails.name}</Text>
-                <Text>Price: {productDetails.price}</Text>
-                {/* Add more details as needed */}
-              </>
-            )}
-            <Button title="Scan other product" onPress={startScanning} />
-          </Card>
+      <Text style={styles.title}>Scanner Screen</Text>
+
+      {hasPermission === null ? (
+        <Text>Requesting for camera permission</Text>
+      ) : hasPermission === false ? (
+        <Text>No access to camera</Text>
+      ) : (
+        <View style={styles.scannerContainer}>
+          <BarCodeScanner
+            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+            style={StyleSheet.absoluteFillObject}
+            torchMode={torchEnabled ? 'on' : 'off'}
+          />
+
+          {scanned && (
+            <TouchableOpacity style={styles.scanAgainButton} onPress={handleScanAgain}>
+              <MaterialCommunityIcons name="barcode-scan" size={50} color="#007bff" />
+            </TouchableOpacity>
+          )}
+
+          <TouchableOpacity style={styles.torchButton} onPress={toggleTorch}>
+            <MaterialCommunityIcons
+              name={torchEnabled ? 'flashlight' : 'flashlight-off'}
+              size={30}
+              color="white"
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.goToWalletButton}
+            onPress={() => navigation.navigate('Wallet', { barcode: barcodeData })}
+          >
+            <MaterialCommunityIcons name="wallet" size={50} color="#8640f0" />
+          </TouchableOpacity>
         </View>
       )}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -111,10 +108,36 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor: '#f4f4f4',
   },
-  dataContainer: {
-    marginTop: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  scannerContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
+  scanAgainButton: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  torchButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 10,
-    backgroundColor: '#eee',
+    borderRadius: 10,
   },
-});
+  goToWalletButton: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'left',
+  },
+})
+
+export default ScannerScreen
