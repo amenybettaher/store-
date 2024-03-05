@@ -4,8 +4,10 @@ import { Image } from "expo-image";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIconss } from '@expo/vector-icons';
 
-const Profil = () => {
+const Profile = () => {
   const navigation = useNavigation(); 
 
   const handleStartPress = () => {
@@ -17,6 +19,12 @@ const Profil = () => {
 
     const handleStartPressq = () => {
       navigation.navigate('Language');
+    };
+    const handleStartPressC = () => {
+      navigation.navigate('ContactUs');
+    };
+    const handleStartPressP = () => {
+      navigation.navigate('PrivacyPolicy');
     };
 
   return (
@@ -31,7 +39,6 @@ const Profil = () => {
           contentFit="cover"
           source={require("../assets/profil.png")}
         />
-        <Text style={[styles.popular, styles.todayPosition]}>Popular</Text>
         <Text style={[styles.favorites, styles.downloadTypo]}>Favorites</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo]}>
@@ -45,11 +52,12 @@ const Profil = () => {
         <Text style={[styles.preferences, styles.contentTypo]}>
           Preferences
         </Text>
-        <Text
-          style={[styles.historique, styles.todayPosition]}
-        >{`Historique `}</Text>
-        <Text style={[styles.download, styles.downloadTypo]}>Download</Text>
-        <Text style={[styles.favourite, styles.downloadTypo]}>Favourite</Text>
+        
+                <Pressable onPress={handleStartPressP}>
+        <Text style={[styles.download, styles.downloadTypo]}>
+          Privacy policy
+          </Text>
+          </Pressable>
         <Text style={styles.darkmode}>Darkmode</Text>
         
         <Pressable onPress={handleStartPress}>
@@ -57,17 +65,22 @@ const Profil = () => {
           Notifications
           </Text>
         </Pressable>
+        <Pressable onPress={handleStartPressC}>
         <Text style={[styles.onlyDownloadVia, styles.downloadTypo]}>
-          Only Download via Wifi
+          ContactUs
         </Text>
+        </Pressable>
+
         <View style={[styles.rectangle36Copy5Parent, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
+          <Pressable onPress={handleStartPress}>
 
           <Image
             style={styles.rightIcon}
             contentFit="cover"
             source={require("../assets/right.png")}
           />
+          </Pressable>
         </View>
         <View style={[styles.rectangle36Copy5Group, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
@@ -90,11 +103,7 @@ const Profil = () => {
         </View>
         <View style={[styles.groupView, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+         
         </View>
         <View
           style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}
@@ -120,13 +129,7 @@ const Profil = () => {
           style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}
         >
           <View style={styles.rectangle36Copy5} />
-          <Pressable onPress={handleStartPress}>
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
-          </Pressable>
+          
         </View>
         <View
           style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}
@@ -158,28 +161,21 @@ const Profil = () => {
           contentFit="cover"
           source={require("../assets/umoon.png")}
         />
-        <Image
-          style={[styles.wifiIcon, styles.wifiIconPosition]}
-          contentFit="cover"
-          source={require("../assets/wifi.png")}
-        />
-        <Image
+      
+        <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition]} />
+        {/* <Image
           style={[styles.heartIcon, styles.iconPosition]}
           contentFit="cover"
           source={require("../assets/heart.png")}
-        />
-        <Image
-          style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition]}
-          contentFit="cover"
-          source={require("../assets/iconoutlinedapplicationdownload.png")}
-        />
+        /> */}
+       
+        <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
 
         <MaterialIcons name="notifications-none" size={25} color="black" style={styles.icon}/>
         </Pressable>
       </View>
-      <View style={styles.rectangle} />
     </View>
   );
 };
@@ -196,7 +192,7 @@ const styles = StyleSheet.create({
   },
   icon:{
     marginLeft: 24,
-    top: 383,
+    top: 325,
   },
   todayPosition: {
     textAlign: "left",
@@ -317,7 +313,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
   },
   download: {
-    top: 498,
+    top: 710,
   },
   favourite: {
     top: 465,
@@ -333,7 +329,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   today: {
-    top: 389,
+    top: 329,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
     fontSize: FontSize.size_mini,
@@ -433,7 +429,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   iconoutlinedapplicationdown: {
-    top: 497,
+    top: 706,
     overflow: "hidden",
   },
   profile: {
@@ -482,4 +478,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profil;
+export default Profile;
