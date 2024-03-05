@@ -51,7 +51,7 @@ const SignUp = () => {
         throw new Error("User creation failed. Please try again.");
       }
   
-      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
+      const registerResponse = await axios.post('http:// 192.168.43.151:8000/users/register', {
         firstName,
         lastName,
         email,

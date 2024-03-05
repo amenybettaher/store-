@@ -12,7 +12,7 @@ import TabBar from '../screens/TabBar.js';
 import MapPage from '../screens/Map.js';
 import Magasine from '../screens/Article.js'
 import HomePage from '../screens/HomePage.js'
-import  Profile  from '../screens//Profil.js';
+import  Profil  from '../screens//Profil.js';
 import Notifications from '../screens/Notifications.js';
 import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
@@ -23,19 +23,19 @@ const Stack = createStackNavigator();
 
 function MainStack() {
   return (
+
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
 {/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
       {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
       {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
-      <Stack.Screen name="Home" component={Home} />
-      {/* <Stack.Screen name="Profile" component={Profil} /> */}
-      {/* <Stack.Screen name="Notifications" component={Notifications} /> */}
-      {/* <Stack.Screen name="Language" component={Language} /> */}
-      {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
-      {/* <Stack.Screen name="ContactUs" component={ContactUs} /> */}
-      {/* <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
+      {/* <Stack.Screen name="HomePage" component={HomePage} /> */}
+      <Stack.Screen name="Profil" component={Profil} />
+      <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Language" component={Language} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+
       {/* <Stack.Screen name='Map' component={Map} /> */}
       {/* <Stack.Screen name="Article" component={Article} /> */}
       {/* <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} /> */}

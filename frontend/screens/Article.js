@@ -10,15 +10,18 @@ const Magasine = () => {
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [current , setCurrent] = useState(1)
+  const [current, setCurrent] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
+  const [searchByCategory, setSearchByCategory] = useState(false); // Add state for tracking category search
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.1.114:8000/article/getAll');
+
+        const response = await axios.get('http://192.168.1.15:8000/article/get');
+
         setArticles(response.data);
-        setFilteredArticles(response.data); 
+        setFilteredArticles(response.data);  // Update filteredArticles as well
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -27,13 +30,17 @@ const Magasine = () => {
     fetchData();
   }, []);
   
-
   useEffect(() => {
     const filtered = articles.filter(article =>
       article.name.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredArticles(filtered);
   }, [searchText, articles]);
+
+  useEffect(() => {
+    // Reset searchByCategory state when refreshing
+    setSearchByCategory(false);
+  }, [refreshing]);
 
   const openArticleDetails = (article) => {
     setSelectedArticle(article);
@@ -42,42 +49,51 @@ const Magasine = () => {
   const closeArticleDetails = () => {
     setSelectedArticle(null);
   };
+
   const fetchArticlesByCategory = async (category) => {
     try {
-      const response = await axios.get(`http://192.168.1.114:8000/article/getByCategory/${category}`);
+
+      const response = await axios.get(`http://192.168.1.15:8000/article/getByCategory/${category}`);
+
+
+
       const categoryArticles = response.data;
       const filteredCategoryArticles = categoryArticles.filter(article =>
         article.name.toLowerCase().includes(searchText.toLowerCase())
       );
       setArticles(categoryArticles);
       setFilteredArticles(filteredCategoryArticles);
+      setSearchByCategory(true); // Set searchByCategory to true when fetching by category
     } catch (error) {
       console.error('Error fetching articles by category:', error);
     }
   };
-  const items = 6
-  const NBPage = Math.ceil(filteredArticles.length/items)
-  const startIndex = (current -1)*items
-  const endIndex = startIndex + items
 
-  const DataPerPage = filteredArticles.slice(startIndex ,endIndex );
+  const items = 6;
+  const NBPage = Math.ceil(filteredArticles.length / items);
+  const startIndex = (current - 1) * items;
+  const endIndex = startIndex + items;
+  const DataPerPage = filteredArticles.slice(startIndex, endIndex);
 
-const onRefresh = React.useCallback(async () => {
-  setRefreshing(true); 
-  try {
-    const response = await axios.get('http://192.168.1.114:8000/article/getAll');
-    setArticles(response.data);
-    setFilteredArticles(response.data);
-  } catch (error) {
-    console.error('Error refreshing data:', error);
-  } finally {
-    setRefreshing(false); 
-  }
-}, []);
 
-  return (
+  const onRefresh = async () => {
+    setRefreshing(true); // Set refreshing state to true
+    try {
+      const response = await axios.get('http://192.168.1.15:8000/article/get');
+      setArticles(response.data);
+      setFilteredArticles(response.data);
+    } catch (error) {
+      console.error('Error refreshing data:', error);
+    } finally {
+      setRefreshing(false); // Set refreshing state to false after fetching
+    }
+  };
+
+
+
+return (
 <ScrollView
-  contentContainerStyle={styles.scrollContainer}
+  contentContainerStyle={[styles.scrollContainer, { paddingBottom: 60 }]} 
   refreshControl={
     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
   }
@@ -140,6 +156,7 @@ const onRefresh = React.useCallback(async () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
@@ -166,7 +183,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#000', 
+    borderColor: '#000', // Border color
   },
   searchContainer: {
     flexDirection: "row",
@@ -232,14 +249,16 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom : 30
   },
   paginationButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#7D0C43',
+    backgroundColor: '#007bff',
     borderRadius: 5,
     marginHorizontal: 5,
+    
   },
   buttonText: {
     color: '#fff',
