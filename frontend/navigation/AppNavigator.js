@@ -12,10 +12,12 @@ import TabBar from '../screens/TabBar.js';
 import MapPage from '../screens/Map.js';
 import Magasine from '../screens/Article.js'
 import HomePage from '../screens/HomePage.js'
-import  Profil  from '../screens//Profil.js';
+import  Profile  from '../screens//Profil.js';
 import Notifications from '../screens/Notifications.js';
 import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
+import ContactUs from '../screens/ContactUs.js';
+import PrivacyPolicy from '../screens/PrivacyPolicy.js';
 
 const Stack = createStackNavigator();
 
@@ -27,12 +29,13 @@ function MainStack() {
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
       {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
       {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
-      {/* <Stack.Screen name="HomePage" component={HomePage} /> */}
-      <Stack.Screen name="Profil" component={Profil} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="EditProfile" component={EditProfile} />
-
+      <Stack.Screen name="Home" component={Home} />
+      {/* <Stack.Screen name="Profile" component={Profil} /> */}
+      {/* <Stack.Screen name="Notifications" component={Notifications} /> */}
+      {/* <Stack.Screen name="Language" component={Language} /> */}
+      {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
+      {/* <Stack.Screen name="ContactUs" component={ContactUs} /> */}
+      {/* <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
       {/* <Stack.Screen name='Map' component={Map} /> */}
       {/* <Stack.Screen name="Article" component={Article} /> */}
       {/* <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} /> */}
@@ -80,6 +83,14 @@ function Map({ navigation }) {
   return (
     <>
       <MapPage/>
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+function Profil({ navigation }) {
+  return (
+    <>
+      <Profile/>
       <TabBar navigation={navigation} />
     </>
   );

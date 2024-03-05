@@ -1,4 +1,4 @@
-import { Text, View,StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 import Product from "./Product";
@@ -12,43 +12,46 @@ function HomePage() {
   ];
 
   return (
-    <View style={{marginTop:45, marginBottom: 650  }}>
+    <ScrollView>
+      <View style={{marginTop: 45, marginBottom: 650}}>
 
-     <SliderBox
-  images={images}
-  dotColor="#7D0C43"
-  inactiveDotColor="#13274F"
-  imageLoadingColor="black"
-  autoPlay={true}
-  autoplayInterval={1000}
-  circleLoop={true}
-  onCurrentImagePressed={(index)=> alert(index+1)}
-  firstItem={4}
-  paginationBoxVerticalPadding={20}
-  ImageComponentStyle={{
-    borderRadius: 30,
-    width: "94%",
-  }}
-/>
-<Text style={styles.upc}>upcoming product</Text>
+        <SliderBox
+          images={images}
+          dotColor="#7D0C43"
+          inactiveDotColor="#13274F"
+          imageLoadingColor="black"
+          autoPlay={true}
+          autoplayInterval={1000}
+          circleLoop={true}
+          onCurrentImagePressed={(index) => alert(index + 1)}
+          firstItem={4}
+          paginationBoxVerticalPadding={20}
+          ImageComponentStyle={{
+            borderRadius: 30,
+            width: "94%",
+          }}
+        />
+        <Text style={styles.upc}>upcoming product</Text>
 
-<Product/>
+        <Product />
 
-      {/* <Product2/> */}
-      {/* <Product2/> */}
-    </View>
+        <Product2 />
+        <Product2 />
+      </View>
+    </ScrollView>
   );
 }
 
-export default HomePage
+export default HomePage;
+
 const styles = StyleSheet.create({
-  upc:{
+  upc: {
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
     marginTop: 20,
     marginBottom: 10,
-    marginLeft:-240,
+    marginLeft: -240,
   },
 });

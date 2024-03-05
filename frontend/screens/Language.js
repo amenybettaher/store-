@@ -11,7 +11,7 @@ const Language = () => {
     const navigation = useNavigation();
 
     const handleStartPress = () => {
-      navigation.navigate('Profil'); 
+      navigation.navigate('Profile'); 
     };
   return (
     <View style={[styles.profile3, styles.topLayout]}>

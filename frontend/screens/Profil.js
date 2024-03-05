@@ -4,8 +4,10 @@ import { Image } from "expo-image";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIconss } from '@expo/vector-icons';
 
-const Profil = () => {
+const Profile = () => {
   const navigation = useNavigation(); 
 
   const handleStartPress = () => {
@@ -17,6 +19,12 @@ const Profil = () => {
 
     const handleStartPressq = () => {
       navigation.navigate('Language');
+    };
+    const handleStartPressC = () => {
+      navigation.navigate('ContactUs');
+    };
+    const handleStartPressP = () => {
+      navigation.navigate('PrivacyPolicy');
     };
 
   return (
@@ -48,7 +56,11 @@ const Profil = () => {
         <Text
           style={[styles.historique, styles.todayPosition]}
         >{`Historique `}</Text>
-        <Text style={[styles.download, styles.downloadTypo]}>Download</Text>
+                <Pressable onPress={handleStartPressP}>
+        <Text style={[styles.download, styles.downloadTypo]}>
+          Privacy policy
+          </Text>
+          </Pressable>
         <Text style={[styles.favourite, styles.downloadTypo]}>Favourite</Text>
         <Text style={styles.darkmode}>Darkmode</Text>
         
@@ -57,9 +69,12 @@ const Profil = () => {
           Notifications
           </Text>
         </Pressable>
+        <Pressable onPress={handleStartPressC}>
         <Text style={[styles.onlyDownloadVia, styles.downloadTypo]}>
-          Only Download via Wifi
+          ContactUs
         </Text>
+        </Pressable>
+
         <View style={[styles.rectangle36Copy5Parent, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
 
@@ -158,28 +173,21 @@ const Profil = () => {
           contentFit="cover"
           source={require("../assets/umoon.png")}
         />
-        <Image
-          style={[styles.wifiIcon, styles.wifiIconPosition]}
-          contentFit="cover"
-          source={require("../assets/wifi.png")}
-        />
+      
+        <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition]} />
         <Image
           style={[styles.heartIcon, styles.iconPosition]}
           contentFit="cover"
           source={require("../assets/heart.png")}
         />
-        <Image
-          style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition]}
-          contentFit="cover"
-          source={require("../assets/iconoutlinedapplicationdownload.png")}
-        />
+       
+        <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
 
         <MaterialIcons name="notifications-none" size={25} color="black" style={styles.icon}/>
         </Pressable>
       </View>
-      <View style={styles.rectangle} />
     </View>
   );
 };
@@ -482,4 +490,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profil;
+export default Profile;

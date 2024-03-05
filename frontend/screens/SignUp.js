@@ -37,7 +37,7 @@ const SignUp = () => {
 
 
     try {
-      navigation.navigate('HomePage');
+      navigation.navigate('Home');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
@@ -72,7 +72,7 @@ const SignUp = () => {
       setFirst('');
       setLast('');
 
-      navigation.navigate('HomePage');
+      navigation.navigate('Home');
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
@@ -106,7 +106,7 @@ const SignUp = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/Rectangle-22061.png")}
+      source={require("../assets/hh.png")}
       style={styles.backgroundImage}
       blurRadius={2}>
         

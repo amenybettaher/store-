@@ -47,7 +47,7 @@ const SignIn = () => {
 
   return (
     <ImageBackground
-    source={require("../assets/360_F_434190838_3FCCIiag1LYlL1IA6pb0WPEEqxiZVfPO.jpeg")}
+    source={require("../assets/hh.png")}
     style={styles.backgroundImage}
     blurRadius={2}>
       <View style={styles.overlay} />
