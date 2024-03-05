@@ -133,11 +133,4 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-  goToWalletButton: {
-    position: 'absolute',
-    bottom: 20,
-    alignSelf: 'left',
-  },
-})
-
-export default ScannerScreen
+});

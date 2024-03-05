@@ -29,6 +29,8 @@ function MainStack() {
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
+<Stack.Screen name='welcome' component={HomeScreen} />
+
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="Language" component={Language} />
       <Stack.Screen name="EditProfile" component={EditProfile} />

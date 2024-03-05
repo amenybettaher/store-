@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     position: 'absolute',
-    bottom: 20, // Position 20px from the bottom
+    bottom: 20, 
     left: 50,
 
   },
