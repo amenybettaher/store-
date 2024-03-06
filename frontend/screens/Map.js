@@ -45,7 +45,7 @@ export default function MapPage() {
 
   const searchSupermarkets = async () => {
     try {
-      // Geocoding API request using fetch
+      // Geocoding API request  fetch
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
           searchQuery
