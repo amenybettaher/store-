@@ -4,29 +4,30 @@ import { Card } from 'react-native-elements';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 
-const ScannerScreen = ({ navigation }) => {
-  const [hasPermission, setHasPermission] = useState(null)
-  const [scanned, setScanned] = useState(false)
-  const [barcodeData, setBarcodeData] = useState(null)
-  const [scanItems, setScanItems] = useState([])
-  const [total, setTotal] = useState(0)
-  const [torchEnabled, setTorchEnabled] = useState(false)
+
+export default function ScannerScreen() {
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanning, setScanning] = useState(true);
+  const [barcodeData, setBarcodeData] = useState(null);
+  const [productDetails, setProductDetails] = useState(null);
 
   useEffect(() => {
-    const requestCameraPermission = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync()
-      setHasPermission(status === 'granted')
-    }
+    (async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
 
-    requestCameraPermission()
-  }, [])
+  const handleBarCodeScanned = ({ type, data }) => {
+    setBarcodeData(data);
+    setScanning(false);
 
     fetchProductDetails(data);
   };
 
   const fetchProductDetails = (barcode) => {
     axios
-      .get('http://192.168.43.233:8000/article/get/${barcode}')
+      .get(`http://192.168.43.233:8000/article/get/${barcode}`)
       .then((response) => {
         setProductDetails(response.data[0]);
         console.log(response.data);
@@ -64,6 +65,9 @@ const ScannerScreen = ({ navigation }) => {
   if (hasPermission === null) {
     return <Text>Requesting camera permission</Text>;
   }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  } 
 
   return (
     <View style={styles.container}>
@@ -75,7 +79,7 @@ const ScannerScreen = ({ navigation }) => {
         />
       )}
       {barcodeData && (
-        <View style={styles.dataContainer}>
+        <View style={styles.container}>
           <Card>
             <Card.Title>Product Details</Card.Title>
             <Card.Divider />
@@ -97,8 +101,8 @@ const ScannerScreen = ({ navigation }) => {
         </View>
       )}
     </View>
-  )
-
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -128,13 +132,6 @@ const styles = StyleSheet.create({
     right: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 10,
-    borderRadius: 10,
+    backgroundColor: '#eee',
   },
-  goToWalletButton: {
-    position: 'absolute',
-    bottom: 20,
-    alignSelf: 'left',
-  },
-})
-
-export default ScannerScreen
+});
