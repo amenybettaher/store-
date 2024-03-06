@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert, Image } from 'react-native';
-import { Card } from 'react-native-elements';  // Import the Card component
+import { Card } from 'react-native-elements';  
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 
@@ -22,33 +22,12 @@ export default function ScannerScreen() {
     setBarcodeData(data);
     setScanning(false);
 
-    Alert.alert(
-      'Add Item Confirmation',
-      `Are you sure you want to add this product: ${data}?`,
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {
-            Alert.alert('Product cancelled');
-            // Add your cancellation logic here
-          },
-        },
-        {
-          text: 'Confirm',
-          onPress: () => {
-            // Proceed with the intended action
-            Alert.alert('Product confirmed');
-            // Add your confirmation logic here
-            fetchProductDetails(data);
-          },
-        },
-      ]
-    );
+    fetchProductDetails(data);
   };
 
   const fetchProductDetails = (barcode) => {
     axios
-      .get(`http://192.168.43.151:8000/article/get/${barcode}`)
+      .get('http://192.168.43.233:8000/article/get/${barcode}')
       .then((response) => {
         setProductDetails(response.data[0]);
         console.log(response.data);
@@ -59,10 +38,28 @@ export default function ScannerScreen() {
       });
   };
 
+  const addToWallet = () => {
+    if (productDetails) {
+      axios.post('http://192.168.43.233:8000/wallet/add', {
+        image: productDetails.image,
+        name: productDetails.name,
+        price: productDetails.price
+      })
+      .then(response => {
+        console.log('Product added to wallet:', response.data);
+        Alert.alert('Success', 'Product added to wallet');
+      })
+      .catch(error => {
+        console.error('Failed to add product to wallet:', error);
+        Alert.alert('Error', 'Failed to add product to wallet');
+      });
+    }
+  };
+
   const startScanning = () => {
     setScanning(true);
     setBarcodeData(null);
-    setProductDetails(null); // Reset product details when scanning a new product
+    setProductDetails(null); 
   };
 
   if (hasPermission === null) {
@@ -84,18 +81,19 @@ export default function ScannerScreen() {
       {barcodeData && (
         <View style={styles.dataContainer}>
           <Card>
-            <Card.Title>قفتي</Card.Title>
+            <Card.Title>Product Details</Card.Title>
             <Card.Divider />
             {productDetails && (
               <>
                 <Image
                   style={{ width: '100%', height: 100 }}
                   resizeMode="contain"
-                  source={{ uri: productDetails.image }}  // Use the product image URI
+                  source={{ uri: productDetails.image }}  
                 />
                 <Text>Product Name: {productDetails.name}</Text>
                 <Text>Price: {productDetails.price}</Text>
-                {/* Add more details as needed */}
+              
+                <Button title="Add to Wallet" onPress={addToWallet} />
               </>
             )}
             <Button title="Scan other product" onPress={startScanning} />
