@@ -61,10 +61,7 @@ const MapPage = () => {
 
   const searchLocation = async () => {
     try {
-<<<<<<< HEAD
       // Geocoding API request  fetch
-=======
->>>>>>> 8ef688ab6a2967a7025c5005ce5024c6ba2027b1
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
           searchQuery
