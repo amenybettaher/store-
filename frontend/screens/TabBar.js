@@ -63,7 +63,7 @@ const TabBar = ({navigation}) => {
                 <View style={{
                     flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: -17
                 }}>
-                    <TouchableOpacity onPress={() => handleTabPress('Home')} >
+                    <TouchableOpacity onPress={() => handleTabPress('HomePage')} >
                         <Image
                             style={{ width: 22, height: 22 }}
                             source={require("../assets/home.jpg")}
@@ -135,7 +135,7 @@ const TabBar = ({navigation}) => {
                     flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 30
                 }}>
                     <TouchableOpacity
-                       onPress={() => handleTabPress('Profile')}
+                       onPress={() => handleTabPress('Profil')}
                     >
                         <Image
                             source={require("../assets/profile.png")}

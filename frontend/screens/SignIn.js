@@ -7,7 +7,7 @@ import { Color, Border, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +22,7 @@ const SignIn = () => {
         Alert.alert("Please enter both email and password.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.43.151:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.1.15:8000/users/login', {
         email,
         password,
       });
@@ -31,13 +31,16 @@ const SignIn = () => {
         Alert.alert("Invalid email or password. Please try again.");
         return;
       }
-      sessionStorage.setItem('user', true);
+  
+      // Use AsyncStorage to store user data
+      await AsyncStorage.setItem('user', JSON.stringify(loginResponse.data));
+  
       setUser(loginResponse.data);
       console.log('user:', loginResponse);
       setEmail('');
       setPassword('');
-      navigation.navigate('Article');
-      
+      navigation.navigate('Home');
+  
       Alert.alert("Sign in successful");
     } catch (e) {
       console.error(e);
@@ -47,7 +50,7 @@ const SignIn = () => {
 
   return (
     <ImageBackground
-    source={require("../assets/360_F_434190838_3FCCIiag1LYlL1IA6pb0WPEEqxiZVfPO.jpeg")}
+    source={require("../assets/hh.png")}
     style={styles.backgroundImage}
     blurRadius={2}>
       <View style={styles.overlay} />

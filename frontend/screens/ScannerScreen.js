@@ -4,23 +4,22 @@ import { Card } from 'react-native-elements';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 
-
-export default function ScannerScreen() {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanning, setScanning] = useState(true);
-  const [barcodeData, setBarcodeData] = useState(null);
-  const [productDetails, setProductDetails] = useState(null);
+const ScannerScreen = ({ navigation }) => {
+  const [hasPermission, setHasPermission] = useState(null)
+  const [scanned, setScanned] = useState(false)
+  const [barcodeData, setBarcodeData] = useState(null)
+  const [scanItems, setScanItems] = useState([])
+  const [total, setTotal] = useState(0)
+  const [torchEnabled, setTorchEnabled] = useState(false)
 
   useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+    const requestCameraPermission = async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync()
+      setHasPermission(status === 'granted')
+    }
 
-  const handleBarCodeScanned = ({ type, data }) => {
-    setBarcodeData(data);
-    setScanning(false);
+    requestCameraPermission()
+  }, [])
 
     fetchProductDetails(data);
   };
@@ -65,9 +64,6 @@ export default function ScannerScreen() {
   if (hasPermission === null) {
     return <Text>Requesting camera permission</Text>;
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  } 
 
   return (
     <View style={styles.container}>
@@ -101,18 +97,44 @@ export default function ScannerScreen() {
         </View>
       )}
     </View>
-  );
-}
+  )
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor: '#f4f4f4',
   },
-  dataContainer: {
-    marginTop: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  scannerContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
+  scanAgainButton: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  torchButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 10,
-    backgroundColor: '#eee',
+    borderRadius: 10,
   },
-});
+  goToWalletButton: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'left',
+  },
+})
+
+export default ScannerScreen
