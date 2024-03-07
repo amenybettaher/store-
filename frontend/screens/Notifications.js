@@ -10,6 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const Notifications = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
   const handleStartPress = () => {
@@ -77,7 +79,7 @@ const Notifications = () => {
    };
 
   return (
-    <View style={styles.profile2}>
+    <View style={[styles.notificationContainer, { backgroundColor: darkMode ? 'black' : 'white' }]}>
               <View style={[styles.settingChild, styles.settingPosition]} />
 
       <View style={[styles.top, styles.topPosition]}>
@@ -137,7 +139,7 @@ const Notifications = () => {
           style={[styles.systemServices, styles.commonTypo]}
         >{`System & services update`}</Text>
         <View style={[styles.component18, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>Bill Reminder</Text>
+      <Text style={[styles.generalNotification, { color: darkMode ? 'white' : 'black' }]}>Bill Reminder</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={[styles.rectangle, styles.toggleonPosition]} />
@@ -281,6 +283,9 @@ const styles = StyleSheet.create({
     left: 0,
     position: "absolute",
     width: 399,
+  },
+  darkBackground: {
+    backgroundColor: '#191919'
   },
   settingChild: {
     backgroundColor: Color.colorMediumvioletred_200,

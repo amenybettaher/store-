@@ -6,17 +6,22 @@ import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIconss } from '@expo/vector-icons';
+import ToggleSwitch from 'toggle-switch-react-native'
+import { useState } from 'react'; 
+import { Ionicons } from '@expo/vector-icons';
+import { Ioniconss } from '@expo/vector-icons';
+import { MaterialCommunityIconss } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import fr from "./fr.json"; // Import French translation
 
 const Profile = () => {
   const navigation = useNavigation(); 
-
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
   const handleStartPresse = () => {
     navigation.navigate('EditProfile');
   };
-
     const handleStartPressq = () => {
       navigation.navigate('Language');
     };
@@ -26,120 +31,101 @@ const Profile = () => {
     const handleStartPressP = () => {
       navigation.navigate('PrivacyPolicy');
     };
+    const handleStartPressA = () => {
+      navigation.navigate('AboutUs');
+    };
+    const [darkMode, setDarkMode] = useState(false);
+    const toggleDarkMode = () => {
+      setDarkMode(!darkMode);
+    };
 
   return (
-    <View style={styles.profil}>
+<View style={[styles.profil, darkMode ? styles.darkBackground : null]}>
       <View style={[styles.setting, styles.settingPosition]}>
         <View style={[styles.settingChild, styles.settingPosition]} />
         <View style={[styles.settingItem, styles.settingLayout]} />
-        <View style={[styles.settingInner, styles.settingLayout]} />
+        <View style={[styles.settingInner, styles.settingLayout, darkMode ? { color: "red" } : null]} />
         <View style={[styles.rectangleView, styles.settingLayout]} />
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
           source={require("../assets/profil.png")}
         />
-        <Text style={[styles.favorites, styles.downloadTypo]}>Favorites</Text>
         <Pressable onPress={handleStartPressq}>
-        <Text style={[styles.language, styles.downloadTypo]}>
-          Language
+        <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
+            {fr.language}
           </Text>
         </Pressable>
-        <Text style={[styles.mimiHeadline, styles.contentTypo]}>
+
+        <Pressable onPress={handleStartPressA}>
+        <Text style={[styles.languag, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
+        {fr.aboutUs}
+          </Text>
+        </Pressable>
+        <Text style={[styles.mimiHeadline, styles.contentTypo, darkMode ? { color: "white" } : null]}>
           Mimi Headline
         </Text>
-        <Text style={[styles.content, styles.contentTypo]}>Content</Text>
-        <Text style={[styles.preferences, styles.contentTypo]}>
-          Preferences
-        </Text>
-        
-                <Pressable onPress={handleStartPressP}>
-        <Text style={[styles.download, styles.downloadTypo]}>
-          Privacy policy
+        <Text style={[styles.content, styles.contentTypo, darkMode ? { color: "white" } : null]}>Content</Text>
+      
+        <Pressable onPress={handleStartPressP}>
+        <Text style={[styles.download, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
+        {fr.privacyPolicy}
           </Text>
           </Pressable>
-        <Text style={styles.darkmode}>Darkmode</Text>
-        
+        <Text style={[styles.darkmode, darkMode ? { color: "white" } : null]}>
+        {fr.DarkMode}
+          </Text>
         <Pressable onPress={handleStartPress}>
-        <Text style={[styles.today, styles.todayPosition]}>
-          Notifications
+        <Text style={[styles.today, styles.todayPosition , darkMode ? { color: "white" } : null]}>
+        {fr.notifications}
           </Text>
         </Pressable>
         <Pressable onPress={handleStartPressC}>
-        <Text style={[styles.onlyDownloadVia, styles.downloadTypo]}>
-          ContactUs
+        <Text style={[styles.onlyDownloadVia, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
+        {fr.contactUs}
         </Text>
         </Pressable>
-
         <View style={[styles.rectangle36Copy5Parent, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
           <Pressable onPress={handleStartPress}>
-
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+          <AntDesign name="right" size={20} color="black" style={[styles.rightIcon1, darkMode ? { color: "white" } : null]}/>
           </Pressable>
         </View>
         <View style={[styles.rectangle36Copy5Group, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+          <AntDesign name="right" size={20} color="black" style={[styles.rightIcon2, darkMode ? { color: "white" } : null]}/>
+
         </View>
         <View
           style={[styles.rectangle36Copy5Container, styles.groupParentLayout]}
         >
-          
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+
         </View>
         <View style={[styles.groupView, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
-         
         </View>
         <View
           style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}
         >
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
         </View>
         <View
           style={[styles.rectangle36Copy5Parent2, styles.groupParentLayout]}
         >
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+
         </View>
         <View
           style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}
         >
-          <View style={styles.rectangle36Copy5} />
-          
+          <View style={styles.rectangle36Copy5} /> 
         </View>
         <View
           style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}
         >
           <View style={styles.rectangle36Copy5} />
-          <Image
-            style={styles.rightIcon}
-            contentFit="cover"
-            source={require("../assets/right.png")}
-          />
+
         </View>
         <Image
           style={[styles.rectangleIcon, styles.settingLayout]}
@@ -147,35 +133,42 @@ const Profile = () => {
           source={require("../assets/rectangle-31.png")}
         />
                 <Pressable onPress={handleStartPresse}>
-        <Text style={[styles.editProfile, styles.profileClr]}>
-          Edit Profile
+        <Text style={[styles.editProfile, styles.profileClr, darkMode ? { color: "white" } : null]}>
+        {fr.editProfile}
         </Text>
         </Pressable>
-        <Image
-          style={[styles.translateIcon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/translate.png")}
-        />
-        <Image
-          style={styles.umoonIcon}
-          contentFit="cover"
-          source={require("../assets/umoon.png")}
-        />
       
-        <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition]} />
+        <Ionicons name="language-sharp" size={24} color="black" style={[styles.translateIcon, styles.iconPosition, darkMode ? { color: "white" } : null]}/>
+      
+        <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" style={[styles.umoonIcon, darkMode ? { color: "white" } : null]}/>
+        <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
         {/* <Image
           style={[styles.heartIcon, styles.iconPosition]}
           contentFit="cover"
           source={require("../assets/heart.png")}
         /> */}
-       
-        <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition]} />
+        <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
+        <MaterialIcons name="notifications-none" size={25} color="black" style={[styles.icon, darkMode ? { color: "white" } : null]}/>
+        </Pressable>
 
-        <MaterialIcons name="notifications-none" size={25} color="black" style={styles.icon}/>
+        <ToggleSwitch
+          isOn={darkMode}
+          onColor="#56CE21"
+          offColor="grey"
+          size="small" 
+          onToggle={toggleDarkMode}
+          style={styles.toggle1}
+        />
+                <Pressable onPress={handleStartPressA}>
+        <Ionicons name="information-circle-outline" size={24} color="black"style={[styles.icon3, darkMode ? { color: "white" } : null]} />
         </Pressable>
       </View>
+      <AntDesign name="right" size={20} color="black" style={[styles.rightIcon33, darkMode ? { color: "white" } : null]}/>
+      <AntDesign name="right" size={20} color="black" style={[styles.rightIcon44, darkMode ? { color: "white" } : null]}/>
+      <AntDesign name="right" size={20} color="black" style={[styles.rightIcon55, darkMode ? { color: "white" } : null]}/>
+
     </View>
   );
 };
@@ -185,6 +178,12 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     position: "absolute",
+    
+  },
+  
+  toggle1: {
+    marginLeft: 340,
+    top: 365,
   },
   settingLayout: {
     height: 29,
@@ -193,6 +192,10 @@ const styles = StyleSheet.create({
   icon:{
     marginLeft: 24,
     top: 325,
+  },
+  icon3:{
+    marginLeft: 24,
+    top: 421,
   },
   todayPosition: {
     textAlign: "left",
@@ -209,16 +212,8 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     position: "absolute",
   },
-  contentTypo: {
-    fontFamily: FontFamily.poppinsSemiBold,
-    fontWeight: "600",
-  },
-  groupParentLayout: {
-    opacity: 0.65,
-    height: 14,
-    width: 14,
-    position: "absolute",
-  },
+
+
   profileClr: {
     textAlign: "left",
     position: "absolute",
@@ -244,21 +239,18 @@ const styles = StyleSheet.create({
   settingItem: {
     top: 291,
     width: 390,
-    backgroundColor: Color.colorWhitesmoke_200,
     height: 29,
     left: 0,
   },
   settingInner: {
     top: 427,
     width: 390,
-    backgroundColor: Color.colorWhitesmoke_200,
     height: 29,
     left: 0,
   },
   rectangleView: {
     top: 542,
     width: 390,
-    backgroundColor: Color.colorWhitesmoke_200,
     height: 29,
     left: 0,
   },
@@ -269,18 +261,11 @@ const styles = StyleSheet.create({
     height: 122,
     position: "absolute",
   },
-  popular: {
-    top: 327,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_mini,
-  },
-  favorites: {
-    top: 464,
-    display: "none",
-  },
   language: {
-    top: 589,
+    top: 360,
+  },
+  languag: {
+    top: 470,
   },
   mimiHeadline: {
     top: 296,
@@ -298,28 +283,11 @@ const styles = StyleSheet.create({
     left: 26,
     position: "absolute",
   },
-  preferences: {
-    top: 547,
-    fontSize: FontSize.size_xs,
-    textAlign: "left",
-    color: Color.colorBlack,
-    left: 26,
-    position: "absolute",
-  },
-  historique: {
-    top: 359,
-    fontFamily: FontFamily.poppinsMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_mini,
-  },
   download: {
-    top: 710,
-  },
-  favourite: {
-    top: 465,
+    top: 530,
   },
   darkmode: {
-    top: 632,
+    top: 393,
     left: 60,
     textAlign: "left",
     color: Color.colorBlack,
@@ -336,20 +304,48 @@ const styles = StyleSheet.create({
     marginLeft:34,
   },
   onlyDownloadVia: {
-    top: 669,
-  },
-  rectangle36Copy5: {
-    height: 14,
-    width: 14,
-    left: 0,
-    top: 0,
-    position: "absolute",
+    top: 500,
   },
   rightIcon: {
     top: 2,
-    left: 4,
-    width: 7,
-    height: 10,
+    left: -4,
+    width: 30,
+    height: 30,
+    position: "absolute",
+  },
+  rightIcon1: {
+    top: -5,
+    left: 3,
+    width: 20,
+    height: 20,
+    position: "absolute",
+  },
+  rightIcon2: {
+    top:-234,
+    left: 3,
+    width: 20,
+    height: 20,
+    position: "absolute",
+  },
+  rightIcon33: {
+    top: 472,
+    left: 364,
+    width: 30,
+    height: 30,
+    position: "absolute",
+  },
+  rightIcon44: {
+    top: 499,
+    left: 364,
+    width: 30,
+    height: 30,
+    position: "absolute",
+  },
+  rightIcon55: {
+    top: 52,
+    left: 364,
+    width: 30,
+    height: 30,
     position: "absolute",
   },
   rectangle36Copy5Parent: {
@@ -364,11 +360,6 @@ const styles = StyleSheet.create({
   },
   rectangle36Copy5Container: {
     top: 469,
-    left: 360,
-    opacity: 0.65,
-  },
-  groupView: {
-    top: 365,
     left: 360,
     opacity: 0.65,
   },
@@ -399,7 +390,7 @@ const styles = StyleSheet.create({
   },
   editProfile: {
     top: 250,
-    left: 171,
+    left: 154,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
@@ -407,7 +398,7 @@ const styles = StyleSheet.create({
     padding: 3
   },
   translateIcon: {
-    top: 590,
+    top: 360,
     width: 22,
     height: 22,
   },
@@ -415,21 +406,15 @@ const styles = StyleSheet.create({
     left: 24,
     height: 24,
     width: 24,
-    top: 632,
+    top: 390,
     position: "absolute",
     overflow: "hidden",
   },
   wifiIcon: {
-    top: 668,
-  },
-  heartIcon: {
-    top: 468,
-    width: 19,
-    height: 19,
-    overflow: "hidden",
+    top: 499,
   },
   iconoutlinedapplicationdown: {
-    top: 706,
+    top: 526,
     overflow: "hidden",
   },
   profile: {
@@ -438,36 +423,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "900",
     fontSize: FontSize.size_mini,
-  },
-  sampleIcon: {
-    borderTopRightRadius: Border.br_xl,
-    width: 495,
-    height: 190,
-    borderTopLeftRadius: Border.br_xl,
-  },
-  sampleWrapper: {
-    top: 708,
-    left: -38,
-    width: 399,
-    height: 60,
-    flexDirection: "row",
-    borderTopLeftRadius: Border.br_xl,
-    position: "absolute",
-  },
-  setting: {
-    backgroundColor: Color.themeWhiteThemeCoreTokensUiBackgroundWhite,
-    width: 414,
-    height: 908,
-    overflow: "hidden",
-  },
-  rectangle: {
-    bottom: 7,
-    left: 139,
-    borderRadius: Border.br_81xl,
-    backgroundColor: Color.colorDarkslategray_100,
-    width: 135,
-    height: 5,
-    position: "absolute",
+    
   },
   profil: {
     borderRadius: Border.br_11xl,
@@ -475,6 +431,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 896,
     overflow: "hidden",
+    backgroundColor:"white",
+  },
+  darkBackground: {
+    backgroundColor: '#191919'
   },
 });
 
