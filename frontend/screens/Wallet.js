@@ -1,7 +1,9 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, Alert, Image } from 'react-native';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WalletScreen = ({ route }) => {
   const [scanItems, setScanItems] = useState([]);
@@ -14,6 +16,7 @@ const WalletScreen = ({ route }) => {
     } catch (error) {
       console.error(error);
     }
+    console.log();
   };
 
   const loadScanItems = async () => {
@@ -32,8 +35,8 @@ const WalletScreen = ({ route }) => {
     try {
       const response = await axios.get(`http://192.168.43.142:8000/article/get/${barcode}`);
       const productDetails = response.data[0];
-      setScanItems((prevItems) => [...prevItems, productDetails]);
-      saveScanItems([...scanItems, productDetails]); // Save updated items to AsyncStorage
+      setScanItems((prevItems) => [...prevItems, { ...productDetails, quantity: 1 }]);
+      saveScanItems([...scanItems, { ...productDetails, quantity: 1 }]);
     } catch (error) {
       console.error(error);
       Alert.alert('Error', 'Failed to fetch product details');
@@ -42,19 +45,17 @@ const WalletScreen = ({ route }) => {
 
   useEffect(() => {
     const updateTotal = () => {
-      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price) * item.quantity, 0);
       setTotal(newTotal);
     };
 
     updateTotal();
-    saveScanItems(scanItems); // Save initial items to AsyncStorage
+    saveScanItems(scanItems);
   }, [scanItems]);
 
   useEffect(() => {
-    // Load items from AsyncStorage when the component mounts
     loadScanItems();
 
-    // Fetch product details when barcode changes
     if (route.params?.barcode) {
       fetchProductDetails(route.params.barcode);
     }
@@ -70,9 +71,10 @@ const WalletScreen = ({ route }) => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
               <View style={styles.productItemContainer}>
-                <Text style={styles.productName}>Product Name: {item.name}</Text>
+                <Text style={styles.productName}> {item.name}</Text>
                 <Image style={styles.productImage} source={{ uri: item.image }} />
-                <Text style={styles.productPrice}>Price: {item.price}</Text>
+                <Text style={styles.productPrice}>Price: {item.price} dt</Text>
+                <Text style={styles.productQuantity}>Quantity: {item.quantity}</Text>
               </View>
             )}
           />
@@ -84,7 +86,6 @@ const WalletScreen = ({ route }) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,12 +106,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   productImage: {
-    width: 100, // Adjust the width as needed
-    height: 100, // Adjust the height as needed
+    width: 100,
+    height: 100,
     borderRadius: 10,
     marginTop: 10,
   },
   productPrice: {
+    fontSize: 14,
+    color: '#888',
+  },
+  productQuantity: {
     fontSize: 14,
     color: '#888',
   },

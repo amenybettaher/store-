@@ -1,65 +1,72 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
-import { BarCodeScanner } from 'expo-barcode-scanner'
-import axios from 'axios'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import axios from 'axios';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const ScannerScreen = ({ navigation }) => {
-  const [hasPermission, setHasPermission] = useState(null)
-  const [scanned, setScanned] = useState(false)
-  const [barcodeData, setBarcodeData] = useState(null)
-  const [scanItems, setScanItems] = useState([])
-  const [total, setTotal] = useState(0)
-  const [torchEnabled, setTorchEnabled] = useState(false)
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
+  const [barcodeData, setBarcodeData] = useState(null);
+  const [scanItems, setScanItems] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [torchEnabled, setTorchEnabled] = useState(false);
 
   useEffect(() => {
     const requestCameraPermission = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync()
-      setHasPermission(status === 'granted')
-    }
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    };
 
-    requestCameraPermission()
-  }, [])
+    requestCameraPermission();
+  }, []);
 
   const fetchProductDetails = async (barcode) => {
     try {
-      const response = await axios.get(`http://192.168.43.142:8000/article/get/${barcode}`)
-      const productDetails = response.data[0]
-      setScanItems((prevItems) => [...prevItems, productDetails])
+      const response = await axios.get(`http://192.168.43.142:8000/article/get/${barcode}`);
+      const productDetails = response.data[0];
+      setScanItems((prevItems) => [...prevItems, productDetails]);
     } catch (error) {
-      console.error(error)
-      Alert.alert('Error', 'Failed to fetch product details')
+      console.error(error);
+      Alert.alert('Error', 'Failed to fetch product details');
     }
-  }
+  };
 
   const handleBarCodeScanned = async ({ type, data }) => {
-    setScanned(true)
-    setBarcodeData(data)
+    setScanned(true);
+    setBarcodeData(data);
 
-    await fetchProductDetails(data)
+    await fetchProductDetails(data);
 
-    const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0)
-    setTotal(newTotal)
+    const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+    setTotal(newTotal);
 
-    alert(`Bar code with code ${data} has been scanned !`)
-  }
+    alert(`Bar code with code ${data} has been scanned!`);
+  };
 
   const toggleTorch = () => {
-    setTorchEnabled((prev) => !prev)
-  }
+    setTorchEnabled((prev) => !prev);
+  };
 
   const handleScanAgain = async () => {
-    setScanned(false)
+    setScanned(false);
 
-    // Check if there's a barcode to fetch details for
     if (barcodeData) {
-      await fetchProductDetails(barcodeData)
-      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0)
-      setTotal(newTotal)
+      await fetchProductDetails(barcodeData);
+      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price), 0);
+      setTotal(newTotal);
     } else {
-      console.error('No barcode data to scan again.')
+      console.error('No barcode data to scan again.');
     }
-  }
+  };
+
+  const addScannedItemToWallet = async () => {
+    if (scanItems.length > 0) {
+      navigation.navigate('Wallet', { barcode: barcodeData, scannedItems: scanItems });
+    } else {
+      Alert.alert('Error', 'No items have been scanned.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -93,15 +100,16 @@ const ScannerScreen = ({ navigation }) => {
 
           <TouchableOpacity
             style={styles.goToWalletButton}
-            onPress={() => navigation.navigate('Wallet', { barcode: barcodeData })}
+            onPress={addScannedItemToWallet}
           >
             <MaterialCommunityIcons name="wallet" size={50} color="#8640f0" />
           </TouchableOpacity>
         </View>
       )}
     </View>
-  )
-}
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
