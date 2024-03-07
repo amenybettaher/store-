@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet, ScrollView } from "react-native";
 import React from "react";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import Product from "./Product";
 import Product2 from "./Product2";
@@ -13,36 +13,47 @@ function HomePage() {
 
   return (
     <ScrollView>
-      <View style={{marginTop: 45, marginBottom: 650}}>
-
+      <View style={{ marginTop: 45, marginBottom: 650 }}>
         <SliderBox
           images={images}
-          dotColor="#7D0C43"
-          inactiveDotColor="#13274F"
-          imageLoadingColor="black"
-          autoPlay={true}
-          autoplayInterval={1000}
-          circleLoop={true}
-          onCurrentImagePressed={(index) => alert(index + 1)}
-          firstItem={4}
+          sliderBoxHeight={200}
+          onCurrentImagePressed={(index) => console.warn(`image ${index} pressed`)}
+          dotColor="#FFEE58"
+          inactiveDotColor="#90A4AE"
           paginationBoxVerticalPadding={20}
-          ImageComponentStyle={{
-            borderRadius: 30,
-            width: "94%",
+          autoplay
+          circleLoop
+          resizeMethod={"resize"}
+          resizeMode={"cover"}
+          paginationBoxStyle={{
+            position: "absolute",
+            bottom: 0,
+            padding: 0,
+            alignItems: "center",
+            alignSelf: "center",
+            justifyContent: "center",
+            paddingVertical: 10,
           }}
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 0,
+            padding: 0,
+            margin: 0,
+            backgroundColor: "rgba(128, 128, 128, 0.92)",
+          }}
+          ImageComponentStyle={{ borderRadius: 15, width: "97%", marginTop: 5 }}
+          imageLoadingColor="#2196F3"
         />
         <Text style={styles.upc}>upcoming product</Text>
-
-     <Product/>
-     <Product2/>
-     <Product2/>
-
+        <Product />
+        <Product2 />
+        <Product2 />
       </View>
     </ScrollView>
   );
 }
-
-export default HomePage;
 
 const styles = StyleSheet.create({
   upc: {
@@ -55,3 +66,5 @@ const styles = StyleSheet.create({
     marginLeft: -240,
   },
 });
+
+export default HomePage;
