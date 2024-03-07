@@ -15,7 +15,6 @@ function HomePage() {
 
   return (
     <ScrollView>
-
       <View style={{ marginTop: 45, marginBottom: 650 }}>
         <SliderBox
           images={images}
