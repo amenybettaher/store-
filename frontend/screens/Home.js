@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import Product from "./Product";
 import Product2 from "./Product2";
-
+import Products3 from "./products3";
 function HomePage() {
   const images = [
     "https://cdn4.vectorstock.com/i/1000x1000/74/98/promotion-sign-in-modern-supermarket-background-vector-22427498.jpg",
@@ -52,7 +52,7 @@ function HomePage() {
         <Text style={styles.upc}>Upcoming Products</Text>
         <Product />
         <Product2 />
-        <Product2 />
+        <Products3 />
       </View>
     </ScrollView>
   );
