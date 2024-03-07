@@ -36,22 +36,25 @@ const SignUp = () => {
   const handleSignUp = async () => {
 
 
+
+
     try {
-      navigation.navigate('HomePage');
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
         alert("Password must contain at least one capital letter, one number, and one symbol (!@#$%^&*)");
         return;
       }
-  
+
+    navigation.navigate('HomePage');
+      
       const res = await createUserWithEmailAndPassword(email, password);
   
       if (!res || !res.user) {
         throw new Error("User creation failed. Please try again.");
       }
   
-      const registerResponse = await axios.post('http:// 192.168.43.151:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -196,8 +199,8 @@ const SignUp = () => {
           </View>
         </View>
 
-        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
-          <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} />
+        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} onPress={handleGoogleSignUp}/>
+          <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} onPress={handleFacebookSignUp}/>
           <Image source={require('../assets/png-apple-logo-9711.png')} style={styles.apple} />
         {/* <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" /> */}
         <Text style={styles.alreadyHaveAnContainer}>

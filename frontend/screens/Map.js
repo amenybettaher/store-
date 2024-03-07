@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import * as Location from 'expo-location';
-import Geocoder from 'react-native-geocoding';
 
 export default function MapPage() {
   const [mapRegion, setMapRegion] = useState({
@@ -12,6 +11,12 @@ export default function MapPage() {
   const [markers, setMarkers] = useState([]);
   const [errorMsg, setErrorMsg] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const predefinedAddresses = [
+    { name: 'Magasin Général', address: 'Av. Mongi Slim, Le Kef 7100' },
+    { name: 'aziza', address: '5M4W+HGP,Le Kef' },
+    // Add more predefined addresses as needed
+  ];
 
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -49,22 +54,44 @@ export default function MapPage() {
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
           searchQuery
-        )}&apiKey=30244598c9a24a42b3551f2d75de7850`
+        )}&apiKey=1031a808d7194c2d8e19768de1b8d928`
       );
       const result = await response.json();
 
-      // Extract latitude and longitude from the API response
-      const location = result.features[0].geometry.coordinates;
+      // Check if there are features in the result
+      if (result.features && result.features.length > 0) {
+        // Extract latitude and longitude from the first feature in the response
+        const location = result.features[0].geometry.coordinates;
 
-      // Create a new marker at the geocoded location
-      const newMarker = {
-        latitude: location[1],
-        longitude: location[0],
-        id: Date.now().toString(),
-      };
+        // Create a new marker at the geocoded location
+        const newMarker = {
+          latitude: location[1],
+          longitude: location[0],
+          id: Date.now().toString(),
+        };
 
-      // Add the new marker to the markers array
-      setMarkers([...markers, newMarker]);
+        // Add the new marker to the markers array
+        setMarkers([...markers, newMarker]);
+      } else {
+        console.log('No features found in the geocoding response.');
+
+        // Check if the search result matches any predefined address
+        const matchedAddress = predefinedAddresses.find((address) =>
+          result.features.some((feature) => feature.properties.label.includes(address.address))
+        );
+
+        if (matchedAddress) {
+          const location = result.features[0].geometry.coordinates;
+          const newMarker = {
+            latitude: location[1],
+            longitude: location[0],
+            id: Date.now().toString(),
+          };
+          setMarkers([...markers, newMarker]);
+        } else {
+          console.log('No matching predefined address found.');
+        }
+      }
     } catch (error) {
       console.error('Error searching supermarkets:', error);
     }
@@ -73,10 +100,6 @@ export default function MapPage() {
   useEffect(() => {
     userLocation();
   }, []);
-
-  // useEffect(() => {
-  //   Geocoder.init('30244598c9a24a42b3551f2d75de7850'); // Initialize Geocoder with your API key
-  // }, []);
 
   return (
     <View style={styles.container}>
@@ -115,6 +138,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 10,
-    marginTop:50
+    marginTop: 50,
   },
 });

@@ -7,7 +7,7 @@ import { Color, Border, FontFamily, FontSize, Padding } from "../GlobalStyles";
 import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,13 +31,16 @@ const SignIn = () => {
         Alert.alert("Invalid email or password. Please try again.");
         return;
       }
-      sessionStorage.setItem('user', true);
+  
+      // Use AsyncStorage to store user data
+      await AsyncStorage.setItem('user', JSON.stringify(loginResponse.data));
+  
       setUser(loginResponse.data);
       console.log('user:', loginResponse);
       setEmail('');
       setPassword('');
-      navigation.navigate('Article');
-      
+      navigation.navigate('HomePage');
+  
       Alert.alert("Sign in successful");
     } catch (e) {
       console.error(e);

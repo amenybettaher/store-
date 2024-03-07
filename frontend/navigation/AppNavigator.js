@@ -18,19 +18,19 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-import AboutUs from '../screens/AboutUs.js';
 
 const Stack = createStackNavigator();
 
 function MainStack({ language }) {
   return (
+
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name='welcome' component={Page} /> */}
+{/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
       {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
       {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
-      {/* <Stack.Screen name="HomePage" component={Home} /> */}
+      <Stack.Screen name="HomePage" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="AboutUs" component={AboutUs} />
@@ -76,7 +76,7 @@ function Article({ route, navigation }) {
 function Home({ navigation }) {
   return (
     <>
-      <HomePage />
+      <HomePage/>
       <TabBar navigation={navigation} />
     </>
   );
