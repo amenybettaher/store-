@@ -35,9 +35,6 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
 
-
-
-
     try {
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
@@ -76,6 +73,8 @@ const SignUp = () => {
       setLast('');
 
       navigation.navigate('HomePage');
+
+
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
@@ -89,7 +88,7 @@ const SignUp = () => {
   
   const handleGoogleSignUp = async () => {
     try {
-      const res = await signInWithGoogle(GoogleProvider);
+      const res = await signInWithGoogle(auth, GoogleProvider);
       console.log('Google Sign-Up Response:', res);
     } catch (e) {
       console.error('Google Sign-Up Error:', e);
@@ -105,7 +104,7 @@ const SignUp = () => {
     }
   };
   
-  
+
 
   return (
     <ImageBackground
@@ -198,8 +197,9 @@ const SignUp = () => {
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
         </View>
-
-        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} onPress={handleGoogleSignUp}/>
+        <TouchableOpacity onPress={handleGoogleSignUp}>
+        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
+        </TouchableOpacity>
           <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} onPress={handleFacebookSignUp}/>
           <Image source={require('../assets/png-apple-logo-9711.png')} style={styles.apple} />
         {/* <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" /> */}

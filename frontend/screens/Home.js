@@ -8,8 +8,8 @@ function HomePage() {
   const images = [
     "https://cdn4.vectorstock.com/i/1000x1000/74/98/promotion-sign-in-modern-supermarket-background-vector-22427498.jpg",
     "https://img.freepik.com/premium-vector/ramadan-sale-discount-banner-template-promotion_7087-1099.jpg",
-    "https://media.istockphoto.com/id/155443388/photo/dairy-discount-in-grocery-store.jpg?s=612x612&w=0&k=20&c=zpSo5vC7jQHzsJju0Y48E-a5TQItSRDJbz4vF7WuCWc=",
-    "https://img.freepik.com/premium-photo/fresh-food-vegetables-shopping-basket-mobile-smartphone-wood-table-with-supermarket-aisle-blurred-background-grocery-online-concept_293060-4950.jpg",
+    "https://www.foodrepublic.com/img/gallery/how-to-decode-tricky-sale-gimmicks-at-the-grocery-store/l-intro-1684196212.jpg",
+    "https://www.jeu-concours.biz/content/img/ig-noel.png",
     
   ];
 

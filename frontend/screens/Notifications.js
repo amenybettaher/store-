@@ -9,8 +9,12 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const Notifications = () => {
-  const [darkMode, setDarkMode] = useState(false);
+const Notifications = ({ darkMode }) => {
+ 
+  // const notificationStyle = {
+  //   background: darkMode ? 'black' : 'white',
+  //   color: darkMode ? 'white' : 'black',
+  // };
 
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
