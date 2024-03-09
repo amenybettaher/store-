@@ -18,14 +18,14 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-import Walleti from '../screens/Wallet.js'
+import Wallet from '../screens/Wallet.js'
 
 const Stack = createStackNavigator();
 
 function MainStack() {
   return (
 
-    <Stack.Navigator initialRouteName="Scanner" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Wallet" screenOptions={{ headerShown: false }}>
 <Stack.Screen name='welcome' component={Page} />
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
@@ -99,14 +99,14 @@ function Profil({ navigation }) {
   );
 } 
 
-function Wallet({ navigation }) {
-  return (
-    <>
-      <Walleti/>
-      <TabBar navigation={navigation} />
-    </>
-  );
-}
+// function Wallet({ navigation }) {
+//   return (
+//     <>
+//       <Wallet/>
+//       <TabBar navigation={navigation} />
+//     </>
+//   );
+// }
 
 
 

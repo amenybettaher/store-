@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button, Alert, Image } from 'react-native';
-import { Card } from 'react-native-elements';  
+import { Picker } from '@react-native-picker/picker';
+import { Card } from 'react-native-elements';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const backendUrl = 'http://192.168.1.17:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanning, setScanning] = useState(true);
   const [barcodeData, setBarcodeData] = useState(null);
   const [productDetails, setProductDetails] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   useEffect(() => {
     (async () => {
@@ -27,9 +31,11 @@ export default function ScannerScreen() {
 
   const fetchProductDetails = (barcode) => {
     axios
-      .get(`http://192.168.43.233:8000/article/get/${barcode}`)
+      .get(`${backendUrl}/article/get/${barcode}`)
       .then((response) => {
-        setProductDetails(response.data[0]);
+        let AllDetails = response.data[0];
+        AllDetails["barcode"] = barcode;
+        setProductDetails(AllDetails);
         console.log(response.data);
       })
       .catch((error) => {
@@ -38,28 +44,33 @@ export default function ScannerScreen() {
       });
   };
 
-  const addToWallet = () => {
+  const addToWallet = async () => {
     if (productDetails) {
-      axios.post('http://192.168.43.233:8000/wallet/add', {
-        image: productDetails.image,
-        name: productDetails.name,
-        price: productDetails.price
-      })
-      .then(response => {
-        console.log('Product added to wallet:', response.data);
-        Alert.alert('Success', 'Product added to wallet');
-      })
-      .catch(error => {
-        console.error('Failed to add product to wallet:', error);
-        Alert.alert('Error', 'Failed to add product to wallet');
-      });
+      let wallet = await AsyncStorage.getItem('wallet');
+      if (wallet) {
+        wallet = JSON.parse(wallet);
+      } else {
+        wallet = {};
+      }
+      const { barcode, name, price, image } = productDetails;
+      const totalPrice = parseFloat(price) * selectedQuantity;
+      const productToAdd = { barcode, name, price: totalPrice.toFixed(2), image, quantity: selectedQuantity };
+
+      if (wallet[barcode]) {
+        Alert.alert("Error", "Product already in wallet");
+      } else {
+        wallet[barcode] = productToAdd;
+        await AsyncStorage.setItem('wallet', JSON.stringify(wallet));
+        Alert.alert("Success", "Product added to wallet");
+      }
     }
   };
 
   const startScanning = () => {
     setScanning(true);
     setBarcodeData(null);
-    setProductDetails(null); 
+    setProductDetails(null);
+    setSelectedQuantity(1);
   };
 
   if (hasPermission === null) {
@@ -67,7 +78,7 @@ export default function ScannerScreen() {
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
-  } 
+  }
 
   return (
     <View style={styles.container}>
@@ -88,11 +99,21 @@ export default function ScannerScreen() {
                 <Image
                   style={{ width: '100%', height: 100 }}
                   resizeMode="contain"
-                  source={{ uri: productDetails.image }}  
+                  source={{ uri: productDetails.image }}
                 />
                 <Text>Product Name: {productDetails.name}</Text>
+                <Text>Barcode: {productDetails.barcode}</Text>
                 <Text>Price: {productDetails.price}</Text>
-              
+                <View style={styles.quantityContainer}>
+                  <Text>Select Quantity: </Text>
+                  <Picker
+                    selectedValue={selectedQuantity}
+                    onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+                    {Array.from({ length: 100 }, (_, i) => i + 1).map(quantity => (
+                      <Picker.Item key={quantity} label={`${quantity}`} value={quantity} />
+                    ))}
+                  </Picker>
+                </View>
                 <Button title="Add to Wallet" onPress={addToWallet} />
               </>
             )}

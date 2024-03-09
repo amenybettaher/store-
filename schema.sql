@@ -24,14 +24,13 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(450) NOT NULL,
   `image` VARCHAR(1000) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(60) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
-  `price` VARCHAR(45) NOT NULL,
-  `product_Num` VARCHAR(200) NOT NULL,
-  `category` VARCHAR(60) NOT NULL,
+  `price` INT NOT NULL,
+  `product_Num` INT NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -75,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `market`.`wallet` (
   `price` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
