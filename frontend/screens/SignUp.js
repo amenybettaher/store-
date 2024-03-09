@@ -46,7 +46,7 @@ const SignUp = () => {
         return;
       }
 
-    navigation.navigate('Home');
+    navigation.navigate('HomePage');
       
       const res = await createUserWithEmailAndPassword(email, password);
   
@@ -54,7 +54,7 @@ const SignUp = () => {
         throw new Error("User creation failed. Please try again.");
       }
   
-      const registerResponse = await axios.post('http://192.168.1.15:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -403,6 +403,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
+    
   },
   
 });

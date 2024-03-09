@@ -1,21 +1,11 @@
 const express = require('express')
-const { getAllcarte, getOnecarte, supp, update, addcarte } = require('../controllers/carteController')
+const { getAllcarte, getOnecarteByCode, getOnecarteByNumber } = require('../Controllers/carteController')
 const router = express.Router()
 
 
 
-router.get('/get', getAllcarte)
-router.post('/add', addcarte)
-router.put('/put/:cin', update)
-router.delete('/delete/:cin', supp)
-
-
-
-
+router.get('/all', getAllcarte)
+router.get('/code/:code', getOnecarteByCode)
+router.get('/number/:number', getOnecarteByNumber)
 
 module.exports = router
-
-
-
-
-
