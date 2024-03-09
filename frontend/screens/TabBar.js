@@ -105,7 +105,7 @@ const TabBar = ({navigation}) => {
                     flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 55
                 }}>
                     <TouchableOpacity
-                       onPress={() => handleTabPress('wallet')}
+                       onPress={() => handleTabPress('Wallet')}
                     >
                         <Image
                             source={require("../assets/total.png")}
