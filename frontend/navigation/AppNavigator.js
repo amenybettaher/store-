@@ -19,17 +19,17 @@ import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
 import Wallet from '../screens/Wallet.js';
-
+import Carte from '../screens/Carte.js';
 const Stack = createStackNavigator();
 
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="Wallet" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Carte" screenOptions={{ headerShown: false }}>
 {/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
-      <Stack.Screen name="SignIn" component={SignIn} />
+      {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="HomePage" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
@@ -40,9 +40,11 @@ function MainStack({ language }) {
       <Stack.Screen name="ContactUs" component={ContactUs} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Stack.Screen name='Map' component={Map} />
+      <Stack.Screen name='Carte' component={Carte} />
+      
       {/* <Stack.Screen name="Article" component={Article} /> */}
       {/* <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} initialParams={{ language }} /> */}
-      {/* <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} initialParams={{ language }} /> */}
+      <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
     </Stack.Navigator>
   );
