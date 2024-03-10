@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity,Text} from 'react-native';
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 
@@ -76,7 +76,9 @@ export default function MapPage() {
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
-      <Button title="Search" onPress={searchSupermarkets} />
+  <TouchableOpacity style={styles.Button} onPress={searchSupermarkets}>
+        <Text style={styles.buttonText}>Search</Text>
+      </TouchableOpacity>
 
       <WebView
         style={styles.map}
@@ -97,9 +99,25 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderWidth: 0.5,
     marginBottom: 10,
     paddingLeft: 10,
     marginTop: 50,
+  },
+  Button:{
+    backgroundColor:'#7D0C43',
+    height: 40,
+    width:200,
+    marginLeft:80,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '700',
+    marginTop:0
   },
 });
