@@ -6,7 +6,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const backendUrl = 'http://192.168.43.151:8000';
+const backendUrl = 'http://192.168.1.17:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -54,7 +54,7 @@ export default function ScannerScreen() {
       }
       const { barcode, name, price, image } = productDetails;
       const totalPrice = parseFloat(price) * selectedQuantity;
-      const productToAdd = { barcode, name, price: totalPrice.toFixed(2), image, quantity: selectedQuantity };
+      const productToAdd = { barcode, name, price: totalPrice.toFixed(3), image, quantity: selectedQuantity };
 
       if (wallet[barcode]) {
         Alert.alert("Error", "Product already in wallet");

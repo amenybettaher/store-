@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Button } from 'react-native';
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 
-const backendURL = 'http://192.168.43.151:8000';
+const backendURL = 'http://192.168.1.17:8000';
 
 
 export default function MapPage() {

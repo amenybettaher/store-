@@ -49,7 +49,7 @@ const Wallet = () => {
           </TouchableOpacity>
         </View>
       ))}
-      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(4)}</Text>
+      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(3)} DT</Text>
     </View>
   );
 };

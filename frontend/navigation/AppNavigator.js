@@ -6,7 +6,7 @@ import Page from '../screens/Page';
 import Onbording2 from '../screens/Onbording2.js';
 import SignUp from '../screens/SignUp';
 import Onbording from '../screens/Onbording.js';
-import HomeScreen from '../screens/HomeScreen';
+
 import ScannerScreen from '../screens/ScannerScreen.js';
 import TabBar from '../screens/TabBar.js';
 import MapPage from '../screens/Map.js';
@@ -25,7 +25,7 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="Carte" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Scanner" screenOptions={{ headerShown: false }}>
 {/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
