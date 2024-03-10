@@ -14,15 +14,19 @@ import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import Notifications from "./Notifications";
+import { useUser } from '../screens/UserContext';
 
-const Profile = ({ route }) => {
-  const userData = route?.params?.userData || {};
-  const navigation = useNavigation();
+
+const Profile = () => {
+  const { user } = useUser();
+    console.log('User data in Profile:', user);
+  const navigation = useNavigation(); 
+
+
 
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
-
   const handleStartPresse = () => {
     navigation.navigate('EditProfile');
   };
@@ -57,7 +61,7 @@ const Profile = ({ route }) => {
           contentFit="cover"
           source={require("../assets/profil.png")}
         />
- <Text>{` ${userData.firstName || ''} ${userData.lastName || ''}`}</Text>
+         <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
