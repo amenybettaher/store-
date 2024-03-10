@@ -8,7 +8,13 @@ import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUser } from '../screens/UserContext';
+
+
+
+
 const SignIn = () => {
+  const { updateUser } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
@@ -19,32 +25,34 @@ const SignIn = () => {
     try {
       // Validate email and password
       if (!email || !password) {
-        Alert.alert("Please enter both email and password.");
+        Alert.alert('Please enter both email and password.');
         return;
       }
+
       const loginResponse = await axios.post('http://192.168.43.151:8000/users/login', {
         email,
         password,
       });
-      console.log('Login API response:', loginResponse);
+
       if (!loginResponse || !loginResponse.data || loginResponse.data.error) {
-        Alert.alert("Invalid email or password. Please try again.");
+        Alert.alert('Invalid email or password. Please try again.');
         return;
       }
-  
+
       // Use AsyncStorage to store user data
       await AsyncStorage.setItem('user', JSON.stringify(loginResponse.data));
-  
-      setUser(loginResponse.data);
-      console.log('user:', loginResponse);
+
+      // Update the user context
+      updateUser(loginResponse.data);
+      console.log('User data in SignIn:', loginResponse.data);
       setEmail('');
       setPassword('');
       navigation.navigate('HomePage');
-  
-      Alert.alert("Sign in successful");
+
+      Alert.alert('Sign in successful');
     } catch (e) {
       console.error(e);
-      Alert.alert("Sign in failed. Please try again.");
+      Alert.alert('Sign in failed. Please try again.');
     }
   };
 
