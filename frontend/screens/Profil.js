@@ -49,7 +49,7 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
-          source={require("../assets/profil.png")}
+          source={require("../assets/profilo.png")}
         />
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon55: {
-    top: 52,
+    top: 525,
     left: 364,
     width: 30,
     height: 30,
@@ -384,13 +384,13 @@ const styles = StyleSheet.create({
   },
   rectangleIcon: {
     top: 245,
-    left: 140,
+    left: 143,
     borderRadius: Border.br_8xs,
     width: 105,
   },
   editProfile: {
     top: 250,
-    left: 154,
+    left: 155,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",

@@ -18,7 +18,7 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-
+import AboutUs from '../screens/AboutUs.js';
 const Stack = createStackNavigator();
 
 function MainStack({ language }) {
@@ -32,16 +32,16 @@ function MainStack({ language }) {
       {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
       <Stack.Screen name="HomePage" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="AboutUs" component={AboutUs} />
-      <Stack.Screen name="Language" component={Language} />
-      <Stack.Screen name="EditProfile" component={EditProfile} />
-      <Stack.Screen name="ContactUs" component={ContactUs} />
-      <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-      {/* <Stack.Screen name='Map' component={Map} /> */}
+      {/* <Stack.Screen name="Notifications" component={Notifications} /> */}
+      {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+      {/* <Stack.Screen name="Language" component={Language} /> */}
+      {/* <Stack.Screen name="EditProfile" component={EditProfile} /> */}
+      {/* <Stack.Screen name="ContactUs" component={ContactUs} /> */}
+      {/* <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
+      <Stack.Screen name='Map' component={Map} />
       {/* <Stack.Screen name="Article" component={Article} /> */}
-      {/* <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} initialParams={{ language }} /> */}
-      {/* <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} initialParams={{ language }} /> */}
+      <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} initialParams={{ language }} />
+      <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} initialParams={{ language }} />
     </Stack.Navigator>
   );
 }
