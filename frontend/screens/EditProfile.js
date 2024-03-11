@@ -4,7 +4,6 @@ import * as ImagePicker from 'expo-image-picker';
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { ImageManipulator } from 'expo';
 
 const EditProfile = () => {
     const navigation = useNavigation();
@@ -29,16 +28,7 @@ const EditProfile = () => {
         });
 
         if (!pickerResult.cancelled) {
-            try {
-                const resizedImage = await ImageManipulator.manipulateAsync(
-                    pickerResult.uri,
-                    [{ resize: { width: 40, height: 40 } }],
-                    { compress: 1, format: 'png', base64: true }
-                );
-                setSelectedImage({ uri: resizedImage.uri });
-            } catch (error) {
-                console.error('Error manipulating image:', error);
-            }
+            setSelectedImage({ uri: pickerResult.uri });
         }
     };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text, Alert } from 'react-native';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const TabBar = ({navigation}) => {
     const handleTabPress = (screen) => {
