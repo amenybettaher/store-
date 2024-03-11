@@ -1,155 +1,134 @@
-import * as React from "react";
-import { StyleSheet, View, Text, Pressable,TextInput } from "react-native";
-import { FontSize, Color, FontFamily, Border } from "../GlobalStyles";
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
+// import emailjs from 'emailjs-com';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const ContactUs = () => {
-  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
+  const navigation = useNavigation();
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleStartPress = () => {
-    navigation.navigate('Profil'); // Navigate to 'Onbording2' screen
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const sendMail = () => {
+    // Basic form validation
+    if (!fullname || !email || !message) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
+    setLoading(true);
+
+    const params = { name: fullname, email, message };
+    const serviceID = "service_wy9hvhy";
+    const templateID = "template_34p5rh7"; 
+    const userID = "agzGZtxooPi9TYwL-";
+
+    emailjs
+      .send(serviceID, templateID, params, userID)
+      .then((res) => {
+        setFullname('');
+        setEmail('');
+        setMessage('');
+        Alert.alert('Success', 'Your message sent successfully!!');
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert('Error', 'Failed to send message. Please try again.');
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
-    <View style={styles.profile2}>
-              <View style={[styles.settingChild, styles.settingPosition]} />
-
+    <View style={styles.container}>
       <View style={styles.notificationsWrapper}>
-
-        <Pressable onPress={handleStartPress}>
-          <Ionicons name="arrow-back" size={26} color="white" style={styles.back}/>
-        </Pressable>
+        <TouchableOpacity onPress={handleBackPress}>
+          <Ionicons name="arrow-back" size={26} color="white" style={styles.back} />
+        </TouchableOpacity>
         <Text style={styles.notifications}>ContactUs</Text>
       </View>
-      {/* Your ContactUs content here */}
+
       <TextInput
-                    style={styles.name}
-                    placeholder="Your Name"
-                    placeholderTextColor="black"
-                />
-                <TextInput
-                    style={styles.email}
-                    placeholder="Your Email"
-                    placeholderTextColor="black"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Tell me Your Story or Question For Us"
-                    placeholderTextColor="black"
-                />
-                                <View style={[styles.profileEditChild2, styles.profileChildLayout]} />
+        style={styles.input}
+        placeholder="Your Name"
+        placeholderTextColor="black"
+        value={fullname}
+        onChangeText={(text) => setFullname(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Your Email"
+        placeholderTextColor="black"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        keyboardType="email-address"
+      />
+      <TextInput
+        style={[styles.input, styles.messageInput]}
+        placeholder="Tell me Your Story or Question For Us"
+        placeholderTextColor="black"
+        multiline
+        value={message}
+        onChangeText={(text) => setMessage(text)}
+      />
 
-                                <Text style={[styles.update, styles.updateTypo]}>Update</Text>
-
-               
+      <TouchableOpacity
+        style={styles.sendButton}
+        onPress={sendMail}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text style={styles.buttonText}>Send Message</Text>
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  back:{
-    marginLeft: -70,
-    top: -20,
-  },
-  settingChild: {
-    backgroundColor: Color.colorMediumvioletred_200,
-    width: 450,
-    height: 191,
-    marginLeft:-30,
-    top:0,
-    
-  },
-  update: {
-    top: 681,
-    left: 180,
-    fontWeight: "700",
-    fontFamily: FontFamily.poppinsBold,
-},
-updateTypo: {
-    position: "absolute",
-    color: "white",
-},
-profileEditChild2: {
-    top: 672,
-    left: 59,
-    width: 280,
-    borderRadius: Border.br_3xs,
-    backgroundColor: Color.colorMediumvioletred_200,
-},
-profileChildLayout: {
-    height: 40,
-    position: "absolute",
-},
-  name: {
-    marginLeft: 5,
-    top: 110,
-    borderWidth: 1,
-    borderColor: Color.colorDarkgray_100,
-    borderStyle: "solid",
-    backgroundColor: Color.colorSilver_300,
-    borderRadius: Border.br_5xs,
-    left: 36,
-    alignItems: "center",
-    padding: 7,
-    marginBottom: 20,
-    width: 318,
-},
-email:{
-    marginLeft: 5,
-    borderWidth: 1,
-    borderColor: Color.colorDarkgray_100,
-    borderStyle: "solid",
-    backgroundColor: Color.colorSilver_300,
-    borderRadius: Border.br_5xs,
-    left: 36,
-    alignItems: "center",
-    padding: 7,
-    marginBottom: 20,
-    width: 318,
-    top: 110,
-
-},
-input:{
-    marginLeft: 5,
-    borderWidth: 1,
-    borderColor: Color.colorDarkgray_100,
-    borderStyle: "solid",
-    backgroundColor: Color.colorSilver_300,
-    borderRadius: Border.br_5xs,
-    left: 36,
-    marginBottom: 20,
-    width: 318,
-    height:120,
-    top: 110,
-    paddingBottom:90,
-    paddingLeft:8,
-},
-  notifications: {
-    fontSize: 20,
-    lineHeight: 28,
-    textAlign: "center",
-    fontFamily: FontFamily.titlePoppinsMedium,
-    fontWeight: "600",
-    width: 221,
-    left: 0,
-    top: 40,
-    position: "absolute",
-    color:"white"
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16,
   },
   notificationsWrapper: {
-    top: 65,
-    left: 87,
-    height: 28,
-    width: 221,
-    position: "absolute",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  profile2: {
-    borderRadius: Border.br_13xl,
-    backgroundColor: Color.themeWhiteThemeCoreTokensUiBackgroundWhite,
-    overflow: "hidden",
-    height: 844,
-    width: 399,
+  back: {
+    marginRight: 10,
+  },
+  notifications: {
+    fontSize: 20,
+    color: 'white',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 8,
+  },
+  messageInput: {
+    height: 80,
+  },
+  sendButton: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
   },
 });
 

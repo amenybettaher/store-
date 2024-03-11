@@ -36,9 +36,6 @@ import { AntDesigns } from '@expo/vector-icons';
   }
   const handleSignUp = async () => {
 
-
-
-
     try {
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
@@ -77,6 +74,8 @@ import { AntDesigns } from '@expo/vector-icons';
       setLast('');
 
       navigation.navigate('HomePage');
+
+
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
@@ -90,7 +89,7 @@ import { AntDesigns } from '@expo/vector-icons';
   
   const handleGoogleSignUp = async () => {
     try {
-      const res = await signInWithGoogle(GoogleProvider);
+      const res = await signInWithGoogle(auth, GoogleProvider);
       console.log('Google Sign-Up Response:', res);
     } catch (e) {
       console.error('Google Sign-Up Error:', e);
@@ -106,7 +105,7 @@ import { AntDesigns } from '@expo/vector-icons';
     }
   };
   
-  
+
 
   return (
     <ImageBackground
@@ -203,8 +202,9 @@ import { AntDesigns } from '@expo/vector-icons';
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
         </View>
-
-        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} onPress={handleGoogleSignUp}/>
+        <TouchableOpacity onPress={handleGoogleSignUp}>
+        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
+        </TouchableOpacity>
           <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} onPress={handleFacebookSignUp}/>
           <AntDesign name="apple1" size={37} color="white" style={styles.apple} />
         {/* <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" /> */}

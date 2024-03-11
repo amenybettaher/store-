@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity,Text} from 'react-native';
 import * as Location from 'expo-location';
+import { WebView } from 'react-native-webview';
+
+const backendURL = 'http://192.168.43.151:8000';
+
 
 export default function MapPage() {
   const [mapRegion, setMapRegion] = useState({
@@ -30,6 +33,7 @@ export default function MapPage() {
       longitude: location.coords.longitude,
       latitudeDelta: 0.08,
       longitudeDelta: 0.01,
+      src: getMapSrc(location.coords.latitude, location.coords.longitude)
     });
   };
 
@@ -48,58 +52,21 @@ export default function MapPage() {
     setMarkers(updatedMarkers);
   };
 
-  const searchSupermarkets = async () => {
-    try {
-      // Geocoding API request using fetch
-      const response = await fetch(
-        `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(
-          searchQuery
-        )}&apiKey=1031a808d7194c2d8e19768de1b8d928`
-      );
-      const result = await response.json();
-
-      // Check if there are features in the result
-      if (result.features && result.features.length > 0) {
-        // Extract latitude and longitude from the first feature in the response
-        const location = result.features[0].geometry.coordinates;
-
-        // Create a new marker at the geocoded location
-        const newMarker = {
-          latitude: location[1],
-          longitude: location[0],
-          id: Date.now().toString(),
-        };
-
-        // Add the new marker to the markers array
-        setMarkers([...markers, newMarker]);
-      } else {
-        console.log('No features found in the geocoding response.');
-
-        // Check if the search result matches any predefined address
-        const matchedAddress = predefinedAddresses.find((address) =>
-          result.features.some((feature) => feature.properties.label.includes(address.address))
-        );
-
-        if (matchedAddress) {
-          const location = result.features[0].geometry.coordinates;
-          const newMarker = {
-            latitude: location[1],
-            longitude: location[0],
-            id: Date.now().toString(),
-          };
-          setMarkers([...markers, newMarker]);
-        } else {
-          console.log('No matching predefined address found.');
-        }
-      }
-    } catch (error) {
-      console.error('Error searching supermarkets:', error);
-    }
+  const searchSupermarkets = () => {
+    setMapRegion({
+      src: getMapSrc(mapRegion.latitude, mapRegion.longitude, 13, searchQuery)
+    });
   };
 
   useEffect(() => {
     userLocation();
   }, []);
+
+  getMapSrc = (alt, lng, zoom =13, searchLocation = "Le kef") => {
+      searchLocation_formated = searchLocation.replace(" ", "%20");
+      let MAPsrc = "/iframe/www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d53337.15394885963!2d11.11!3d33.33!3m2!1i1024!2i768!4f13.1!2m1!1sAziza!5e0!3m2!1sen!2stn!4v1709981449631!5m2!1sen!2stn";
+      return backendURL + MAPsrc.replace("33.33", alt+"").replace("11.11", lng+"").replace("13", zoom+"").replace("Aziza", searchLocation_formated);
+    }
 
   return (
     <View style={styles.container}>
@@ -109,18 +76,15 @@ export default function MapPage() {
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
-      <Button title="Search" onPress={searchSupermarkets} />
+  <TouchableOpacity style={styles.Button} onPress={searchSupermarkets}>
+        <Text style={styles.buttonText}>Search</Text>
+      </TouchableOpacity>
 
-      <MapView style={styles.map} region={mapRegion} onLongPress={addMarker}>
-        {markers.map((marker, index) => (
-          <Marker
-            key={index.toString()}
-            coordinate={marker}
-            title={`Marker ${index + 1}`}
-            onPress={() => removeMarker(marker.id)}
-          />
-        ))}
-      </MapView>
+      <WebView
+        style={styles.map}
+        source={{ uri: mapRegion.src }}
+      />
+    
     </View>
   );
 }
@@ -135,9 +99,25 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderWidth: 0.5,
     marginBottom: 10,
     paddingLeft: 10,
     marginTop: 50,
+  },
+  Button:{
+    backgroundColor:'#7D0C43',
+    height: 40,
+    width:200,
+    marginLeft:80,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '700',
+    marginTop:0
   },
 });

@@ -12,10 +12,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { Ioniconss } from '@expo/vector-icons';
 import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import fr from "./fr.json"; // Import French translation
+import fr from "./fr.json"; 
+import Notifications from "./Notifications";
+import { useUser } from '../screens/UserContext';
+
 
 const Profile = () => {
+  const { user } = useUser();
+    console.log('User data in Profile:', user);
   const navigation = useNavigation(); 
+
+
+
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
@@ -39,8 +47,10 @@ const Profile = () => {
       setDarkMode(!darkMode);
     };
 
+
   return (
 <View style={[styles.profil, darkMode ? styles.darkBackground : null]}>
+  
       <View style={[styles.setting, styles.settingPosition]}>
         <View style={[styles.settingChild, styles.settingPosition]} />
         <View style={[styles.settingItem, styles.settingLayout]} />
@@ -51,6 +61,7 @@ const Profile = () => {
           contentFit="cover"
           source={require("../assets/profilo.png")}
         />
+         <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
@@ -75,7 +86,7 @@ const Profile = () => {
         <Text style={[styles.darkmode, darkMode ? { color: "white" } : null]}>
         {fr.DarkMode}
           </Text>
-        <Pressable onPress={handleStartPress}>
+        <Pressable  onPress={handleStartPress} >
         <Text style={[styles.today, styles.todayPosition , darkMode ? { color: "white" } : null]}>
         {fr.notifications}
           </Text>
@@ -161,6 +172,7 @@ const Profile = () => {
           onToggle={toggleDarkMode}
           style={styles.toggle1}
         />
+  
                 <Pressable onPress={handleStartPressA}>
         <Ionicons name="information-circle-outline" size={24} color="black"style={[styles.icon3, darkMode ? { color: "white" } : null]} />
         </Pressable>
@@ -170,6 +182,7 @@ const Profile = () => {
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon55, darkMode ? { color: "white" } : null]}/>
 
     </View>
+    
   );
 };
 
