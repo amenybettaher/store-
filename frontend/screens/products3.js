@@ -31,7 +31,6 @@ import {
                 <MaterialIcons name="stars" size={24} color="green" />
                 <Text style={{marginLeft:3,fontSize:15,fontWeight:"400"}}>{item.rating}</Text>
                 <Text style={{marginLeft:3}}>•</Text>
-                <Text style={{marginLeft:3,fontSize:15,fontWeight:"400"}}>{item.time}mins</Text>
               </View>
             </Pressable>
           ))}
@@ -49,7 +48,7 @@ import {
       color: "black",
       textAlign: "center",
       marginBottom: 10,
-      marginLeft: -270,
+      marginLeft: -210,
     },
   });
   

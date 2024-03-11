@@ -14,12 +14,12 @@ import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import Notifications from "./Notifications";
-import { useUser } from '../screens/UserContext';
+// import { useUser } from '../screens/UserContext';
 
 
 const Profile = () => {
-  const { user } = useUser();
-    console.log('User data in Profile:', user);
+  // const { user } = useUser();
+  //   console.log('User data in Profile:', user);
   const navigation = useNavigation(); 
 
 
@@ -61,7 +61,7 @@ const Profile = () => {
           contentFit="cover"
           source={require("../assets/profilo.png")}
         />
-         <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text>
+         {/* <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text> */}
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
   },
   editProfile: {
     top: 250,
-    left: 155,
+    left: 157,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",

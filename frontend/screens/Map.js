@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity,Text} from 'react-native'
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 
-const backendURL = 'http://192.168.43.151:8000';
+const backendURL = 'http://192.168.43.1:8000';
 
 
 export default function MapPage() {
@@ -15,11 +15,7 @@ export default function MapPage() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const predefinedAddresses = [
-    { name: 'Magasin Général', address: 'Av. Mongi Slim, Le Kef 7100' },
-    { name: 'aziza', address: '5M4W+HGP,Le Kef' },
-    // Add more predefined addresses as needed
-  ];
+  
 
   const userLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -37,20 +33,20 @@ export default function MapPage() {
     });
   };
 
-  const addMarker = (event) => {
-    const { latitude, longitude } = event.nativeEvent.coordinate;
-    const newMarker = {
-      latitude,
-      longitude,
-      id: Date.now().toString(),
-    };
-    setMarkers([...markers, newMarker]);
-  };
+  // const addMarker = (event) => {
+  //   const { latitude, longitude } = event.nativeEvent.coordinate;
+  //   const newMarker = {
+  //     latitude,
+  //     longitude,
+  //     id: Date.now().toString(),
+  //   };
+  //   setMarkers([...markers, newMarker]);
+  // };
 
-  const removeMarker = (markerId) => {
-    const updatedMarkers = markers.filter((marker) => marker.id !== markerId);
-    setMarkers(updatedMarkers);
-  };
+  // const removeMarker = (markerId) => {
+  //   const updatedMarkers = markers.filter((marker) => marker.id !== markerId);
+  //   setMarkers(updatedMarkers);
+  // };
 
   const searchSupermarkets = () => {
     setMapRegion({

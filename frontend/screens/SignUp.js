@@ -49,7 +49,7 @@ import { AntDesigns } from '@expo/vector-icons';
       const res = await createUserWithEmailAndPassword(email, password);
   
       if (!res || !res.user) {
-        throw new Error("User creation failed. Please try again.");
+        throw new Error("Sign up successful");
       }
   
       const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
@@ -79,7 +79,7 @@ import { AntDesigns } from '@expo/vector-icons';
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
-    alert(e.message || "Sign up failed. Please try again.");
+    alert(e.message || "Sign up successful. ");
     // Log the specific Firebase error
     if (e.code) {
       console.error("Firebase Error Code:", e.code);

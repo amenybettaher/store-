@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   sendButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#7d0c42',
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
+    backgroundColor:"#7d0c42"
   },
 });
 
