@@ -20,6 +20,18 @@ USE market ;
 -- -----------------------------------------------------
 -- Table market.article
 -- -----------------------------------------------------
+<<<<<<< HEAD
+CREATE TABLE IF NOT EXISTS `market`.`article` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(450) NOT NULL,
+  `image` VARCHAR(1000) NOT NULL,
+  `name` VARCHAR(60) NOT NULL,
+  `description` VARCHAR(500) NOT NULL,
+  `price` VARCHAR(100) NOT NULL,
+  `product_Num` INT NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
+=======
 CREATE TABLE IF NOT EXISTS market.article (
   id INT NOT NULL AUTO_INCREMENT,
   code VARCHAR(450) NOT NULL,
@@ -43,7 +55,9 @@ CREATE TABLE IF NOT EXISTS market.carte (
   id INT NOT NULL AUTO_INCREMENT,
   points VARCHAR(1000) NOT NULL,
   PRIMARY KEY (id))
+>>>>>>> 85103a8a52f194fb29b098e85890219f5859cd51
 ENGINE = InnoDB
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

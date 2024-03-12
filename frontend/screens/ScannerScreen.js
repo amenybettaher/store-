@@ -6,7 +6,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const backendUrl = 'http://192.168.43.1:8000';
+const backendUrl = 'http://192.168.1.15:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
