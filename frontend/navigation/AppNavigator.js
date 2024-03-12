@@ -27,7 +27,7 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
 {/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}

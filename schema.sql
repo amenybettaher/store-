@@ -26,11 +26,12 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   `image` VARCHAR(1000) NOT NULL,
   `name` VARCHAR(60) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
-  `price` INT NOT NULL,
+  `price` VARCHAR(100) NOT NULL,
   `product_Num` INT NOT NULL,
   `category` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

@@ -1,13 +1,13 @@
 
 import React from 'react';
 import AppNavigator from './navigation/AppNavigator';
-import { UserProvider } from './screens/UserContext'
-
+import { Provider } from 'react-redux'
+import store from './redux/store'
 const App = () => {
   return (
-    <UserProvider>
+    <Provider store={store}>
       <AppNavigator />
-    </UserProvider>
+    </Provider>
   );
 };
 
