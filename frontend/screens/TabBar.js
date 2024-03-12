@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { MaterialCommunityIconss } from '@expo/vector-icons';
 const TabBar = ({navigation}) => {
     const handleTabPress = (screen) => {
         navigation.navigate(screen);
@@ -29,11 +29,8 @@ const TabBar = ({navigation}) => {
     style={[styles.button, styles.actionBtn]}
   >
     {/* Your button content here */}
-    <Image
-      style={styles.scanAltIcon}
-      resizeMode="cover"
-      source={require("../assets/Scan_alt.png")}
-    />
+   
+    <MaterialCommunityIcons name="barcode-scan" size={39} color="black"style={styles.scanAltIcon} />
   </TouchableOpacity>
 </View>
 
@@ -176,8 +173,8 @@ const styles = StyleSheet.create({
         fontSize: 24, // Adjust the font size as needed
       },
       scanAltIcon: {
-        top: 4,
-        left: -8,
+        top: 11,
+        left: 10,
         width: 75,
         height: 54,
         position: 'absolute',
