@@ -4,14 +4,14 @@ import { Image } from "expo-image";
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View } from "react-native";
 import { FontSize, FontFamily, Color, Border } from "../GlobalStyles";
-
+import { FontAwesome6 } from '@expo/vector-icons';
 const Page = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Onbording');
-    }, 5000);
+    }, 8000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -24,8 +24,10 @@ const Page = () => {
           style={[styles.instanceChild, styles.instanceLayout]}
           contentFit="cover"
           source={require("../assets/hh.png")}
+          blurRadius={1}
         />
-        <Text style={[styles.echrili, styles.echriliPosition]} >ECHRILI</Text>
+        <Text style={[styles.echrili, styles.echriliPosition]} >E   HRILI</Text>
+        <FontAwesome6 name="star-and-crescent" size={24} color="red" style={styles.flag} />
         <Image
           style={[styles.instanceItem, styles.echriliPosition]}
           contentFit="cover"
@@ -42,6 +44,10 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
     maxWidth: "100%",
     
+  },
+  flag:{
+    marginLeft: 161,
+    top: 422,
   },
   echriliPosition: {
     position: "absolute",
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     height: "6.03%",
     width: "55.07%",
     top: "45.97%",
-    left: "29.95%",
+    left: "34.95%",
     fontSize: FontSize.size_17xl,
     fontWeight: "700",
     fontFamily: FontFamily.montserratBold,

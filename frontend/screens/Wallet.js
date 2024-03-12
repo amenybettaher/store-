@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,7 +47,7 @@ const Wallet = () => {
           </TouchableOpacity>
         </View>
       ))}
-      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(4)}</Text>
+      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(3)} DT</Text>
     </View>
   );
 };

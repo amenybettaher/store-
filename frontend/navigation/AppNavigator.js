@@ -17,7 +17,7 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-import Wallet from '../screens/Wallet.js';
+import AboutUs from '../screens/AboutUs.js';import Wallet from '../screens/Wallet.js';
 import Carte from '../screens/Carte.js';
 
 
@@ -36,18 +36,15 @@ function MainStack({ language }) {
       <Stack.Screen name="HomePage" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Notifications" component={Notifications} />
-      {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+      <Stack.Screen name="AboutUs" component={AboutUs} />
       <Stack.Screen name="Language" component={Language} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
       <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Stack.Screen name='Map' component={Map} />
       <Stack.Screen name='Carte' component={Carte} />
-      
       <Stack.Screen name="Article" component={Article} />
-      {/* <Stack.Screen name="HomeScreen" component={HomeScreenWithTabBar} initialParams={{ language }} /> */}
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
-   
       <Stack.Screen name="Wallet" component={Walleti} />
     </Stack.Navigator>
   );
