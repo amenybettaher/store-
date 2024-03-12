@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity,Text} from 'react-native'
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 
-const backendURL = 'http://192.168.43.1:8000';
+const backendURL = 'http://192.168.1.2:8000';
 
 
 export default function MapPage() {
@@ -80,8 +80,8 @@ export default function MapPage() {
         style={styles.map}
         source={{ uri: mapRegion.src }}
       />
-    
-    </View>
+     </View>
+   
   );
 }
 
@@ -93,19 +93,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    height: 40,
+    height: 30,
     borderColor: 'gray',
     borderWidth: 0.5,
-    marginBottom: 10,
     paddingLeft: 10,
-    marginTop: 50,
+    marginTop: 30,
+    borderRadius: 10,
+    width: 210,
+    top:20,
   },
   Button:{
     backgroundColor:'#7D0C43',
-    height: 40,
-    width:200,
-    marginLeft:80,
-    borderRadius: 12,
+    height: 30,
+    width:160,
+    marginLeft:230,
+    top:-10,
+    borderRadius: 49,
     justifyContent: 'center',
     alignItems: 'center',
   },
