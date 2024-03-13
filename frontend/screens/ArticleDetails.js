@@ -15,7 +15,6 @@ const ArticleDetails = ({ article, onClose }) => {
             <Text style={styles.price}>{article.price}</Text>
             <Text style={styles.description}>Description : {article.description}</Text>
             <Text style={styles.product_Num}>Product Num : {article.product_Num}</Text>
-          
           </View>
         </View>
       </View>
@@ -36,8 +35,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   closeText: {
-    fontSize: 18,
-    color: "blue",
+    fontSize: 19,
+    color: "red",
   },
   articleContainer: {
     backgroundColor: "#fff",
