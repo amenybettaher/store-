@@ -8,22 +8,23 @@ import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUser } from '../screens/UserContext';
-
-
-
-
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/action';
+import { useSelector } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 import ToggleSwitch from 'toggle-switch-react-native'
 
 const SignIn = () => {
-  const { updateUser } = useUser();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-  const [user, setUser] = useState(null);
+  const [userr, setUserr] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
 
   const [toggleState1, setToggleState1] = useState(false);
   const handleToggle1 = () => {
@@ -40,37 +41,43 @@ const SignIn = () => {
     try {
       // Validate email and password
       if (!email || !password) {
-        Alert.alert('Please enter both email and password.');
+        Alert.alert("Please enter both email and password.");
         return;
       }
-
-      const loginResponse = await axios.post('http://192.168.43.151:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.137.1:8000/users/login', {
         email,
         password,
       });
-
+      console.log('Login API response:', loginResponse);
       if (!loginResponse || !loginResponse.data || loginResponse.data.error) {
-        Alert.alert('Invalid email or password. Please try again.');
+        Alert.alert("Invalid email or password. Please try again.");
         return;
       }
-
+  
       // Use AsyncStorage to store user data
       await AsyncStorage.setItem('user', JSON.stringify(loginResponse.data));
 
-      // Update the user context
-      updateUser(loginResponse.data);
-      console.log('User data in SignIn:', loginResponse.data);
-      setEmail('');
-      setPassword('');
-      navigation.navigate('HomePage');
+    setUserr(loginResponse.data);
 
-      Alert.alert('Sign in successful');
-    } catch (e) {
-      console.error(e);
-      Alert.alert('Sign in failed. Please try again.');
-    }
+    setEmail('');
+    setPassword('');
+
+ 
+
+    navigation.navigate('HomePage');
+    const userData = loginResponse.data;
+    dispatch(login(userData));
+    console.log(userData,"this is the user");
+
+
+    Alert.alert("Sign in successful");
+  } catch (e) {
+    console.error(e);
+    Alert.alert("Sign in failed. Please try again.");
+  }
   };
 
+ 
   return (
     <ImageBackground
     source={require("../assets/hh.png")}
@@ -98,7 +105,7 @@ const SignIn = () => {
             secureTextEntry
             style={styles.input}
             placeholderTextColor="white"
-            secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword state
+            // secureTextEntry={!showPassword} 
             />
         </View>
         
@@ -377,4 +384,6 @@ width:420,
   
   });
 export default SignIn;
+
+
 

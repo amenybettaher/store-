@@ -13,14 +13,16 @@ import { Ioniconss } from '@expo/vector-icons';
 import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
-import Notifications from "./Notifications";
-// import { useUser } from '../screens/UserContext';
+import { useSelector } from 'react-redux';
+
 
 
 const Profile = () => {
-  // const { user } = useUser();
-  //   console.log('User data in Profile:', user);
+
   const navigation = useNavigation(); 
+  const user = useSelector((state) => state.user);
+  console.log('Redux State:', user);
+  
 
 
 
@@ -61,7 +63,8 @@ const Profile = () => {
           contentFit="cover"
           source={require("../assets/profilo.png")}
         />
-         {/* <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text> */}
+              <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
+
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}

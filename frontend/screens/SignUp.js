@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground} from 'react-native';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, GoogleProvider } from '../firebase/config';
-// import LinearGradient from 'react-native-linear-gradient';
 import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
 import { FacebookProvider } from '../firebase/config';
 import { useNavigation } from '@react-navigation/native';
@@ -13,9 +12,16 @@ import { Feather } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { AntDesigns } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../redux/action';
+import { useSelector } from 'react-redux';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-  const SignUp = () => {
+
+const SignUp = () => {
+
+
+
   const [email, setEmail] = useState('');
   const [birth, setBirth] = useState('');
   const [firstName, setFirst] = useState('');
@@ -25,8 +31,13 @@ import { AntDesigns } from '@expo/vector-icons';
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
+  const [userr, setUserr] = useState(null);
+
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };
@@ -61,20 +72,26 @@ import { AntDesigns } from '@expo/vector-icons';
       });
   
       console.log('Registration API response:', registerResponse);
-  
+
+
+
       // Store the user's email in session storage
       sessionStorage.setItem('userEmail', email);
   
+    setUserr(registerResponse.data);
+
       setFirst('');
       setLast('');
       setEmail('');
       setPassword('');
       setBirth('');
-      setFirst('');
-      setLast('');
+
 
       navigation.navigate('HomePage');
 
+      const userData = registerResponse.data;
+      dispatch(signUp(userData));
+      console.log(userData,"this is the usersss register");
 
       alert("Sign up successful");
     } catch (e) {
@@ -87,14 +104,20 @@ import { AntDesigns } from '@expo/vector-icons';
   }
   };
   
-  const handleGoogleSignUp = async () => {
+  const handleSignInWithGoogle = async () => {
     try {
-      const res = await signInWithGoogle(auth, GoogleProvider);
-      console.log('Google Sign-Up Response:', res);
-    } catch (e) {
-      console.error('Google Sign-Up Error:', e);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+  
+      // You can access the user information with result.user
+      console.log('Google Sign-In successful:', result.user);
+    } catch (error) {
+      console.error('Google Sign-In error:', error.message);
     }
   };
+  
+  
   
   const handleFacebookSignUp = async () => {
     try {
@@ -202,7 +225,7 @@ import { AntDesigns } from '@expo/vector-icons';
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
         </View>
-        <TouchableOpacity onPress={handleGoogleSignUp}>
+        <TouchableOpacity onPress={handleSignInWithGoogle}>
         <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
         </TouchableOpacity>
           <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} onPress={handleFacebookSignUp}/>
