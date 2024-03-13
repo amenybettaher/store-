@@ -15,7 +15,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../redux/action';
 import { useSelector } from 'react-redux';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const SignUp = () => {
@@ -109,7 +109,7 @@ const SignUp = () => {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-  
+
       // You can access the user information with result.user
       console.log('Google Sign-In successful:', result.user);
     } catch (error) {
