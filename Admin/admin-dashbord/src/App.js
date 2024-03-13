@@ -1,10 +1,12 @@
-import './App.css';
+import React from 'react';
 import Article from './components/Articles'
+import Users from './components/Users';
 
 function App() {
   return (
     <div className="App">
-   <Article/>  
+      <Users/>
+      <Article/>  
     </div>
   );
 }

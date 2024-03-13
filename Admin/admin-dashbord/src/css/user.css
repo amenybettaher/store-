@@ -1,0 +1,43 @@
+Style the table
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  /* Style table header */
+  th {
+    background-color: #7e035f;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Style table cells */
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Style table actions buttons */
+  button {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    background-color: #8a0452;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #055337;
+  }
+  
+  /* Style the table actions buttons container */
+  td:last-child {
+    display: flex;
+  }
+  
+  /* Add margin between action buttons */
+  button + button {
+    margin-left: 5px;
+  }
+  
