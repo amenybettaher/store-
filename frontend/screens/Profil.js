@@ -13,14 +13,16 @@ import { Ioniconss } from '@expo/vector-icons';
 import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
-import Notifications from "./Notifications";
-import { useUser } from '../screens/UserContext';
+import { useSelector } from 'react-redux';
+
 
 
 const Profile = () => {
-  const { user } = useUser();
-    console.log('User data in Profile:', user);
+
   const navigation = useNavigation(); 
+  const user = useSelector((state) => state.user);
+  console.log('Redux State:', user);
+  
 
 
 
@@ -59,9 +61,10 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
-          source={require("../assets/profil.png")}
+          source={require("../assets/profilo.png")}
         />
-         <Text>{user ? `Welcome, ${user.firstName}` : 'Welcome'}</Text>
+              <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
+
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
@@ -355,7 +358,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon55: {
-    top: 52,
+    top: 525,
     left: 364,
     width: 30,
     height: 30,
@@ -397,13 +400,13 @@ const styles = StyleSheet.create({
   },
   rectangleIcon: {
     top: 245,
-    left: 140,
+    left: 143,
     borderRadius: Border.br_8xs,
     width: 105,
   },
   editProfile: {
     top: 250,
-    left: 154,
+    left: 157,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",

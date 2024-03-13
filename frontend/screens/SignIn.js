@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert , StyleSheet,ImageBackground , Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert , StyleSheet,ImageBackground , Image,Pressable} from 'react-native';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/config';
 import { useNavigation } from '@react-navigation/native';
@@ -8,54 +8,76 @@ import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useUser } from '../screens/UserContext';
-
-
-
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/action';
+import { useSelector } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons';
+import ToggleSwitch from 'toggle-switch-react-native'
 
 const SignIn = () => {
-  const { updateUser } = useUser();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-  const [user, setUser] = useState(null);
+  const [userr, setUserr] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
+
+  const [toggleState1, setToggleState1] = useState(false);
+  const handleToggle1 = () => {
+    const newState = !toggleState1;
+    setToggleState1(newState);
+  };
+  const handleStartPressP = () => {
+    navigation.navigate('PrivacyPolicy');
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
   const handleSignIn = async () => {
     try {
       // Validate email and password
       if (!email || !password) {
-        Alert.alert('Please enter both email and password.');
+        Alert.alert("Please enter both email and password.");
         return;
       }
-
-      const loginResponse = await axios.post('http://192.168.43.151:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.137.1:8000/users/login', {
         email,
         password,
       });
-
+      console.log('Login API response:', loginResponse);
       if (!loginResponse || !loginResponse.data || loginResponse.data.error) {
-        Alert.alert('Invalid email or password. Please try again.');
+        Alert.alert("Invalid email or password. Please try again.");
         return;
       }
-
+  
       // Use AsyncStorage to store user data
       await AsyncStorage.setItem('user', JSON.stringify(loginResponse.data));
 
-      // Update the user context
-      updateUser(loginResponse.data);
-      console.log('User data in SignIn:', loginResponse.data);
-      setEmail('');
-      setPassword('');
-      navigation.navigate('HomePage');
+    setUserr(loginResponse.data);
 
-      Alert.alert('Sign in successful');
-    } catch (e) {
-      console.error(e);
-      Alert.alert('Sign in failed. Please try again.');
-    }
+    setEmail('');
+    setPassword('');
+
+ 
+
+    navigation.navigate('HomePage');
+    const userData = loginResponse.data;
+    dispatch(login(userData));
+    console.log(userData,"this is the user");
+
+
+    Alert.alert("Sign in successful");
+  } catch (e) {
+    console.error(e);
+    Alert.alert("Sign in failed. Please try again.");
+  }
   };
 
+ 
   return (
     <ImageBackground
     source={require("../assets/hh.png")}
@@ -82,12 +104,15 @@ const SignIn = () => {
             onChangeText={(text) => setPassword(text)}
             secureTextEntry
             style={styles.input}
-            placeholderTextColor="white" />
+            placeholderTextColor="white"
+            // secureTextEntry={!showPassword} 
+            />
         </View>
         
         <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
-        <Entypo name="eye-with-line" size={20} color="white" style={styles.eye}/>
-
+        <TouchableOpacity onPress={togglePasswordVisibility} style={styles.eye}>
+        <Entypo name={showPassword ? "eye" : "eye-with-line"} size={20} color="white" />
+      </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSignIn}
           style={styles.btn1}
@@ -99,7 +124,7 @@ const SignIn = () => {
           Don't have an account? <Text style={{ color: Color.colorMediumvioletred_100 }} onPress={() => navigation.navigate('SignUp')}>Sign Up</Text>
         </Text>
         <Text style={styles.by}>
-          By signing in, you agree to our <Text style={{ color: Color.colorMediumvioletred_100 }}>Terms of Service</Text> and <Text style={{ color: Color.colorMediumvioletred_100 }}>Privacy Policy</Text>.
+          By signing in, you agree to our <Text style={{ color: Color.colorMediumvioletred_100 }}>Terms of Service </Text> and <Pressable onPress={handleStartPressP}><Text style={[{ color: Color.colorMediumvioletred_100 }, styles.pr]}>Privacy Policy</Text></Pressable>
         </Text>
       </View>
       <View style={styles.h2}>
@@ -113,22 +138,27 @@ const SignIn = () => {
           
           <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
           <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} />
-          <Image source={require('../assets/png-apple-logo-9711.png')} style={styles.apple} />
+          <AntDesign name="apple1" size={37} color="white" style={styles.apple} />
 
         <Text style={{ ...styles.forgotPassword, textDecorationLine: "underline" ,}}>
           Forgot password?
           </Text>
           <View style={styles.radioButtonParent}>
             <View style={styles.radioButton}>
-              <View style={[styles.radioButtonChild, styles.radioLayout]} />
-              <View style={[styles.radioButtonItem, styles.radioLayout]} />
             </View>
             <View style={styles.rememberMeWrapper}>
               <Text style={[styles.rememberMe, styles.rememberMeTypo]}>
                 Remember me
               </Text>
             </View>
-
+            <ToggleSwitch
+          isOn={toggleState1}
+          onColor="#56CE21"
+          offColor="grey"
+          size="small" 
+          onToggle={handleToggle1}
+          style={[styles.radioLayout, { width: 40, height: 20 }]} 
+        />
           </View>
     </View>
     </ImageBackground>
@@ -185,7 +215,7 @@ const styles = StyleSheet.create({
       height: 24,
     },
     radioButtonParent: {
-      top: 499,
+      top: 460,
       alignItems: "center",
       flexDirection: "row",
       left: 40,
@@ -204,7 +234,7 @@ const styles = StyleSheet.create({
     forgotPassword: {
        color: Color.sthLightgrey,
       left: 78,
-      top: -150,
+      top: -180,
     },
     backgroundImage: {
       flex: 1,
@@ -271,7 +301,7 @@ const styles = StyleSheet.create({
       fontWeight: "700",
     },
     by:{
-      top: 413,
+      top: 383,
       color: "white",
       width: 390,
       marginLeft: -50,
@@ -322,11 +352,11 @@ const styles = StyleSheet.create({
       padding: 14,
     },
     apple:{
-      width: 50,
-      height:50,
+      width: 70,
+      height:70,
       borderRadius: 20,
-      marginLeft: 1,
-      top:173,
+      marginLeft: 0,
+      top:168,
       textAlign: "center",
       padding: 14,
     },
@@ -354,4 +384,6 @@ width:420,
   
   });
 export default SignIn;
+
+
 
