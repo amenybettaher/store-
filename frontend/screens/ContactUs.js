@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
-import emailjs from 'emailjs-com';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import * as MailComposer from 'expo-mail-composer'; 
 
 const ContactUs = () => {
-  const navigation = useNavigation();
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Initialize loading state as false
 
   const handleBackPress = () => {
-    navigation.goBack();
+    // Handle navigation back
   };
 
-  const sendMail = () => {
+  const sendMail = async () => {
     // Basic form validation
     if (!fullname || !email || !message) {
       Alert.alert('Error', 'Please fill in all fields');
@@ -24,55 +22,55 @@ const ContactUs = () => {
 
     setLoading(true);
 
-    const params = { name: fullname, email, message };
-    const serviceID = "service_wy9hvhy";
-    const templateID = "template_34p5rh7"; 
-    const userID = "agzGZtxooPi9TYwL-";
+    try {
+      const emailBody = `Name: ${fullname}\nEmail: ${email}\nMessage: ${message}`;
 
-    emailjs
-      .send(serviceID, templateID, params, userID)
-      .then((res) => {
-        setFullname('');
-        setEmail('');
-        setMessage('');
-        Alert.alert('Success', 'Your message sent successfully!!');
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-        Alert.alert('Error', 'Failed to send message. Please try again.');
-      })
-      .finally(() => setLoading(false));
+      await MailComposer.composeAsync({
+        recipients: ['hajri.kef@gmail.com'],
+        subject: 'Contact Us Form Submission',
+        body: emailBody,
+      });
+
+      setFullname('');
+      setEmail('');
+      setMessage('');
+      setLoading(false);
+      Alert.alert('Success', 'Your message sent successfully!!');
+    } catch (error) {
+      console.error('Error:', error);
+      setLoading(false);
+      Alert.alert('Error', 'Failed to send message. Please try again.');
+    }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.notificationsWrapper}>
+      <View style={styles.header}>
         <TouchableOpacity onPress={handleBackPress}>
-          <Ionicons name="arrow-back" size={26} color="white" style={styles.back} />
+          <Ionicons name="arrow-back" size={24} color="white" style={styles.backIcon} />
         </TouchableOpacity>
-        <Text style={styles.notifications}>ContactUs</Text>
+        <Text style={styles.headerText}>Contact Us</Text>
       </View>
 
       <TextInput
         style={styles.input}
         placeholder="Your Name"
-        placeholderTextColor="black"
+        placeholderTextColor="#333"
         value={fullname}
         onChangeText={(text) => setFullname(text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Your Email"
-        placeholderTextColor="black"
+        placeholderTextColor="#333"
         value={email}
         onChangeText={(text) => setEmail(text)}
         keyboardType="email-address"
       />
       <TextInput
         style={[styles.input, styles.messageInput]}
-        placeholder="Tell me Your Story or Question For Us"
-        placeholderTextColor="black"
+        placeholder="Tell us Your Story or Ask a Question"
+        placeholderTextColor="#333"
         multiline
         value={message}
         onChangeText={(text) => setMessage(text)}
@@ -96,39 +94,45 @@ const ContactUs = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 16,
+    backgroundColor: '#fff',
+    padding: 20,
   },
-  notificationsWrapper: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  back: {
+  backIcon: {
     marginRight: 10,
   },
-  notifications: {
-    fontSize: 20,
+  headerText: {
+    fontSize: 24,
     color: 'white',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#333',
     borderWidth: 1,
-    marginBottom: 10,
-    padding: 8,
+    borderRadius: 8,
+    marginVertical: 10,
+    padding: 10,
+    fontSize: 16,
+    color: '#333',
   },
   messageInput: {
-    height: 80,
+    height: 100,
+    textAlignVertical: 'top',
   },
   sendButton: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
+    backgroundColor: '#0066cc',
+    borderRadius: 8,
+    padding: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: 'white',
-    textAlign: 'center',
+    fontSize: 18,
   },
 });
 
