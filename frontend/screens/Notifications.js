@@ -7,15 +7,11 @@ import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-
-
 const Notifications = ({ darkMode }) => {
- 
   // const notificationStyle = {
   //   background: darkMode ? 'black' : 'white',
   //   color: darkMode ? 'white' : 'black',
   // };
-
   const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
   const handleStartPress = () => {
@@ -100,9 +96,6 @@ const Notifications = ({ darkMode }) => {
       </Pressable>
         <Text style={styles.notifications}>Notifications</Text>
       </View>
-     
-
-     
       <View style={[styles.component14Parent, styles.parentPosition]}>
         <View style={[styles.component14, styles.componentLayout]}>
           <Text style={styles.generalNotification}>General Notification</Text>
@@ -194,7 +187,6 @@ const Notifications = ({ darkMode }) => {
               <View style={[styles.rectangle, styles.toggleonPosition]} />
             </View>
           </View>
-          
           <ToggleSwitch
           isOn={toggleState1}
           onColor="#56CE21"
@@ -275,7 +267,6 @@ const Notifications = ({ darkMode }) => {
           onToggle={handleToggle10}
           style={[styles.toggle10, { width: 40, height: 20 }]} 
         />
-        
         </View>
       </View>
     </View>
