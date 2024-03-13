@@ -27,7 +27,7 @@ const ContactUs = () => {
       const emailBody = `Name: ${fullname}\nEmail: ${email}\nMessage: ${message}`;
 
       await MailComposer.composeAsync({
-        recipients: ['hajri.kef@gmail.com'],
+        recipients: ['amenibettaher2@gmail.com'],
         subject: 'Contact Us Form Submission',
         body: emailBody,
       });
