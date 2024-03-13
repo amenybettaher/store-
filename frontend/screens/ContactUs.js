@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
+
 import { Ionicons } from '@expo/vector-icons';
 import * as MailComposer from 'expo-mail-composer'; 
 
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
   sendButton: {
+
     backgroundColor: '#0066cc',
     borderRadius: 8,
     padding: 15,
@@ -133,6 +135,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 18,
+
+    backgroundColor: '#7d0c42',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    backgroundColor:"#7d0c42"
+
   },
 });
 
