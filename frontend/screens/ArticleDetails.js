@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   closeText: {
-    fontSize: 18,
-    color: "blue",
+    fontSize: 19,
+    color: "red",
   },
   articleContainer: {
     backgroundColor: "#fff",
