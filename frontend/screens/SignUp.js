@@ -15,7 +15,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../redux/action';
 import { useSelector } from 'react-redux';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 
 const SignUp = () => {

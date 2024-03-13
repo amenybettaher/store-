@@ -32,7 +32,7 @@ function MainStack({ language }) {
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
       {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
       {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
-      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="SignUp" component={SignUp} /> 
       <Stack.Screen name="HomePage" component={Home} />
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Notifications" component={Notifications} />
