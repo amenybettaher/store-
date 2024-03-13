@@ -14,13 +14,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema market
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS market DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE market ;
+CREATE SCHEMA IF NOT EXISTS `market` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `market` ;
 
 -- -----------------------------------------------------
--- Table market.article
+-- Table `market`.`article`
 -- -----------------------------------------------------
-<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS `market`.`article` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(450) NOT NULL,
@@ -31,17 +30,6 @@ CREATE TABLE IF NOT EXISTS `market`.`article` (
   `product_Num` INT NOT NULL,
   `category` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`))
-=======
-CREATE TABLE IF NOT EXISTS market.article (
-  id INT NOT NULL AUTO_INCREMENT,
-  code VARCHAR(450) NOT NULL,
-  image VARCHAR(1000) NOT NULL,
-  name VARCHAR(60) NOT NULL,
-  description VARCHAR(500) NOT NULL,
-  price VARCHAR(100) NOT NULL,
-  product_Num INT NOT NULL,
-  category VARCHAR(100) NOT NULL,
-  PRIMARY KEY (id))
 ENGINE = InnoDB
 AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
@@ -49,45 +37,45 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table market.carte
+-- Table `market`.`carte`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS market.carte (
-  id INT NOT NULL AUTO_INCREMENT,
-  points VARCHAR(1000) NOT NULL,
-  PRIMARY KEY (id))
->>>>>>> 85103a8a52f194fb29b098e85890219f5859cd51
+CREATE TABLE IF NOT EXISTS `market`.`carte` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `points` VARCHAR(1000) NOT NULL,
+  `code` VARCHAR(70) NOT NULL,
+  `number` VARCHAR(105) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table market.user
+-- Table `market`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS market.user (
-  id INT NOT NULL AUTO_INCREMENT,
-  firstName VARCHAR(45) NOT NULL,
-  lastName VARCHAR(45) NOT NULL,
-  email VARCHAR(455) NOT NULL,
-  birth VARCHAR(45) NOT NULL,
-  password VARCHAR(200) NOT NULL,
-  PRIMARY KEY (id))
+CREATE TABLE IF NOT EXISTS `market`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(45) NOT NULL,
+  `lastName` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(455) NOT NULL,
+  `birth` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table market.wallet
+-- Table `market`.`wallet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS market.wallet (
-  id INT NOT NULL AUTO_INCREMENT,
-  image VARCHAR(45) NOT NULL,
-  name VARCHAR(45) NOT NULL,
-  price VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id))
+CREATE TABLE IF NOT EXISTS `market`.`wallet` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `price` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
