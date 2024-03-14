@@ -21,12 +21,15 @@ import PrivacyPolicy from '../screens/PrivacyPolicy.js';
 import { Card } from 'react-native-elements';
 import Carte from '../screens/Carte.js';
 import Wallet from '../screens/Wallet.js';
+import AboutUs from '../screens/AboutUs.js';
+import Weal from '../screens/wheel.js';
+
 const Stack = createStackNavigator();
 
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="page" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="wheel" screenOptions={{ headerShown: false }}>
 <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
@@ -46,6 +49,8 @@ function MainStack({ language }) {
       <Stack.Screen name="Scanner" component={ScannerScreenWithTabBar} />
       <Stack.Screen name="Carte" component={Carte} />
       <Stack.Screen name="Wallet" component={Wallet} />
+      <Stack.Screen name="wheel" component={Weal} />
+
 
 
     </Stack.Navigator>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import * as MailComposer from 'expo-mail-composer'; 
+import * as MailComposer from 'expo-mail-composer';
 
 const ContactUs = () => {
   const [fullname, setFullname] = useState('');
