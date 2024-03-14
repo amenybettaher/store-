@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import './Article.css'; // Import the CSS file
+import '../css/Article.css'; 
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
