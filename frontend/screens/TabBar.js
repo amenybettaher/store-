@@ -56,11 +56,11 @@ const TabBar = ({navigation}) => {
             }}>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: -17
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginLeft:-8
                 }}>
                     <TouchableOpacity onPress={() => handleTabPress('HomePage')} >
                         <Image
-                            style={{ width: 22, height: 22 }}
+                            style={{ width: 22, height: 22}}
                             source={require("../assets/home.jpg")}
                         />
                     </TouchableOpacity>
@@ -68,7 +68,7 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: 25
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: 29
                 }}>
                     <TouchableOpacity
                       onPress={() => handleTabPress('Map')}
@@ -82,7 +82,7 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginStart: 25,
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginStart: 29,
                 }}>
                     <TouchableOpacity
                   onPress={() => handleTabPress('Article')}
@@ -97,7 +97,7 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 55
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 69
                 }}>
                     <TouchableOpacity
                        onPress={() => handleTabPress('Wallet')}

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import './Article.css'; // Import the CSS file
+import '../css/Article.css'; // Import the CSS file
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
-const Articles = () => {
+const Articles = ({switchView}) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -49,6 +51,8 @@ const Articles = () => {
 
   return (
     <div>
+        <Navbar/>
+        <Sidebar switchView={switchView}/>
       <h1>Articles</h1>
       <table>
         <thead>
