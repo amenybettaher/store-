@@ -1,4 +1,7 @@
 /* Base styles */
+h1{
+  margin-top: -25%;
+}
 body {
     font-family: 'Arial', sans-serif;
     background: #181616;
@@ -12,7 +15,7 @@ body {
   }
   
   table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin: 25px 0;
     background: white;
