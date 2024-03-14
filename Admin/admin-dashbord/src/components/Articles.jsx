@@ -51,8 +51,7 @@ const Articles = ({switchView}) => {
 
   return (
     <div>
-      
-         <Navbar />
+      <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
       <table>
@@ -71,7 +70,7 @@ const Articles = ({switchView}) => {
         <tbody>
           {articles.map(article => (
             <tr key={article.id}>
-              <td>{article.code}</td>
+              <td><input type="text" defaultValue={article.code} onChange={e => article.code = e.target.value} /></td>
               <td><img src={article.image} alt={article.name} /></td>
               <td><input type="text" defaultValue={article.name} onChange={e => article.name = e.target.value} /></td>
               <td><input type="text" defaultValue={article.description} onChange={e => article.description = e.target.value} /></td>
@@ -80,10 +79,9 @@ const Articles = ({switchView}) => {
               <td><input type="text" defaultValue={article.category} onChange={e => article.category = e.target.value} /></td>
               <td>
                 <div className='hiba'>
-              <FontAwesomeIcon class="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
-                <FontAwesomeIcon class="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                  <FontAwesomeIcon className="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
+                  <FontAwesomeIcon className="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
                 </div>
-
               </td>
             </tr>
           ))}

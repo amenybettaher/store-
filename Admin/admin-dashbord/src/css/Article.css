@@ -100,7 +100,7 @@ h1{
     margin: 0 10px;
     cursor: pointer;
     transition: transform 0.3s, color 0.3s;
-    background-color: red ;
+  
   }
   
   /* Hover effect for icons */
