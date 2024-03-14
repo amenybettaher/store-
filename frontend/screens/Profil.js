@@ -15,14 +15,10 @@ import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import { useSelector } from 'react-redux';
 
-
-
 const Profile = () => {
-
   const navigation = useNavigation(); 
   const user = useSelector((state) => state.user);
   console.log('Redux State:', user);
-  
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
@@ -45,11 +41,8 @@ const Profile = () => {
     const toggleDarkMode = () => {
       setDarkMode(!darkMode);
     };
-
-
   return (
 <View style={[styles.profil, darkMode ? styles.darkBackground : null]}>
-  
       <View style={[styles.setting, styles.settingPosition]}>
         <View style={[styles.settingChild, styles.settingPosition]} />
         <View style={[styles.settingItem, styles.settingLayout]} />
@@ -60,14 +53,12 @@ const Profile = () => {
           contentFit="cover"
           source={require("../assets/profilo.png")}
         />
-              <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
-
+     <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
           </Text>
         </Pressable>
-
         <Pressable onPress={handleStartPressA}>
         <Text style={[styles.languag, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
         {fr.aboutUs}
@@ -77,7 +68,6 @@ const Profile = () => {
           Mimi Headline
         </Text>
         <Text style={[styles.content, styles.contentTypo, darkMode ? { color: "white" } : null]}>Content</Text>
-      
         <Pressable onPress={handleStartPressP}>
         <Text style={[styles.download, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
         {fr.privacyPolicy}
@@ -105,38 +95,18 @@ const Profile = () => {
         <View style={[styles.rectangle36Copy5Group, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
           <AntDesign name="right" size={20} color="black" style={[styles.rightIcon2, darkMode ? { color: "white" } : null]}/>
-
         </View>
-        <View
-          style={[styles.rectangle36Copy5Container, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Container, styles.groupParentLayout]}>
         </View>
         <View style={[styles.groupView, styles.groupParentLayout]}>
-          <View style={styles.rectangle36Copy5} />
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
+        <View style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}>
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent2, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Parent2, styles.groupParentLayout]}>
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} /> 
+        <View style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}> 
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}>
         </View>
         <Image
           style={[styles.rectangleIcon, styles.settingLayout]}
@@ -148,18 +118,14 @@ const Profile = () => {
         {fr.editProfile}
         </Text>
         </Pressable>
-      
         <Ionicons name="language-sharp" size={24} color="black" style={[styles.translateIcon, styles.iconPosition, darkMode ? { color: "white" } : null]}/>
-      
         <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" style={[styles.umoonIcon, darkMode ? { color: "white" } : null]}/>
         <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
-      
         <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
         <MaterialIcons name="notifications-none" size={25} color="black" style={[styles.icon, darkMode ? { color: "white" } : null]}/>
         </Pressable>
-
         <ToggleSwitch
           isOn={darkMode}
           onColor="#56CE21"
@@ -167,18 +133,15 @@ const Profile = () => {
           size="small" 
           onToggle={toggleDarkMode}
           style={styles.toggle1}
-        />
-  
-                <Pressable onPress={handleStartPressA}>
+        /> 
+        <Pressable onPress={handleStartPressA}>
         <Ionicons name="information-circle-outline" size={24} color="black"style={[styles.icon3, darkMode ? { color: "white" } : null]} />
         </Pressable>
       </View>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon33, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon44, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon55, darkMode ? { color: "white" } : null]}/>
-
     </View>
-    
   );
 };
 
@@ -221,14 +184,11 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     position: "absolute",
   },
-
-
   profileClr: {
     textAlign: "left",
     position: "absolute",
     color:"white",
     alignItems:"center",
-
   },
   iconPosition: {
     left: 26,
@@ -427,12 +387,12 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   profile: {
-    top: 50,
-    left: 175,
+    top: 70,
+    left: 164,
     fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "900",
     fontSize: FontSize.size_mini,
-    
+    fontSize:24,
   },
   profil: {
     borderRadius: Border.br_11xl,
