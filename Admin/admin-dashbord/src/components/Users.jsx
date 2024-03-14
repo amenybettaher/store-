@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/user.css'
-function Users() {
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+
+
+function Users({switchView}) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -30,7 +34,10 @@ function Users() {
 
 
     return (
-        <div>
+        <div className="users-container">
+            <Navbar switchView={switchView}/>
+      <Sidebar switchView={switchView} />
+
             <h1>Users</h1>
             <table>
                 <thead>
