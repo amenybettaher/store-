@@ -51,8 +51,9 @@ const Articles = ({switchView}) => {
 
   return (
     <div>
-        <Navbar/>
-        <Sidebar switchView={switchView}/>
+      
+         <Navbar />
+      <Sidebar switchView={switchView} />
       <h1>Articles</h1>
       <table>
         <thead>
