@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../context/darkModeContext";
 import { useContext } from "react";
 
-const Sidebar = () => {
+const Sidebar = ({switchView}) => {
   // const { dispatch } = useContext(DarkModeContext) || {};
   return (
     <div className="sidebar">
@@ -45,12 +45,16 @@ const Sidebar = () => {
               <span>Products</span>
             </li>
           </Link> */}
-          <li>
+         <li onClick={() => switchView('Articles')}>
             <CreditCardIcon className="icon" />
             <span>Articles</span>
           </li>
-          <li>
-            <LocalShippingIcon className="icon" />
+          <li onClick={() => switchView('Cards')}>
+            <CreditCardIcon className="icon" />
+            <span>Cards</span>
+          </li>
+          <li onClick={() => switchView('Users')}>
+            <CreditCardIcon className="icon" />
             <span>Users</span>
           </li>
           <p className="title">USEFUL</p>
