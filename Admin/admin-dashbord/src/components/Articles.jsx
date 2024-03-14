@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import '../css/Article.css'; 
-import Sidebar from './Sidebar';
+import '../css/Article.css'; // Import the CSS file
 import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+
 const Articles = ({switchView}) => {
   const [articles, setArticles] = useState([]);
 
@@ -50,6 +51,7 @@ const Articles = ({switchView}) => {
 
   return (
     <div>
+      
          <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
@@ -77,8 +79,11 @@ const Articles = ({switchView}) => {
               <td><input type="text" defaultValue={article.product_Num} onChange={e => article.product_Num = e.target.value} /></td>
               <td><input type="text" defaultValue={article.category} onChange={e => article.category = e.target.value} /></td>
               <td>
-              <FontAwesomeIcon class="action-icon" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
-              <FontAwesomeIcon class="action-icon" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                <div className='hiba'>
+              <FontAwesomeIcon class="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
+                <FontAwesomeIcon class="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                </div>
+
               </td>
             </tr>
           ))}
