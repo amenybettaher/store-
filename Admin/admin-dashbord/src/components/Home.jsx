@@ -1,16 +1,14 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
- const Home = () => {
+import React from 'react';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+
+const Home = ({switchView}) => {
   return (
     <div>
-      
-        <Navbar/>
-        <Sidebar/>
+      <Navbar />
+      <Sidebar switchView={switchView}/>
     </div>
-  )
-}
+  );
+};
 
-
-
-export default Home
+export default Home;

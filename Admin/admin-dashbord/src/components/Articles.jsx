@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../css/Article.css'; 
 
-const Articles = () => {
+const Articles = ( ) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
