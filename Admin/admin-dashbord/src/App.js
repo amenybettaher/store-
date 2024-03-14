@@ -1,4 +1,4 @@
-import React from 'react';
+import './App.css';
 import Article from './components/Articles'
 import Users from './components/Users';
 
