@@ -4,7 +4,9 @@
     background-color: white;
     margin-top: -5.4%;
     width: 10%;
+    min-height: 100vh;
     margin-left: -1.2%;
+
   
     .top {
       height: 80px;
