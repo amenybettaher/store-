@@ -13,11 +13,13 @@
       align-items: center;
       justify-content: space-between;
   #echrili{
-font-size: 180%;
-font-family: monospace;
+font-size: 160%;
+font-family:Arial, Helvetica, sans-serif;
 color: rgb(255, 0, 0);
-
-
+font-weight: bold;
+  }
+  .h{
+    margin-top: 10%;
   }
       .search {
         display: flex;
