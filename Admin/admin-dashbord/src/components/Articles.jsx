@@ -74,8 +74,11 @@ const Articles = () => {
               <td><input type="text" defaultValue={article.product_Num} onChange={e => article.product_Num = e.target.value} /></td>
               <td><input type="text" defaultValue={article.category} onChange={e => article.category = e.target.value} /></td>
               <td>
-              <FontAwesomeIcon class="action-icon" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
-              <FontAwesomeIcon class="action-icon" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                <div className='hiba'>
+              <FontAwesomeIcon class="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
+                <FontAwesomeIcon class="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                </div>
+
               </td>
             </tr>
           ))}
