@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet } from 'react-native';
-
+import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet,Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as MailComposer from 'expo-mail-composer'; 
+import { useNavigation } from '@react-navigation/native';
 
 const ContactUs = () => {
   const [fullname, setFullname] = useState('');
@@ -13,7 +13,11 @@ const ContactUs = () => {
   const handleBackPress = () => {
     // Handle navigation back
   };
+  const navigation = useNavigation(); // Initialize navigation using useNavigation hook
 
+  const handleStartPress = () => {
+    navigation.navigate('Profil'); // Navigate to 'Onbording2' screen
+  };
   const sendMail = async () => {
     // Basic form validation
     if (!fullname || !email || !message) {
@@ -46,11 +50,13 @@ const ContactUs = () => {
 
   return (
     <View style={styles.container}>
+                    <View style={[styles.settingChild, styles.settingPosition]} />
+
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Ionicons name="arrow-back" size={24} color="white" style={styles.backIcon} />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Contact Us</Text>
+      <Pressable onPress={handleStartPress}>
+          <Ionicons name="arrow-back" size={26} color="white" style={styles.backIcon} />
+</Pressable>        
+<Text style={styles.headerText}>Contact Us</Text>
       </View>
 
       <TextInput
@@ -85,7 +91,7 @@ const ContactUs = () => {
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text style={styles.buttonText}>Send Message</Text>
+          <Text style={styles.buttonText}>Send </Text>
         )}
       </TouchableOpacity>
     </View>
@@ -95,19 +101,36 @@ const ContactUs = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 20,
+    top:130
   },
+
+settingChild: {
+  width: 450,
+  height: 191,
+  marginLeft:-30,
+  top:-120,
+  backgroundColor:"#7d0c42"
+  
+},
   header: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  backIcon: {
-    marginRight: 10,
+  backIcon:{
+    marginLeft: 1,
+    top: -290,
   },
   headerText: {
     fontSize: 24,
-    color: 'white',
+    lineHeight: 28,
+    textAlign: "center",
+    fontWeight: "600",
+    width: 221,
+    left: 60,
+    top: -220,
+    position: "absolute",
+    color:"white"
   },
   input: {
     height: 40,
@@ -125,7 +148,7 @@ const styles = StyleSheet.create({
   },
   sendButton: {
 
-    backgroundColor: '#0066cc',
+    backgroundColor: '#7d0c42',
     borderRadius: 8,
     padding: 15,
     alignItems: 'center',

@@ -153,11 +153,7 @@ const Profile = () => {
       
         <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" style={[styles.umoonIcon, darkMode ? { color: "white" } : null]}/>
         <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
-        {/* <Image
-          style={[styles.heartIcon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/heart.png")}
-        /> */}
+      
         <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
@@ -348,14 +344,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon44: {
-    top: 499,
+    top: 498,
     left: 364,
     width: 30,
     height: 30,
     position: "absolute",
   },
   rightIcon55: {
-    top: 531,
+    top: 532,
     left: 364,
     width: 30,
     height: 30,
