@@ -23,9 +23,6 @@ const Profile = () => {
   const user = useSelector((state) => state.user);
   console.log('Redux State:', user);
   
-
-
-
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
@@ -199,7 +196,7 @@ const styles = StyleSheet.create({
   
   toggle1: {
     marginLeft: 340,
-    top: 365,
+    top: 345,
   },
   settingLayout: {
     height: 29,
@@ -207,11 +204,11 @@ const styles = StyleSheet.create({
   },
   icon:{
     marginLeft: 24,
-    top: 325,
+    top: 305,
   },
   icon3:{
     marginLeft: 24,
-    top: 421,
+    top: 401,
   },
   todayPosition: {
     textAlign: "left",
@@ -278,10 +275,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   language: {
-    top: 360,
+    top: 344,
   },
   languag: {
-    top: 470,
+    top: 451,
   },
   mimiHeadline: {
     top: 296,
@@ -300,7 +297,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   download: {
-    top: 530,
+    top: 520,
   },
   darkmode: {
     top: 393,
@@ -313,14 +310,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   today: {
-    top: 329,
+    top: 309,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
     fontSize: FontSize.size_mini,
     marginLeft:34,
   },
   onlyDownloadVia: {
-    top: 500,
+    top: 486,
   },
   rightIcon: {
     top: 2,
@@ -330,21 +327,21 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon1: {
-    top: -5,
+    top: -30,
     left: 3,
     width: 20,
     height: 20,
     position: "absolute",
   },
   rightIcon2: {
-    top:-234,
+    top:-254,
     left: 3,
     width: 20,
     height: 20,
     position: "absolute",
   },
   rightIcon33: {
-    top: 472,
+    top: 462,
     left: 364,
     width: 30,
     height: 30,
@@ -358,7 +355,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon55: {
-    top: 525,
+    top: 531,
     left: 364,
     width: 30,
     height: 30,
@@ -405,7 +402,7 @@ const styles = StyleSheet.create({
     width: 105,
   },
   editProfile: {
-    top: 250,
+    top: 235,
     left: 157,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
@@ -414,7 +411,7 @@ const styles = StyleSheet.create({
     padding: 3
   },
   translateIcon: {
-    top: 360,
+    top: 355,
     width: 22,
     height: 22,
   },
@@ -430,7 +427,7 @@ const styles = StyleSheet.create({
     top: 499,
   },
   iconoutlinedapplicationdown: {
-    top: 526,
+    top: 533,
     overflow: "hidden",
   },
   profile: {
