@@ -2,12 +2,12 @@
 h1{
   margin-top: -25%;
 }
-body {
+/* body {
     font-family: 'Arial', sans-serif;
-    background: #181616;
+    background: #f0efef;
     margin: 0;
     padding: 20px;
-  }
+  } */
   
   h1 {
     text-align: center;
@@ -100,11 +100,13 @@ body {
     margin: 0 10px;
     cursor: pointer;
     transition: transform 0.3s, color 0.3s;
+    background-color: red ;
   }
   
   /* Hover effect for icons */
   .icon-save:hover {
     color: #27ae60;
+    
     transform: scale(1.2);
   }
   
