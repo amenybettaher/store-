@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text, Alert } from 'react-native';
-
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIconss } from '@expo/vector-icons';
 const TabBar = ({navigation}) => {
     const handleTabPress = (screen) => {
         navigation.navigate(screen);
@@ -11,34 +11,29 @@ const TabBar = ({navigation}) => {
     };
 
     return (
-        <View >
-            <View style={{
-                position: 'absolute',
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                width: 70,
-                height: 70,
-                borderRadius: 55,
-                bottom: 35,
-                zIndex: 10,
-            }}>
+        <View>
+        <View
+  style={{
+    position: 'absolute',
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    width: 70,
+    height: 70,
+    borderRadius: 55,
+    bottom: 35,
+    zIndex: 10,
+  }}
+>
+  <TouchableOpacity
+    onPress={() => handleTabPress('ScannerScreen')}
+    style={[styles.button, styles.actionBtn]}
+  >
+    {/* Your button content here */}
+   
+    <MaterialCommunityIcons name="barcode-scan" size={39} color="black"style={styles.scanAltIcon} />
+  </TouchableOpacity>
+</View>
 
-                <TouchableWithoutFeedback onPress={toggleOpen}>
-                    <View style={[styles.button, styles.actionBtn]}>
-
-                        <Image
-                            style={{ width: 60, height: 60 }}
-                            resizeMode="contain"
-                            source={{ uri: 'https://icon-library.net/images/android-plus-icon/android-plus-icon-0.jpg' }}
-                        />
-                    </View>
-                </TouchableWithoutFeedback>
-                <Image
-            style={styles.scanAltIcon}
-            resizeMode="cover"
-            source={require("../assets/Scan_alt.png")}
-          />
-            </View>
 
             <View style={{
                 position: 'absolute',
@@ -61,11 +56,11 @@ const TabBar = ({navigation}) => {
             }}>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: -17
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginLeft:-8
                 }}>
                     <TouchableOpacity onPress={() => handleTabPress('HomePage')} >
                         <Image
-                            style={{ width: 22, height: 22 }}
+                            style={{ width: 22, height: 22}}
                             source={require("../assets/home.jpg")}
                         />
                     </TouchableOpacity>
@@ -73,7 +68,7 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: 25
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginStart: 29
                 }}>
                     <TouchableOpacity
                       onPress={() => handleTabPress('Map')}
@@ -87,7 +82,7 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginStart: 25,
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginStart: 29,
                 }}>
                     <TouchableOpacity
                   onPress={() => handleTabPress('Article')}
@@ -102,10 +97,10 @@ const TabBar = ({navigation}) => {
                 </View>
 
                 <View style={{
-                    flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 55
+                    flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', marginStart: 69
                 }}>
                     <TouchableOpacity
-                       onPress={() => handleTabPress('total')}
+                       onPress={() => handleTabPress('Wallet')}
                     >
                         <Image
                             source={require("../assets/total.png")}
@@ -163,32 +158,27 @@ const styles = StyleSheet.create({
         height: 60,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: 'grey',
-        shadowOpacity: 0.1,
-        shadowOffset: { x: 2, y: 0 },
-        shadowRadius: 2,
         borderRadius: 30,
         position: 'absolute',
         bottom: 20,
         right: 0,
         top: 5,
         left: 5,
-        shadowOpacity: 5.0,
-    },
-    actionBtn: {
         backgroundColor: '#7D0C43',
-        textShadowOffset: { width: 5, height: 5 },
-        textShadowRadius: 10,
-        borderWidth: 2,
-        // borderColor: '#fff'
-    },
-    scanAltIcon: {
-        top: 10,
-        left: -1,
-        width: 74,
-        height: 53,
-        position: "absolute",
+        borderWidth: 1,
+        // borderColor: 'white',
       },
-});
+      buttonText: {
+        color: 'white',
+        fontSize: 24, // Adjust the font size as needed
+      },
+      scanAltIcon: {
+        top: 11,
+        left: 10,
+        width: 75,
+        height: 54,
+        position: 'absolute',
+      },
+    });
 
 export default TabBar;

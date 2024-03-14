@@ -12,10 +12,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { Ioniconss } from '@expo/vector-icons';
 import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import fr from "./fr.json"; // Import French translation
+import fr from "./fr.json"; 
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const navigation = useNavigation(); 
+  const user = useSelector((state) => state.user);
+  console.log('Redux State:', user);
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
@@ -38,7 +41,6 @@ const Profile = () => {
     const toggleDarkMode = () => {
       setDarkMode(!darkMode);
     };
-
   return (
 <View style={[styles.profil, darkMode ? styles.darkBackground : null]}>
       <View style={[styles.setting, styles.settingPosition]}>
@@ -49,14 +51,14 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
-          source={require("../assets/profil.png")}
+          source={require("../assets/profilo.png")}
         />
+     <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
           </Text>
         </Pressable>
-
         <Pressable onPress={handleStartPressA}>
         <Text style={[styles.languag, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
         {fr.aboutUs}
@@ -66,7 +68,6 @@ const Profile = () => {
           Mimi Headline
         </Text>
         <Text style={[styles.content, styles.contentTypo, darkMode ? { color: "white" } : null]}>Content</Text>
-      
         <Pressable onPress={handleStartPressP}>
         <Text style={[styles.download, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
         {fr.privacyPolicy}
@@ -75,7 +76,7 @@ const Profile = () => {
         <Text style={[styles.darkmode, darkMode ? { color: "white" } : null]}>
         {fr.DarkMode}
           </Text>
-        <Pressable onPress={handleStartPress}>
+        <Pressable  onPress={handleStartPress} >
         <Text style={[styles.today, styles.todayPosition , darkMode ? { color: "white" } : null]}>
         {fr.notifications}
           </Text>
@@ -94,38 +95,18 @@ const Profile = () => {
         <View style={[styles.rectangle36Copy5Group, styles.groupParentLayout]}>
           <View style={styles.rectangle36Copy5} />
           <AntDesign name="right" size={20} color="black" style={[styles.rightIcon2, darkMode ? { color: "white" } : null]}/>
-
         </View>
-        <View
-          style={[styles.rectangle36Copy5Container, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Container, styles.groupParentLayout]}>
         </View>
         <View style={[styles.groupView, styles.groupParentLayout]}>
-          <View style={styles.rectangle36Copy5} />
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
+        <View style={[styles.rectangle36Copy5Parent1, styles.groupParentLayout]}>
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent2, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Parent2, styles.groupParentLayout]}>
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} /> 
+        <View style={[styles.rectangle36Copy5Parent3, styles.groupParentLayout]}> 
         </View>
-        <View
-          style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}
-        >
-          <View style={styles.rectangle36Copy5} />
-
+        <View style={[styles.rectangle36Copy5Parent4, styles.groupParentLayout]}>
         </View>
         <Image
           style={[styles.rectangleIcon, styles.settingLayout]}
@@ -137,22 +118,14 @@ const Profile = () => {
         {fr.editProfile}
         </Text>
         </Pressable>
-      
         <Ionicons name="language-sharp" size={24} color="black" style={[styles.translateIcon, styles.iconPosition, darkMode ? { color: "white" } : null]}/>
-      
         <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" style={[styles.umoonIcon, darkMode ? { color: "white" } : null]}/>
         <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
-        {/* <Image
-          style={[styles.heartIcon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/heart.png")}
-        /> */}
         <MaterialIcons name="privacy-tip" size={24} color="black" style={[styles.iconoutlinedapplicationdown, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
         <Text style={[styles.profile, styles.profileClr]}>Profile</Text>
         <Pressable onPress={handleStartPress}>
         <MaterialIcons name="notifications-none" size={25} color="black" style={[styles.icon, darkMode ? { color: "white" } : null]}/>
         </Pressable>
-
         <ToggleSwitch
           isOn={darkMode}
           onColor="#56CE21"
@@ -160,15 +133,14 @@ const Profile = () => {
           size="small" 
           onToggle={toggleDarkMode}
           style={styles.toggle1}
-        />
-                <Pressable onPress={handleStartPressA}>
+        /> 
+        <Pressable onPress={handleStartPressA}>
         <Ionicons name="information-circle-outline" size={24} color="black"style={[styles.icon3, darkMode ? { color: "white" } : null]} />
         </Pressable>
       </View>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon33, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon44, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon55, darkMode ? { color: "white" } : null]}/>
-
     </View>
   );
 };
@@ -183,7 +155,7 @@ const styles = StyleSheet.create({
   
   toggle1: {
     marginLeft: 340,
-    top: 365,
+    top: 345,
   },
   settingLayout: {
     height: 29,
@@ -191,11 +163,11 @@ const styles = StyleSheet.create({
   },
   icon:{
     marginLeft: 24,
-    top: 325,
+    top: 305,
   },
   icon3:{
     marginLeft: 24,
-    top: 421,
+    top: 401,
   },
   todayPosition: {
     textAlign: "left",
@@ -212,14 +184,11 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_mini,
     position: "absolute",
   },
-
-
   profileClr: {
     textAlign: "left",
     position: "absolute",
     color:"white",
     alignItems:"center",
-
   },
   iconPosition: {
     left: 26,
@@ -262,10 +231,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   language: {
-    top: 360,
+    top: 344,
   },
   languag: {
-    top: 470,
+    top: 451,
   },
   mimiHeadline: {
     top: 296,
@@ -284,7 +253,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   download: {
-    top: 530,
+    top: 520,
   },
   darkmode: {
     top: 393,
@@ -297,14 +266,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   today: {
-    top: 329,
+    top: 309,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
     fontSize: FontSize.size_mini,
     marginLeft:34,
   },
   onlyDownloadVia: {
-    top: 500,
+    top: 486,
   },
   rightIcon: {
     top: 2,
@@ -314,35 +283,35 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rightIcon1: {
-    top: -5,
+    top: -30,
     left: 3,
     width: 20,
     height: 20,
     position: "absolute",
   },
   rightIcon2: {
-    top:-234,
+    top:-254,
     left: 3,
     width: 20,
     height: 20,
     position: "absolute",
   },
   rightIcon33: {
-    top: 472,
+    top: 462,
     left: 364,
     width: 30,
     height: 30,
     position: "absolute",
   },
   rightIcon44: {
-    top: 499,
+    top: 498,
     left: 364,
     width: 30,
     height: 30,
     position: "absolute",
   },
   rightIcon55: {
-    top: 52,
+    top: 532,
     left: 364,
     width: 30,
     height: 30,
@@ -384,13 +353,13 @@ const styles = StyleSheet.create({
   },
   rectangleIcon: {
     top: 245,
-    left: 140,
+    left: 143,
     borderRadius: Border.br_8xs,
     width: 105,
   },
   editProfile: {
-    top: 250,
-    left: 154,
+    top: 235,
+    left: 157,
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.poppinsMedium,
     fontWeight: "500",
@@ -398,7 +367,7 @@ const styles = StyleSheet.create({
     padding: 3
   },
   translateIcon: {
-    top: 360,
+    top: 355,
     width: 22,
     height: 22,
   },
@@ -414,16 +383,16 @@ const styles = StyleSheet.create({
     top: 499,
   },
   iconoutlinedapplicationdown: {
-    top: 526,
+    top: 533,
     overflow: "hidden",
   },
   profile: {
-    top: 50,
-    left: 175,
+    top: 70,
+    left: 164,
     fontFamily: FontFamily.poppinsSemiBold,
     fontWeight: "900",
     fontSize: FontSize.size_mini,
-    
+    fontSize:24,
   },
   profil: {
     borderRadius: Border.br_11xl,

@@ -47,12 +47,14 @@ Onbording = () => {
         contentFit="cover"
         source={require("../assets/ellipse-5.png")}
       />
-      
+            <Pressable onPress={handleStartPress}>
+
       <Image
         style={styles.onboridngChild1}
         contentFit="cover"
         source={require("../assets/ellipse-6.png")}
       />
+      </Pressable>
       <Pressable onPress={handleStartPress}>
         <Text style={styles.arrowIcon}>Start</Text>
       </Pressable>

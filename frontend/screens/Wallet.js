@@ -1,129 +1,94 @@
-
-
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, Alert, Image } from 'react-native';
-import axios from 'axios';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const WalletScreen = ({ route }) => {
-  const [scanItems, setScanItems] = useState([]);
-  const [total, setTotal] = useState(0);
-
-  const saveScanItems = async (items) => {
-    try {
-      const serializedItems = JSON.stringify(items);
-      await AsyncStorage.setItem('scanItems', serializedItems);
-    } catch (error) {
-      console.error(error);
-    }
-    console.log();
-  };
-
-  const loadScanItems = async () => {
-    try {
-      const serializedItems = await AsyncStorage.getItem('scanItems');
-      if (serializedItems !== null) {
-        const items = JSON.parse(serializedItems);
-        setScanItems(items);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchProductDetails = async (barcode) => {
-    try {
-      const response = await axios.get(`http://192.168.43.142:8000/article/get/${barcode}`);
-      const productDetails = response.data[0];
-      setScanItems((prevItems) => [...prevItems, { ...productDetails, quantity: 1 }]);
-      saveScanItems([...scanItems, { ...productDetails, quantity: 1 }]);
-    } catch (error) {
-      console.error(error);
-      Alert.alert('Error', 'Failed to fetch product details');
-    }
-  };
+const Wallet = () => {
+  const [wallet, setWallet] = useState({});
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const updateTotal = () => {
-      const newTotal = scanItems.reduce((acc, item) => acc + parseFloat(item.price) * item.quantity, 0);
-      setTotal(newTotal);
+    const fetchWallet = async () => {
+      const walletJson = await AsyncStorage.getItem('wallet');
+      const walletData = JSON.parse(walletJson);
+      setWallet(walletData);
+      calculateTotalPrice(walletData);
     };
+    
+    fetchWallet();
+  }, []);
 
-    updateTotal();
-    saveScanItems(scanItems);
-  }, [scanItems]);
+  const calculateTotalPrice = (walletData) => {
+    let total = 0;
+    Object.values(walletData).forEach(item => {
+      total += parseFloat(item.price);
+    });
+    setTotalPrice(total);
+  };
 
-  useEffect(() => {
-    loadScanItems();
-
-    if (route.params?.barcode) {
-      fetchProductDetails(route.params.barcode);
-    }
-  }, [route.params?.barcode]);
+  const deleteItem = async (barcode) => {
+    const updatedWallet = { ...wallet };
+    delete updatedWallet[barcode];
+    setWallet(updatedWallet);
+    await AsyncStorage.setItem('wallet', JSON.stringify(updatedWallet));
+    calculateTotalPrice(updatedWallet);
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Wallet</Text>
-      {scanItems.length > 0 ? (
-        <>
-          <FlatList
-            data={scanItems}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.productItemContainer}>
-                <Text style={styles.productName}> {item.name}</Text>
-                <Image style={styles.productImage} source={{ uri: item.image }} />
-                <Text style={styles.productPrice}>Price: {item.price} dt</Text>
-                <Text style={styles.productQuantity}>Quantity: {item.quantity}</Text>
-              </View>
-            )}
-          />
-          <Text style={styles.totalText}>Total: {total.toFixed(2)}</Text>
-        </>
-      ) : (
-        <Text>No items in the wallet</Text>
-      )}
+      {Object.values(wallet).map(item => (
+        <View key={item.barcode} style={styles.item}>
+          <View style={styles.itemContainer}>
+            <Image source={{uri: item.image}} style={styles.image} />
+            <Text style={styles.name}>{item.name}</Text>
+          </View>
+          <Text style={styles.price}>{item.price}</Text>
+          <TouchableOpacity onPress={() => deleteItem(item.barcode)}>
+            <Text style={styles.deleteButton}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(3)} DT</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f4f4f4',
+    justifyContent: 'center'
   },
-  title: {
-    fontSize: 24,
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  image: {
+    width: 50, 
+    height: 50,
+    marginRight: 10
+  },
+  name: {
     fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 18
   },
-  productItemContainer: {
-    marginBottom: 15,
-  },
-  productName: {
+  price: {
+    marginLeft: 'auto',
     fontSize: 16,
-    fontWeight: 'bold',
+    color: '#555'
   },
-  productImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-    marginTop: 10,
+  deleteButton: {
+    color: 'red',
+    marginLeft: 10
   },
-  productPrice: {
-    fontSize: 14,
-    color: '#888',
-  },
-  productQuantity: {
-    fontSize: 14,
-    color: '#888',
-  },
-  totalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 10,
-  },
+  totalPrice: {
+    marginTop: 20,
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
 });
 
-export default WalletScreen;
+export default Wallet;

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground } from 'react-native';
+import { View, TextInput, Button, TouchableOpacity, Text, Image, StyleSheet, ImageBackground} from 'react-native';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth, GoogleProvider } from '../firebase/config';
-// import LinearGradient from 'react-native-linear-gradient';
-
 import { useSignInWithFacebook } from 'react-firebase-hooks/auth';
 import { FacebookProvider } from '../firebase/config';
-
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { Color, FontFamily, FontSize ,Border} from "../GlobalStyles";
@@ -15,28 +12,40 @@ import { Feather } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../redux/action';
+import { useSelector } from 'react-redux';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
 
 const SignUp = () => {
+
+
+
   const [email, setEmail] = useState('');
   const [birth, setBirth] = useState('');
   const [firstName, setFirst] = useState('');
   const [lastName, setLast] = useState('');
   const [password, setPassword] = useState('');
-
+  const [showPassword, setShowPassword] = useState(false);
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
+  const [userr, setUserr] = useState(null);
+
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const handleSignIn = () => {
     navigation.navigate('SignIn');
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
   const handleSignUp = async () => {
-
-
-
 
     try {
 
@@ -51,7 +60,7 @@ const SignUp = () => {
       const res = await createUserWithEmailAndPassword(email, password);
   
       if (!res || !res.user) {
-        throw new Error("User creation failed. Please try again.");
+        throw new Error("Sign up successful");
       }
   
       const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
@@ -63,23 +72,31 @@ const SignUp = () => {
       });
   
       console.log('Registration API response:', registerResponse);
-  
+
+
+
       // Store the user's email in session storage
       sessionStorage.setItem('userEmail', email);
   
+    setUserr(registerResponse.data);
+
       setFirst('');
       setLast('');
       setEmail('');
       setPassword('');
       setBirth('');
-      setFirst('');
-      setLast('');
+
 
       navigation.navigate('HomePage');
+
+      const userData = registerResponse.data;
+      dispatch(signUp(userData));
+      console.log(userData,"this is the usersss register");
+
       alert("Sign up successful");
     } catch (e) {
     console.error(e);
-    alert(e.message || "Sign up failed. Please try again.");
+    alert(e.message || "Sign up successful. ");
     // Log the specific Firebase error
     if (e.code) {
       console.error("Firebase Error Code:", e.code);
@@ -87,14 +104,20 @@ const SignUp = () => {
   }
   };
   
-  const handleGoogleSignUp = async () => {
+  const handleSignInWithGoogle = async () => {
     try {
-      const res = await signInWithGoogle(GoogleProvider);
-      console.log('Google Sign-Up Response:', res);
-    } catch (e) {
-      console.error('Google Sign-Up Error:', e);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+  
+      // You can access the user information with result.user
+      console.log('Google Sign-In successful:', result.user);
+    } catch (error) {
+      console.error('Google Sign-In error:', error.message);
     }
   };
+  
+  
   
   const handleFacebookSignUp = async () => {
     try {
@@ -105,7 +128,7 @@ const SignUp = () => {
     }
   };
   
-  
+
 
   return (
     <ImageBackground
@@ -172,6 +195,8 @@ const SignUp = () => {
             value={password}
             onChangeText={setPassword}
             placeholderTextColor="white"
+            secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword state
+
           />
         </View>
         <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
@@ -189,7 +214,9 @@ const SignUp = () => {
       <Feather name="mail" size={20} color="white" style={styles.icon3}/>
       <Fontisto name="date" size={20} color="white" style={styles.icon4}/>
       <FontAwesome6 name="unlock-keyhole" size={20} color="white"style={styles.icon5} />
-      <Entypo name="eye-with-line" size={20} color="white" style={styles.eye}/>
+      <TouchableOpacity onPress={togglePasswordVisibility} style={styles.eye}>
+        <Entypo name={showPassword ? "eye" : "eye-with-line"} size={20} color="white" />
+      </TouchableOpacity>
 
         <View style={styles.frameParent}>
           <View style={styles.lineParent}>
@@ -198,10 +225,11 @@ const SignUp = () => {
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
         </View>
-
-        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} onPress={handleGoogleSignUp}/>
+        <TouchableOpacity onPress={handleSignInWithGoogle}>
+        <Image source={require('../assets/Google_Icons-09-512.webp')} style={styles.google} />
+        </TouchableOpacity>
           <Image source={require('../assets/1657548367Facebook-logo.png')} style={styles.fb} onPress={handleFacebookSignUp}/>
-          <Image source={require('../assets/png-apple-logo-9711.png')} style={styles.apple} />
+          <AntDesign name="apple1" size={37} color="white" style={styles.apple} />
         {/* <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" /> */}
         <Text style={styles.alreadyHaveAnContainer}>
         <Text style={styles.alreadyHaveAn}>{`Already have an account! `}</Text>
@@ -352,7 +380,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   h1: {
-    top: -40,
+    top: -0,
     left: 100,
     paddingHorizontal: 0,
     flexDirection: "row",
@@ -383,11 +411,11 @@ const styles = StyleSheet.create({
     padding: 14,
   },
   apple:{
-    width: 50,
-    height:50,
+    width: 60,
+    height:80,
     borderRadius: 20,
-    marginLeft: 120,
-    top:8,
+    marginLeft: 110,
+    top:2,
     textAlign: "center",
     padding: 14,
   },

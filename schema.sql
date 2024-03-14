@@ -22,17 +22,16 @@ USE `market` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `market`.`article` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(505) NOT NULL,
-  `image` VARCHAR(10000) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `code` VARCHAR(450) NOT NULL,
+  `image` VARCHAR(1000) NOT NULL,
+  `name` VARCHAR(60) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
-  `price` VARCHAR(45) NOT NULL,
-  `product_Num` VARCHAR(200) NOT NULL,
-  `category` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE)
+  `price` VARCHAR(100) NOT NULL,
+  `product_Num` INT NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 26
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -43,10 +42,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `market`.`carte` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `points` VARCHAR(1000) NOT NULL,
-  `cin` VARCHAR(20) NOT NULL,
+  `code` VARCHAR(70) NOT NULL,
+  `number` VARCHAR(105) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -63,7 +62,22 @@ CREATE TABLE IF NOT EXISTS `market`.`user` (
   `password` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 14
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `market`.`wallet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `market`.`wallet` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `price` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

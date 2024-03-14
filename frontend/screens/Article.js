@@ -18,7 +18,7 @@ const Magasine = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get('http://192.168.1.15:8000/article/get');
+        const response = await axios.get('http://192.168.229.1:8000/article/get');
 
         setArticles(response.data);
         setFilteredArticles(response.data);  // Update filteredArticles as well
@@ -53,7 +53,7 @@ const Magasine = () => {
   const fetchArticlesByCategory = async (category) => {
     try {
 
-      const response = await axios.get(`http://192.168.1.15:8000/article/getByCategory/${category}`);
+      const response = await axios.get(`http://192.168.229.1:8000/article/getByCategory/${category}`);
 
 
 
@@ -79,7 +79,7 @@ const Magasine = () => {
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
-      const response = await axios.get('http://192.168.1.15:8000/article/get');
+      const response = await axios.get('http://192.168.229.1:8000/article/get');
       setArticles(response.data);
       setFilteredArticles(response.data);
     } catch (error) {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   paginationButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#007bff',
+    backgroundColor: '#7d0c42',
     borderRadius: 5,
     marginHorizontal: 5,
     
@@ -263,6 +263,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    backgroundColor:"#7d0c42"
   },
 });
 
