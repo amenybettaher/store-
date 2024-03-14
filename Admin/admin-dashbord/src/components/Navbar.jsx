@@ -15,6 +15,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="wrapper">
+        <div id="echrili">ECHIRLI</div>
         <div className="search">
           <input type="text" placeholder="Search..." />
           <SearchOutlinedIcon />
