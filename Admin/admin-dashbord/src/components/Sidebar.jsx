@@ -14,14 +14,8 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { DarkModeContext } from "../context/darkModeContext";
 import { useContext } from "react";
 
-
-
 const Sidebar = ({switchView}) => {
   const { dispatch } = useContext(DarkModeContext) || {};
-  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn")) || false;
-  const currentUser = JSON.parse(localStorage.getItem("user")) || {};
-
-
   return (
     <div className="sidebar">
       <div className="top">
@@ -73,39 +67,15 @@ const Sidebar = ({switchView}) => {
             <span>Settings</span>
           </li>
           <p className="title">Admin</p>
-                <div>
-                {isLoggedIn ? (
-                  <>
-                    <div className='login-div'>
-                      <h1>{}</h1>
-                      {/* <img className='login-img' src={currentUser.IMAGE} alt="" /> */}
-                      {/* <h2 className="Login" onClick={() => changeView('Profile')}> Profile</h2> */}
-                      <li onClick={() => switchView('profile')}>
-                          <AccountCircleOutlinedIcon className="icon" />
-                           <span>Profil</span>
-                       </li>
-                      <h2 className="LogOut" onClick={() => {
-                        localStorage.setItem("isLoggedIn", JSON.stringify(false));
-                        localStorage.clear();
-                        switchView('Login');
-                      }}>
-                        LogOut
-                      </h2>
-                    </div>
-                  </>
-                ) : (
-                  <div className='login-div'>
-                    <img className='login-img' src="https://res.cloudinary.com/db2yjlbsw/image/upload/v1707472250/b4rdekuvkytlte4kgnkv.png" alt="" />
-                    <h2 className="Login" onClick={() => switchView('Login')}> Login</h2>
-                  </div>
-                )}
 
-         
-          <li>
+          <li onClick={() => switchView('profile')}>
+            <AccountCircleOutlinedIcon className="icon" />
+            <span>Profil</span>
+          </li>
+          <li onClick={() => switchView('Login')}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
-          </div>
         </ul>
       </div>
       <div className="bottom">

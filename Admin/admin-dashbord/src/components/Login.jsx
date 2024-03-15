@@ -4,7 +4,7 @@ import Validation from '../components/LoginValidation';
 // import Profile from './Profile.jsx';
 import axios from 'axios';
 
-const Login = ({ switchView}) => {
+const Login = ({ switchView ,setUser }) => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -40,6 +40,7 @@ const Login = ({ switchView}) => {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         setLoggedIn(true);
+        
         switchView('Home'); 
       }
     } catch (error) {
@@ -70,7 +71,7 @@ const Login = ({ switchView}) => {
 
   console.log('userData-from-the-end-of-login', userData);
 
-  
+
       return (
             <div className='log'>
                  

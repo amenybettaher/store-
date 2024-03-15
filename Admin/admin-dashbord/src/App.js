@@ -26,7 +26,7 @@ function App() {
         {view === 'Home' && <Home switchView={switchView} />}
         {view === 'Articles' && <Article switchView={switchView} />}
         {view === 'Users' && <Users switchView={switchView} />}
-        {view === 'Profile' && <Profile switchView={switchView} user={user} />} {/* Pass user data to Profile component */}
+        {view === 'Profile' && <Profile switchView={switchView} />}
 
       </div>
     </div>
