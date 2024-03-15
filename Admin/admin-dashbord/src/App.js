@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import SignIn from './components/SignIn';
 import { DarkModeContext } from './context/darkModeContext';
+import './Style/dark.css'
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -16,7 +17,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : ''}`}>
+    <div className={darkMode ? "app dark" : "app"}>
       <div className={`container ${view !== 'SignIn' ? 'active' : ''}`}>
         {view === 'SignIn' && <SignIn switchView={switchView} />}
         {view === 'Login' && <Login switchView={switchView} />}
