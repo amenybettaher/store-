@@ -84,6 +84,27 @@ const login = async (email, password, callback) => {
 
 
 
+const deleteUser = (email, callback) => {
+  const query = 'DELETE FROM user WHERE email = ?';
+  connection.query(query, [email], (err, result) => {
+      if (err) {
+          callback(err, null);
+      } else {
+          callback(null, result);
+      }
+  });
+};
 
+const updateUser = (email, updatedUser, callback) => {
+  const { firstName, lastName, birth, password } = updatedUser;
+  const query = 'UPDATE user SET firstName=?, lastName=?, birth=?, password=? WHERE email=?';
+  connection.query(query, [firstName, lastName, birth, password, email], (err, result) => {
+      if (err) {
+          callback(err, null);
+      } else {
+          callback(null, result);
+      }
+  });
+};
 
-  module.exports = { getUser,getAll,login , register  };
+module.exports = { getUser, getAll, login, register, deleteUser, updateUser };

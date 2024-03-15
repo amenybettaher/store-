@@ -47,11 +47,11 @@ const Sidebar = () => {
           </Link> */}
           <li>
             <CreditCardIcon className="icon" />
-            <span>Orders</span>
+            <span>Articles</span>
           </li>
           <li>
             <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
+            <span>Users</span>
           </li>
           <p className="title">USEFUL</p>
           <li>
