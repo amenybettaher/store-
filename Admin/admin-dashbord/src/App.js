@@ -27,11 +27,12 @@ function App() {
         {view === 'Home' && <Home switchView={switchView} />}
         {view === 'Articles' && <Article switchView={switchView} />}
         {view === 'Users' && <Users switchView={switchView} />}
-        {view === 'Profile' && <Profile switchView={switchView} user={user} />}
+        {view === 'Profile' && <Profile user={user} />}
       </div>
     </div>
   );
 }
+
 
 export default App;
 

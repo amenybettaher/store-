@@ -8,18 +8,29 @@ const generateToken = (userId) => {
 };
 
 module.exports = {
-      addUser: (newUser, callback) => {
-            const sql = "INSERT INTO userad SET username=?,birth=?, email=?, password=?";
-            connection.query(sql, [newUser.username,newUser.birth, newUser.email, newUser.password], (err, result) => {
-                  if (err) {
-                        callback(err, null);
-                  } else {
-                        const userId = result.insertId;
-                        const token = generateToken(userId);
-                        callback(null, { userId, token });
-                  }
+   // Modify your addUser function in the backend to include user data in the response
+addUser: (newUser, callback) => {
+    const sql = "INSERT INTO userad SET username=?, birth=?, email=?, password=?";
+    connection.query(sql, [newUser.username, newUser.birth, newUser.email, newUser.password], (err, result) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            const userId = result.insertId;
+            const token = generateToken(userId);
+            // Fetch the user data from the database
+            const userSql = "SELECT * FROM userad WHERE id = ?";
+            connection.query(userSql, [userId], (err, userResult) => {
+                if (err) {
+                    callback(err, null);
+                } else {
+                    const user = userResult[0]; // Assuming user is found by id
+                    callback(null, { user, token }); // Send user data along with the token
+                }
             });
-      },
+        }
+    });
+},
+
 
       login: (data, callback) => {
             const sql = "SELECT * FROM userad WHERE email=? AND password=?";
