@@ -18,7 +18,7 @@ const Carte = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://192.168.43.142:8000/carte/code/${inputCode}`);
+      const response = await axios.get(`http://192.168.211.1:8000/carte/code/${inputCode}`);
       const { points, number, code } = response.data[0]; // Adjust this according to your API response structure
       setCardData({ points, number, code });
     } catch (error) {
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#fff8e1',
     borderRadius: 10,
-    margin: 80,
+    margin: 40,
+    top: -40,
     elevation: 100,
   },
   title: {
@@ -132,7 +133,8 @@ const styles = StyleSheet.create({
   pointsContainer: {
     position: 'absolute',
     bottom: 20,
-    right: 20,
+    right: 80,
+    top: 690,
   },
   pointsText: {
     fontSize: 45,
