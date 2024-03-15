@@ -5,6 +5,7 @@ import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../css/Article.css'; // Import the CSS file
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import AddArticleModal from './AddArticleModal'
 
 const Articles = ({switchView}) => {
   const [articles, setArticles] = useState([]);
@@ -19,6 +20,16 @@ const Articles = ({switchView}) => {
       setArticles(response.data);
     } catch (error) {
       console.error('Error fetching articles:', error);
+    }
+  };
+
+  
+  const addArticle = async (formData) => {
+    try {
+      await axios.post('http://localhost:8000/article/post', formData);
+      fetchArticles(); // Refresh the articles after adding
+    } catch (error) {
+      console.error('Error adding article:', error);
     }
   };
 
@@ -54,6 +65,7 @@ const Articles = ({switchView}) => {
       <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
+      <AddArticleModal addArticle={addArticle} />
       <table>
         <thead>
           <tr>

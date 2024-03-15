@@ -33,19 +33,17 @@ const getByCategory = (category, callback) => {
 };  
 
 
-const add = ( Newdata  , callback) =>{
-  const q = 'INSERT INTO `article` (image,code,description,price,product_Num) VALUES  (?,?,?,?,?) '
-  const {image,code,description,price,product_Num} = Newdata
-    con.query(q, [image,code,description,price,product_Num],(err,result)=>{
-      if(err) 
-        
-            return     callback(err,null)
-      
-      else { 
-        callback(null , result)
-      }
-    })
-  }
+const add = (Newdata, callback) => {
+  const q = 'INSERT INTO `article` (code, image, name, description, price, product_Num, category) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  const { code, image, name, description, price, product_Num, category } = Newdata;
+  con.query(q, [code, image, name, description, price, product_Num, category], (err, result) => {
+    if (err)
+      return callback(err, null);
+    else {
+      callback(null, result);
+    }
+  });
+}
 
   const deleteA = (articleId, callback) => {
     const q = 'DELETE FROM `article` WHERE id = ?';
@@ -59,17 +57,16 @@ const add = ( Newdata  , callback) =>{
 };
 
 const update = (articleId, updatedData, callback) => {
-    const q = 'UPDATE `article` SET image=?, code=?, description=?, price=? ,product_Num=? WHERE id=?';
-    const { image, code, description, price ,product_Num } = updatedData;
-    con.query(q, [image, code, description, price, product_Num , articleId], (err, result) => {
-        if (err) {
-            callback(err, null);
-        } else {
-            callback(null, result);
-        }
-    });
+  const q = 'UPDATE `article` SET image=?, code=?, description=?, price=?, product_Num=?, category=? WHERE id=?';
+  const { image, code, description, price, product_Num, category } = updatedData;
+  con.query(q, [image, code, description, price, product_Num, category, articleId], (err, result) => {
+      if (err) {
+          callback(err, null);
+      } else {
+          callback(null, result);
+      }
+  });
 };
-
 
 
   module.exports = {getAll,
