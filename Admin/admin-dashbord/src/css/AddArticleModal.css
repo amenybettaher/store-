@@ -1,0 +1,126 @@
+/* AddArticleModal.css */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(35, 33, 33, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show-modal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  max-width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.4s ease-out;
+  overflow: hidden;
+}
+
+.modal.show-modal .modal-content {
+  transform: scale(1);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: #e74c3c;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"] {
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+  box-shadow: inset 0 2px 5px rgba(16, 1, 1, 0.2);
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  background-color: #22a6b3;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: #0984a3;
+  transform: translateY(-3px);
+}
+
+.add-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #926d9a;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: flex-end;
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  width: 10%;
+  margin-left: 85%;
+}
+
+.add-button:hover {
+  background-color: #9b2fae;
+  transform: translateY(-3px);
+}
+
+/* Animation for modal entry */
+@keyframes modalEntry {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal.show-modal .modal-content {
+  animation: modalEntry 0.4s ease-out forwards;
+}
