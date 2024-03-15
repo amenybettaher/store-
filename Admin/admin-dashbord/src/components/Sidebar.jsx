@@ -68,7 +68,7 @@ const Sidebar = ({switchView}) => {
           </li>
           <p className="title">Admin</p>
 
-          <li onClick={() => switchView('profile')}>
+          <li onClick={() => switchView('Profile')}>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profil</span>
           </li>
