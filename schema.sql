@@ -68,6 +68,22 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `market`.`userad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `market`.`userad` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `birth` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(205) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `market`.`wallet`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `market`.`wallet` (

@@ -4,7 +4,9 @@
     background-color: white;
     margin-top: -5.4%;
     width: 10%;
+    min-height: 110vh;
     margin-left: -1.2%;
+
   
     .top {
       height: 80px;
@@ -38,7 +40,7 @@
           color: #999;
           margin-top: 15px;
           margin-bottom: 5px;
-          margin-left: -65%;
+          margin-left: 0%;
         }
   
         li {

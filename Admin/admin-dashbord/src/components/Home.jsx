@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 const Home = ({switchView}) => {
   return (
     <div>
+      
       <Navbar />
       <Sidebar switchView={switchView}/>
     </div>

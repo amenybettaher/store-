@@ -16,19 +16,20 @@ import { DarkModeContext } from "../context/darkModeContext";
 import { useContext } from "react";
 
 const Sidebar = ({switchView}) => {
-  // const { dispatch } = useContext(DarkModeContext) || {};
+  const { dispatch } = useContext(DarkModeContext) || {};
   return (
     <div className="sidebar">
       <div className="top">
         {/* <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">lamadmin</span>
-        </Link> */}
+        // </Link> */}
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
+      
+          <li onClick={() => switchView('Home')}>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
@@ -79,7 +80,7 @@ const Sidebar = ({switchView}) => {
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
           </li>
-          <p className="title">USER</p>
+          <p className="title">Admin</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>

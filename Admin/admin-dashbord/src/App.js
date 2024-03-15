@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import Article from './components/Articles';
 import Users from './components/Users';
 import Home from './components/Home';
-import './Style/dark.css';
+import Login from './components/Login';
+import SignIn from './components/SignIn';
 import { DarkModeContext } from './context/darkModeContext';
-import { useContext } from 'react';
+import './Style/dark.css'
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const [view, setView] = useState('SignIn');
 
-  const [menuView, setMenuView] = useState(false);
-  const [view, setView] = useState('Home');
-
-  const switchView = (view) => {
-    setView(view);
-    setMenuView(false);
+  const switchView = (newView) => {
+    setView(newView);
   };
 
   return (
-    <div className="App">
-      <div className={darkMode ? 'app dark' : 'app'}>
-        <div className={`container ${menuView ? 'active' : ''}`}>
-          {view === 'Home' && <Home switchView={switchView} />}
-          {view === 'Articles' && <Article switchView={switchView} />}
-          {view === 'Users' && <Users switchView={switchView} />}
-        </div>
+    <div className={darkMode ? "app dark" : "app"}>
+      <div className={`container ${view !== 'SignIn' ? 'active' : ''}`}>
+        {view === 'SignIn' && <SignIn switchView={switchView} />}
+        {view === 'Login' && <Login switchView={switchView} />}
+        {view === 'Home' && <Home switchView={switchView} />}
+        {view === 'Articles' && <Article switchView={switchView} />}
+        {view === 'Users' && <Users switchView={switchView} />}
       </div>
     </div>
   );
 }
 
 export default App;
+
