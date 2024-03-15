@@ -22,7 +22,7 @@ function App() {
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <div className={`container ${view !== 'SignIn' ? 'active' : ''}`}>
-        {view === 'SignIn' && <SignIn switchView={switchView} />}
+        {view === 'SignIn' && <SignIn switchView={switchView} setUser={setUser} />}
         {view === 'Login' && <Login switchView={switchView} setUser={setUser} />}
         {view === 'Home' && <Home switchView={switchView} />}
         {view === 'Articles' && <Article switchView={switchView} />}

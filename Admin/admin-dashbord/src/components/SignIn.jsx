@@ -3,7 +3,7 @@ import axios from 'axios';
 import "../css/Signin.css";
 import validation from '../components/SignInValidation';
 
-const SignIn = ({ switchView }) => {
+const SignIn = ({ switchView,setUser}) => {
   const [errors, setErrors] = useState({})
   const [userData, setUserData] = useState({
     username: '',
@@ -29,7 +29,8 @@ const SignIn = ({ switchView }) => {
   
       if (response.status === 200 && response.data.token) {
         localStorage.setItem('token', response.data.token);
-        switchView('Profile', userData);
+        setUser(response.data.user); 
+        switchView('Home'); 
       } else {
         console.error('Error during Sign In:', response.data.message);
       }
