@@ -1,0 +1,72 @@
+.sig{
+    margin-left: 10%;
+    background-color: #a2c9e3;
+    width: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    margin-top: 1%;
+}
+.signin-container {
+    background-color:transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 9px;
+    padding: 193px;
+    width: 323px;
+    margin: 0;
+    position: relative;
+    left: 31%;
+    margin-left: 10%;
+     margin-top: 0%;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #ecf0f1;
+    /* Light text color */
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border: 1px solid #3498db;
+    /* Border color */
+    border-radius: 5px;
+    /* Rounded corners for input fields */
+    background-color: #34495e;
+    /* Input background color */
+    color: #ecf0f1;
+    /* Input text color */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signin {
+    background-color: #05c971;
+    /* Button background color */
+    color: #ecf0f1;
+    /* Button text color */
+}
+
+.change-view-signin {
+    background-color: #0b0b0b;
+    color: #ecf0f1;
+    position: relative;
+    top: 8px;
+}

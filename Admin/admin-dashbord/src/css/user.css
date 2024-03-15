@@ -1,43 +1,64 @@
-Style the table
-table {
-    width: 100%;
+
+.users-container h1{
+  margin-top: -43%;
+
+}
+
+.users-container table {
+  width: 80%;
     border-collapse: collapse;
-    margin-top: 20px;
-  }
+    margin: 25px 0;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
   
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left:15%;
+  }
+
   /* Style table header */
-  th {
+  .users-container th {
     background-color: #7e035f;
-    text-align: left;
+    text-align: center;
     padding: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 15px;
+    cursor: pointer;
   }
   
   /* Style table cells */
-  td {
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
+ .users-container td {
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  transition: background-color 0.3s, transform 0.3s;
   }
   
   /* Style table actions buttons */
-  button {
+  .users-container button {
     cursor: pointer;
     padding: 5px 10px;
     border: none;
     background-color: #8a0452;
     color: white;
+    margin-left: 40%;
   }
   
-  button:hover {
+  .users-container button:hover {
     background-color: #055337;
   }
   
   /* Style the table actions buttons container */
-  td:last-child {
+  .users-container td:last-child {
     display: flex;
   }
   
   /* Add margin between action buttons */
-  button + button {
+  .users-container button + button {
     margin-left: 5px;
   }
   

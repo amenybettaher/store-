@@ -15,20 +15,21 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../context/darkModeContext";
 import { useContext } from "react";
 
-const Sidebar = () => {
-  // const { dispatch } = useContext(DarkModeContext) || {};
+const Sidebar = ({switchView}) => {
+  const { dispatch } = useContext(DarkModeContext) || {};
   return (
     <div className="sidebar">
       <div className="top">
         {/* <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">lamadmin</span>
-        </Link> */}
+        // </Link> */}
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
+      
+          <li onClick={() => switchView('Home')}>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
@@ -45,12 +46,16 @@ const Sidebar = () => {
               <span>Products</span>
             </li>
           </Link> */}
-          <li>
+         <li onClick={() => switchView('Articles')}>
             <CreditCardIcon className="icon" />
             <span>Articles</span>
           </li>
-          <li>
-            <LocalShippingIcon className="icon" />
+          <li onClick={() => switchView('Cards')}>
+            <CreditCardIcon className="icon" />
+            <span>Cards</span>
+          </li>
+          <li onClick={() => switchView('Users')}>
+            <CreditCardIcon className="icon" />
             <span>Users</span>
           </li>
           <p className="title">USEFUL</p>
@@ -75,7 +80,7 @@ const Sidebar = () => {
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
           </li>
-          <p className="title">USER</p>
+          <p className="title">Admin</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
