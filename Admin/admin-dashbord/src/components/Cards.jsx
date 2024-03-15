@@ -5,15 +5,34 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
+
+const cardContainerStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+};
+
+const cardStyle = {
+  width: '23%', // Adjust as needed based on your design and spacing requirements
+  marginBottom: '20px',
+};
 
 export default function CustomCard({ name }) {
   const [cards, setCards] = React.useState([]);
   const [newCardPoints, setNewCardPoints] = React.useState('');
   const [newCardCode, setNewCardCode] = React.useState('');
   const [newCardNumber, setNewCardNumber] = React.useState('');
+  const [editPopupOpen, setEditPopupOpen] = React.useState(false);
+  const [editedCard, setEditedCard] = React.useState(null);
+  const [editedPoints, setEditedPoints] = React.useState('');
+  const [editedCode, setEditedCode] = React.useState('');
+  const [editedNumber, setEditedNumber] = React.useState('');
 
-  // Function to fetch all cards from the API
   const fetchAllCards = () => {
     axios.get('http://localhost:8000/carte/all')
       .then(response => {
@@ -24,7 +43,6 @@ export default function CustomCard({ name }) {
       });
   };
 
-  // Function to add a new card
   const addNewCard = () => {
     axios.post('http://localhost:8000/carte/add', {
       points: newCardPoints,
@@ -32,8 +50,7 @@ export default function CustomCard({ name }) {
       number: newCardNumber
     })
     .then(response => {
-      fetchAllCards(); // Fetch all cards to update the list after adding
-      // Clear input fields after adding
+      fetchAllCards();
       setNewCardPoints('');
       setNewCardCode('');
       setNewCardNumber('');
@@ -43,29 +60,48 @@ export default function CustomCard({ name }) {
     });
   };
 
-  // Function to delete a card
   const deleteCard = (id) => {
     axios.delete(`http://localhost:8000/carte/${id}`)
     .then(response => {
-      fetchAllCards(); // Fetch all cards to update the list after deletion
+      fetchAllCards();
     })
     .catch(error => {
       console.error('Error deleting card:', error);
     });
   };
 
-  // Function to update a card
-  const updateCard = (id, updatedData) => {
-    axios.put(`http://localhost:8000/carte/${id}`, updatedData)
-    .then(response => {
-      fetchAllCards(); // Fetch all cards to update the list after updating
-    })
-    .catch(error => {
-      console.error('Error updating card:', error);
-    });
+  const openEditPopup = (card) => {
+    setEditedCard(card);
+    setEditedPoints(card.points);
+    setEditedCode(card.code);
+    setEditedNumber(card.number);
+    setEditPopupOpen(true);
   };
 
-  // Fetch all cards when the component mounts
+  const closeEditPopup = () => {
+    setEditPopupOpen(false);
+    setEditedCard(null);
+    setEditedPoints('');
+    setEditedCode('');
+    setEditedNumber('');
+  };
+
+  const updateCard = () => {
+    axios
+      .put(`http://localhost:8000/carte/${editedCard.id}`, {
+        points: editedPoints,
+        code: editedCode,
+        number: editedNumber,
+      })
+      .then((response) => {
+        fetchAllCards();
+        closeEditPopup();
+      })
+      .catch((error) => {
+        console.error('Error updating card:', error);
+      });
+  };
+
   React.useEffect(() => {
     fetchAllCards();
   }, []);
@@ -90,28 +126,81 @@ export default function CustomCard({ name }) {
         />
         <Button onClick={addNewCard}>Add new card</Button>
       </div>
-      {cards.map(card => (
-        <Card key={card.id} sx={{ maxWidth: 345, marginBottom: 20 }}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {card.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Points: {card.points}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              ▌│█║▌║▌║▌│█║▌║▌║<br/>Code: {card.code}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Number: {card.number}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small" onClick={() => deleteCard(card.id)}>Delete this card</Button>
-            <Button size="small" onClick={() => updateCard(card.id, { points: 'updated points', code: 'updated code', number: 'updated number' })}>Update a Card</Button>
-          </CardActions>
-        </Card>
-      ))}
+      <div style={cardContainerStyle}>
+        {cards.map((card) => (
+          <div key={card.id} style={cardStyle}>
+            <Card key={card.id}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {card.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Points: {card.points}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  ▌│█║▌║▌║▌│█║▌║▌║<br/>Code: {card.code}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Number: {card.number}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  onClick={() => deleteCard(card.id)}
+                >
+                  Delete this card
+                </Button>
+                <Button
+                  size="small"
+                  onClick={() => openEditPopup(card)}
+                >
+                  Update this card
+                </Button>
+              </CardActions>
+            </Card>
+          </div>
+        ))}
+      </div>
+      <Dialog
+        open={editPopupOpen}
+        onClose={closeEditPopup}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Edit Card</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Points"
+            fullWidth
+            value={editedPoints}
+            onChange={(e) => setEditedPoints(e.target.value)}
+          />
+          <TextField
+            margin="dense"
+            label="Code"
+            fullWidth
+            value={editedCode}
+            onChange={(e) => setEditedCode(e.target.value)}
+          />
+          <TextField
+            margin="dense"
+            label="Number"
+            fullWidth
+            value={editedNumber}
+            onChange={(e) => setEditedNumber(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeEditPopup} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={updateCard} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
