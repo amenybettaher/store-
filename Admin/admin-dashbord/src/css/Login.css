@@ -1,7 +1,7 @@
 
 .log{
     margin-left: 10%;
-    background-color: #a2c9e3;   
+    background-color:#6e99b6;   
     width: 80%;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,7 +62,8 @@ button {
 }
 
 .login-button {
-    background-color: #05c971;
+    background-color: #54025b;
+    margin-bottom: 5%;
 
 
     color: #ecf0f1;

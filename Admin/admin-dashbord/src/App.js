@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from 'react';
 import './App.css';
 import Article from './components/Articles';
@@ -7,6 +8,7 @@ import Login from './components/Login';
 import SignIn from './components/SignIn';
 import { DarkModeContext } from './context/darkModeContext';
 import './Style/dark.css'
+import Profile from './components/Profile';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -24,10 +26,11 @@ function App() {
         {view === 'Home' && <Home switchView={switchView} />}
         {view === 'Articles' && <Article switchView={switchView} />}
         {view === 'Users' && <Users switchView={switchView} />}
+        {view === 'Profile' && <Profile switchView={switchView} />}
+
       </div>
     </div>
   );
 }
 
 export default App;
-
