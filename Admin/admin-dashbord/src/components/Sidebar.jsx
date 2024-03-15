@@ -28,7 +28,8 @@ const Sidebar = ({switchView}) => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
+      
+          <li onClick={() => switchView('Home')}>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
@@ -79,7 +80,7 @@ const Sidebar = ({switchView}) => {
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
           </li>
-          <p className="title">USER</p>
+          <p className="title">Admin</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
