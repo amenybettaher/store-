@@ -61,7 +61,7 @@ const Articles = ({switchView}) => {
   };
 
   return (
-    <div>
+    <div className='articles'>
       <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>

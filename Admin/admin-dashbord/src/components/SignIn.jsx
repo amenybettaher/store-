@@ -48,11 +48,12 @@ const SignIn = ({ switchView, setUser }) => {
   
 
   return (
-    <div>
-      <form onSubmit={handleSignIn}>
+    <div className='log'>
+      <form className='big-div' onSubmit={handleSignIn}>
         <label>
           Username:
           <input
+           className='lgoin-username-input'
             type="text"
             name="username"
             value={userData.username}
@@ -63,6 +64,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Date of Birth:
           <input
+           className='lgoin-birth-input'
             type="text"
             name="birth"
             value={userData.birth}
@@ -73,6 +75,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Email:
           <input
+           className='lgoin-email-input'
             type="text"
             name="email"
             value={userData.email}
@@ -83,6 +86,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Password:
           <input
+           className='lgoin-pass-input'
             type="password"
             name="password"
             value={userData.password}
@@ -90,7 +94,7 @@ const SignIn = ({ switchView, setUser }) => {
           />
           {errors.password && <span>{errors.password}</span>}
         </label>
-        <button type="submit">Sign In</button>
+        <button type="submit"  className='login-button'>Sign In</button>
         <button className='change-view-signin' onClick={() => switchView('Login')}>Have An Account? Log In</button>
       </form>
     </div>
