@@ -26,6 +26,7 @@ const Carte = () => {
     }
   };
 
+
   const handleButtonPress = () => {
     fetchData();
   };
@@ -55,12 +56,15 @@ const Carte = () => {
             style={styles.backgroundImage}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Card Number: {cardData.number}</Text>
+            <Text style={styles.text}>N°: {cardData.number}</Text>
           </View>
         </View>
       </Card>
       <View style={styles.pointsContainer}>
         <Text style={styles.pointsText}>Points: {cardData.points}</Text>
+      </View>
+      <View style={styles.cdContainer}>
+        <Text style={styles.codes}> {cardData.code}</Text>
       </View>
     </View>
   );
@@ -71,13 +75,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width:500
+    width:500,
+    backgroundColor: '#ffff',
+
   },
   cardContainer: {
     backgroundColor: '#ffff',
     borderRadius: 10,
     margin: 10,
-    top: -40,
+    top: 25,
     elevation: 100,
     marginLeft:-129
   },
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: 'absolute',
-    top: 20,
+    top: 17,
     left: 20,
   },
   text: {
@@ -144,18 +150,26 @@ const styles = StyleSheet.create({
   pointsContainer: {
     position: 'absolute',
     bottom: 20,
-    right: 270,
-    top: 590,
+    right: 387,
+    top: 525,
     height: 60
   },
   pointsText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#fff',  // Set font color to white
-    backgroundColor: '#7D0C43',  // Set background color to purple
-    padding: 10,  // Add padding to the text
-    borderRadius: 5,  // Add border radius for rounded corners
+    fontSize: 13,
+    color: '#ccc',  
+    padding: 10,  
+    borderRadius: 5,  
   },
+  cdContainer: {
+    right: -23,
+    top: -88,
+    height: 60},
+
+    codes:{
+    fontSize: 13,
+    color: 'black',  // Set font color to white
+
+  }
 });
 
 export default Carte;
