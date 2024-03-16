@@ -5,10 +5,11 @@ import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../css/Article.css'; // Import the CSS file
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import AddArticleModal from './AddArticleModal'
+import AddArticleModal from './AddArticleModal';
 
-const Articles = ({switchView}) => {
+const Articles = ({ switchView }) => {
   const [articles, setArticles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchArticles();
@@ -23,7 +24,6 @@ const Articles = ({switchView}) => {
     }
   };
 
-  
   const addArticle = async (formData) => {
     try {
       await axios.post('http://localhost:8000/article/post', formData);
@@ -60,12 +60,24 @@ const Articles = ({switchView}) => {
     }
   };
 
+ 
+  const filteredArticles = articles.filter(article =>
+    article.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
       <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
       <AddArticleModal addArticle={addArticle} />
+      <input
+  type="search"
+  placeholder="Search by name..."
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  className="search-input" // Apply a specific class for the search input
+/>
       <table>
         <thead>
           <tr>
@@ -80,7 +92,7 @@ const Articles = ({switchView}) => {
           </tr>
         </thead>
         <tbody>
-          {articles.map(article => (
+          {filteredArticles.map(article => (
             <tr key={article.id}>
               <td><input type="text" defaultValue={article.code} onChange={e => article.code = e.target.value} /></td>
               <td><img src={article.image} alt={article.name} /></td>

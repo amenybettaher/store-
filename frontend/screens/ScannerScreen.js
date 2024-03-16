@@ -6,7 +6,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const backendUrl = 'http://192.168.211.1:8000';
+const backendUrl = 'http://192.168.1.19:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -82,77 +82,120 @@ export default function ScannerScreen() {
 
   return (
     <View style={styles.container}>
-      {scanning && (
-        <BarCodeScanner
-          onBarCodeScanned={handleBarCodeScanned}
-          style={StyleSheet.absoluteFillObject}
-          flashMode="torch"
+  {scanning && (
+    <BarCodeScanner
+      onBarCodeScanned={handleBarCodeScanned}
+      style={StyleSheet.absoluteFillObject}
+      flashMode="torch"
+    />
+  )}
+  {barcodeData && (
+    <View style={styles.container}>
+      <Card containerStyle={styles.cardStyle}>
+        <Card.Title style={styles.title}>Product Details</Card.Title>
+        <Card.Divider />
+        {productDetails && (
+          <>
+            <Image
+              style={{ width: '100%', height: 100 }}
+              resizeMode="contain"
+              source={{ uri: productDetails.image }}
+            />
+            <Text style={styles.productDetailText}>Product Name: {productDetails.name}</Text>
+            <Text style={styles.productDetailText}>Price: {productDetails.price}</Text>
+            <View style={styles.quantityContainer}>
+              <Text style={styles.productDetailText}>Select Quantity: </Text>
+              <Picker
+                selectedValue={selectedQuantity}
+                style={styles.pickerStyle}
+                onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
+                {Array.from({ length: 100 }, (_, i) => i + 1).map(quantity => (
+                  <Picker.Item key={quantity} label={`${quantity}`} value={quantity} />
+                ))}
+              </Picker>
+            </View>
+            <Button title="Add to Wallet" onPress={addToWallet} color="#34c759" />
+          </>
+        )}
+        <Button
+          title="Scan other product"
+          onPress={startScanning}
+          color="#48a1ff"
+          style={styles.scanAgainButton}
         />
-      )}
-      {barcodeData && (
-        <View style={styles.container}>
-          <Card>
-            <Card.Title>Product Details</Card.Title>
-            <Card.Divider />
-            {productDetails && (
-              <>
-                <Image
-                  style={{ width: '100%', height: 100 }}
-                  resizeMode="contain"
-                  source={{ uri: productDetails.image }}
-                />
-                <Text>Product Name: {productDetails.name}</Text>
-                <Text>Barcode: {productDetails.barcode}</Text>
-                <Text>Price: {productDetails.price}</Text>
-                <View style={styles.quantityContainer}>
-                  <Text>Select Quantity: </Text>
-                  <Picker
-                    selectedValue={selectedQuantity}
-                    onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
-                    {Array.from({ length: 100 }, (_, i) => i + 1).map(quantity => (
-                      <Picker.Item key={quantity} label={`${quantity}`} value={quantity} />
-                    ))}
-                  </Picker>
-                </View>
-                <Button title="Add to Wallet" onPress={addToWallet} />
-              </>
-            )}
-            <Button title="Scan other product" onPress={startScanning} />
-          </Card>
-        </View>
-      )}
+      </Card>
     </View>
+  )}
+</View>
+
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#fafafa',
+    justifyContent: 'center', // Align children vertically in the center
+    alignItems: 'center',
+     
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
+    color: '#383838', // Dark text for better readability
   },
   scannerContainer: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'flex-end',
   },
   scanAgainButton: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 40, // Increased space from the bottom
     alignSelf: 'center',
+    backgroundColor: '#48a1ff', // A pleasant blue color for the button
+    borderRadius: 20,
+    padding: 15,
+    marginHorizontal: 20, // Side margins for better spacing
+    elevation: 3, // Subtle shadow for a floating button effect
   },
   torchButton: {
     position: 'absolute',
     top: 20,
     right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: '#48a1ff', // Matching button color
+    borderRadius: 20,
     padding: 10,
-    backgroundColor: '#eee',
+    elevation: 3, // Consistent shadow effect
+  },
+  cardStyle: {
+    width: '100%',
+     // Set a width for the card
+    borderRadius: 15,
+    borderRadius: 15, // Rounded corners for the card
+    margin: 20, // Margin around the card
+    padding: 20, // Padding inside the card
+    elevation: 5, // Shadow effect for depth
+  },
+  productDetailText: {
+    fontWeight: 'bold', // Bold text for product details
+    marginVertical: 5, // Vertical margin for spacing
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 10, // Vertical space around the quantity picker
+  },
+  pickerStyle: {
+    width: 100, // Fixed width for the picker
+    borderRadius: 20, // Rounded corners for the picker
+  },
+  addButton: {
+    backgroundColor: '#34c759', // A green color for the add button
+    borderRadius: 20,
+    padding: 15,
+    marginTop: 20, // Top margin for spacing from the last element
+    elevation: 3, // Shadow effect
   },
 });
