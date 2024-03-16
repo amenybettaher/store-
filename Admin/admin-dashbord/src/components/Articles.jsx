@@ -5,9 +5,11 @@ import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../css/Article.css'; // Import the CSS file
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import AddArticleModal from './AddArticleModal';
 
-const Articles = ({switchView}) => {
+const Articles = ({ switchView }) => {
   const [articles, setArticles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetchArticles();
@@ -19,6 +21,15 @@ const Articles = ({switchView}) => {
       setArticles(response.data);
     } catch (error) {
       console.error('Error fetching articles:', error);
+    }
+  };
+
+  const addArticle = async (formData) => {
+    try {
+      await axios.post('http://localhost:8000/article/post', formData);
+      fetchArticles(); // Refresh the articles after adding
+    } catch (error) {
+      console.error('Error adding article:', error);
     }
   };
 
@@ -49,13 +60,24 @@ const Articles = ({switchView}) => {
     }
   };
 
+  const filteredArticles = articles.filter(article =>
+    article.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div>
-      
-         <Navbar />
+    <div className="articles-container">
+      <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
-      <table>
+      <AddArticleModal addArticle={addArticle} />
+      <input
+        type="search"
+        placeholder="Search by name..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-input"
+      />
+      <table className="article-table">
         <thead>
           <tr>
             <th>Code</th>
@@ -69,21 +91,20 @@ const Articles = ({switchView}) => {
           </tr>
         </thead>
         <tbody>
-          {articles.map(article => (
+          {filteredArticles.map(article => (
             <tr key={article.id}>
-              <td>{article.code}</td>
-              <td><img src={article.image} alt={article.name} /></td>
-              <td><input type="text" defaultValue={article.name} onChange={e => article.name = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.description} onChange={e => article.description = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.price} onChange={e => article.price = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.product_Num} onChange={e => article.product_Num = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.category} onChange={e => article.category = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.code} className="article-code" onChange={e => article.code = e.target.value} /></td>
+              <td><img src={article.image} alt={article.name} className="article-image" /></td>
+              <td><input type="text" defaultValue={article.name} className="article-name" onChange={e => article.name = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.description} className="article-description" onChange={e => article.description = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.price} className="article-price" onChange={e => article.price = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.product_Num} className="article-product-num" onChange={e => article.product_Num = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.category} className="article-category" onChange={e => article.category = e.target.value} /></td>
               <td>
                 <div className='hiba'>
-              <FontAwesomeIcon class="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
-                <FontAwesomeIcon class="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
+                  <FontAwesomeIcon className="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
+                  <FontAwesomeIcon className="icon-delete" icon={faTrash} onClick={() => handleDelete(article.id)} />
                 </div>
-
               </td>
             </tr>
           ))}

@@ -1,4 +1,5 @@
-const connection = require('../database/index');
+
+const connection = require('../database/index.js'); 
 
 module.exports = {
   getAll: (callback) => {
@@ -21,4 +22,25 @@ module.exports = {
       callback(error, results);
     });
   },
-};
+
+  add: (carteData, callback) => {
+    const sql = 'INSERT INTO `carte` SET ?';
+    connection.query(sql, carteData, (error, results) => {
+      callback(error, results);
+    });
+  },
+
+    updateById: (id, newData, callback) => {
+      const sql = 'UPDATE `carte` SET ? WHERE `id`=?';
+      connection.query(sql, [newData, id], (error, results) => {
+        callback(error, results);
+      });
+    },
+  
+    deleteById: (id, callback) => {
+      const sql = 'DELETE FROM `carte` WHERE `id`=?';
+      connection.query(sql, [id], (error, results) => {
+        callback(error, results);
+      });
+    }
+  };
