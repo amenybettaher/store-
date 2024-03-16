@@ -1,8 +1,11 @@
 import React from 'react';
-// import '../css/profile.css';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
-const Profile = ({ user }) => {
-  console.log('user:', user);
+
+
+const Profile = ({ user ,switchView}) => {
+  console.log('User prop received in Profile:', user);
 
   if (!user) {
     return <div>Loading...</div>;
@@ -10,6 +13,8 @@ const Profile = ({ user }) => {
 
   return (
     <div className="profile-container">
+         <Navbar />
+      <Sidebar switchView={switchView} />
       <h2>User Profile</h2>
       <div className="profile-details">
         <div className="profile-info">

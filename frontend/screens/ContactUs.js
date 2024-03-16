@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet,Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import * as MailComposer from 'expo-mail-composer';
-=======
 import * as MailComposer from 'expo-mail-composer'; 
 import { useNavigation } from '@react-navigation/native';
->>>>>>> 2109e37db3cf6f2ff7297f2d50befefce5744073
 
 const ContactUs = () => {
   const [fullname, setFullname] = useState('');

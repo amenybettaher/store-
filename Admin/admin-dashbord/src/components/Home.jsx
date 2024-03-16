@@ -3,14 +3,13 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import CustomCard from './Cards';
+
 
 const Home = ({switchView}) => {
   return (
     <div>
       
       <Navbar />
-      <CustomCard/>
       <Sidebar switchView={switchView}/>
     </div>
   );
