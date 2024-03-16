@@ -30,12 +30,12 @@ const SignIn = ({ switchView, setUser }) => {
         },
       });
   
-      console.log('Response from backend:', response); // Log the entire response object
+      console.log('Response from backend:', response);
   
       if (response.status === 200 && response.data.token) {
         localStorage.setItem('token', response.data.token);
-        console.log('User data from backend:', response.data.user); // Log the user data from the response
-        setUser(response.data.user); // Set the user data in the frontend state
+        // Make sure to access the correct user data from the response
+        setUser(response.data); 
         switchView('Home');
       } else {
         console.error('Error during Sign In:', response.data.message);
@@ -44,6 +44,7 @@ const SignIn = ({ switchView, setUser }) => {
       console.error('Error during Sign In:', error);
     }
   };
+  
   
 
   return (

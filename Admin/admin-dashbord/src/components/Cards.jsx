@@ -10,19 +10,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import '../css/CustomCard.css'; // Import the CSS file
 
-const cardContainerStyle = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-};
-
-const cardStyle = {
-  width: '23%', // Adjust as needed based on your design and spacing requirements
-  marginBottom: '20px',
-};
-
-export default function CustomCard({ name }) {
+export default function CustomCard({ name, switchView }) {
   const [cards, setCards] = React.useState([]);
   const [newCardPoints, setNewCardPoints] = React.useState('');
   const [newCardCode, setNewCardCode] = React.useState('');
@@ -107,8 +99,10 @@ export default function CustomCard({ name }) {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div >
+      <Navbar />
+      <Sidebar switchView={switchView} />
+      <div className='input'>
         <TextField
           label="Points"
           value={newCardPoints}
@@ -126,9 +120,9 @@ export default function CustomCard({ name }) {
         />
         <Button onClick={addNewCard}>Add new card</Button>
       </div>
-      <div style={cardContainerStyle}>
+      <div className="card-container">
         {cards.map((card) => (
-          <div key={card.id} style={cardStyle}>
+          <div key={card.id} className="card">
             <Card key={card.id}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -138,7 +132,7 @@ export default function CustomCard({ name }) {
                   Points: {card.points}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  ▌│█║▌║▌║▌│█║▌║▌║<br/>Code: {card.code}
+                  ▌│█║▌║▌║▌│█║▌║▌║<br />Code: {card.code}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Number: {card.number}
