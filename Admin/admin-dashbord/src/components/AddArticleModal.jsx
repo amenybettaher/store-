@@ -34,7 +34,7 @@ const AddArticleModal = ({ addArticle }) => {
   };
 
   return (
-    <div>
+    <div className='PUP_UP'>
       <button className="add-button" onClick={toggleModal}>
         <FontAwesomeIcon icon={faPlus} />
         Add Article
