@@ -60,25 +60,24 @@ const Articles = ({ switchView }) => {
     }
   };
 
- 
   const filteredArticles = articles.filter(article =>
     article.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div>
+    <div className="articles-container">
       <Navbar />
       <Sidebar switchView={switchView} />
       <h1>Articles</h1>
       <AddArticleModal addArticle={addArticle} />
       <input
-  type="search"
-  placeholder="Search by name..."
-  value={searchQuery}
-  onChange={(e) => setSearchQuery(e.target.value)}
-  className="search-input" // Apply a specific class for the search input
-/>
-      <table>
+        type="search"
+        placeholder="Search by name..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-input"
+      />
+      <table className="article-table">
         <thead>
           <tr>
             <th>Code</th>
@@ -94,13 +93,13 @@ const Articles = ({ switchView }) => {
         <tbody>
           {filteredArticles.map(article => (
             <tr key={article.id}>
-              <td><input type="text" defaultValue={article.code} onChange={e => article.code = e.target.value} /></td>
-              <td><img src={article.image} alt={article.name} /></td>
-              <td><input type="text" defaultValue={article.name} onChange={e => article.name = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.description} onChange={e => article.description = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.price} onChange={e => article.price = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.product_Num} onChange={e => article.product_Num = e.target.value} /></td>
-              <td><input type="text" defaultValue={article.category} onChange={e => article.category = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.code} className="article-code" onChange={e => article.code = e.target.value} /></td>
+              <td><img src={article.image} alt={article.name} className="article-image" /></td>
+              <td><input type="text" defaultValue={article.name} className="article-name" onChange={e => article.name = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.description} className="article-description" onChange={e => article.description = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.price} className="article-price" onChange={e => article.price = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.product_Num} className="article-product-num" onChange={e => article.product_Num = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.category} className="article-category" onChange={e => article.category = e.target.value} /></td>
               <td>
                 <div className='hiba'>
                   <FontAwesomeIcon className="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
