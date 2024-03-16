@@ -17,7 +17,8 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-import AboutUs from '../screens/AboutUs.js';import Wallet from '../screens/Wallet.js';
+import AboutUs from '../screens/AboutUs.js';
+import Wallet from '../screens/Wallet.js';
 import Carte from '../screens/Carte.js';
 
 
