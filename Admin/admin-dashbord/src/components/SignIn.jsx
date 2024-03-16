@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import validation from '../components/SignInValidation';
+import '../css/Signin.css'
 
 const SignIn = ({ switchView, setUser }) => {
   const [errors, setErrors] = useState({});
@@ -48,11 +49,12 @@ const SignIn = ({ switchView, setUser }) => {
   
 
   return (
-    <div>
-      <form onSubmit={handleSignIn}>
+    <div className='sig'>
+      <form className='big-div' onSubmit={handleSignIn}>
         <label>
           Username:
           <input
+           className='sig-username-input'
             type="text"
             name="username"
             value={userData.username}
@@ -63,6 +65,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Date of Birth:
           <input
+           className='sig-birth-input'
             type="text"
             name="birth"
             value={userData.birth}
@@ -73,6 +76,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Email:
           <input
+           className='sig-email-input'
             type="text"
             name="email"
             value={userData.email}
@@ -83,6 +87,7 @@ const SignIn = ({ switchView, setUser }) => {
         <label>
           Password:
           <input
+           className='sig-pass-input'
             type="password"
             name="password"
             value={userData.password}
@@ -90,7 +95,7 @@ const SignIn = ({ switchView, setUser }) => {
           />
           {errors.password && <span>{errors.password}</span>}
         </label>
-        <button type="submit">Sign In</button>
+        <button type="submit"  className='sig-button'>Sign In</button>
         <button className='change-view-signin' onClick={() => switchView('Login')}>Have An Account? Log In</button>
       </form>
     </div>

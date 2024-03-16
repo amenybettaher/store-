@@ -1,72 +1,65 @@
-.sig{
-    margin-left: 10%;
-    background-color: #6e99b6;
-    width: 80%;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh; 
-    margin-top: 1%;
-}
-.signin-container {
-    background-color:transparent;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 9px;
-    padding: 193px;
-    width: 323px;
-    margin: 0;
-    position: relative;
-    left: 31%;
-    margin-left: 10%;
-     margin-top: 0%;
-}
+  .sig {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    }
+    
+    .big-div {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8.5px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #ecf0f1;
-    /* Light text color */
-    margin-bottom: 5px;
-}
-
-input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    border: 1px solid #3498db;
-    /* Border color */
-    border-radius: 5px;
-    /* Rounded corners for input fields */
-    background-color: #34495e;
-    /* Input background color */
-    color: #ecf0f1;
-    /* Input text color */
-}
-
-button {
-    width: 100%;
+    
+    .sig input {
+      width: 90%;
     padding: 10px;
-    box-sizing: border-box;
+    margin-top: 5px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: background-color 0.3s ease;
+    }
+    
+    .sig input:focus {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+    .sig .sig-button {
+      width: 50%;
+    padding: 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: #120c7d;
     cursor: pointer;
-}
+    transition: transform 0.2s ease;
+    margin-left: 25%;
+    }
+    
+    .sig .sig-button:hover {
+      transform: translateY(-3px);
+    }
+    
+    .sig .change-view-signin {
+      background: transparent;
+      color: white;
+      margin-top: 15px;
+      border: transparent !important;
+      margin-left: 35%;
+    }
+    
+    .sig label {
+      display: block;
+    margin-bottom: 20px;
+    color: white;
+    }
 
-.signin {
-    background-color: #54024d;
-    /* Button background color */
-    color: #ecf0f1;
-    /* Button text color */
-}
+    
+    
 
-.change-view-signin {
-    background-color: #0b0b0b;
-    color: #ecf0f1;
-    position: relative;
-    top: 8px;
-}
