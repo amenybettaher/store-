@@ -1,36 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, TextInput, Pressable, Alert, Image } from "react-native";
+import { StyleSheet, View, Text, TextInput, Pressable, Alert, Image,TouchableOpacity } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import {lanchCamera,lanchImageLibrary} from 'react-native-image-picker'
 
 const EditProfile = () => {
     const navigation = useNavigation();
-    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleStartPresss = () => {
         navigation.navigate('Profil');
     };
 
-    const handleChangePicture = async () => {
-        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (permissionResult.granted === false) {
-            Alert.alert("Permission to access camera roll is required!");
-            return;
-        }
-
-        const pickerResult = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        if (!pickerResult.cancelled) {
-            setSelectedImage({ uri: pickerResult.uri });
-        }
-    };
+  
 
     return (
         <View style={[styles.editProfile, styles.editLayout]}>
@@ -49,17 +32,12 @@ const EditProfile = () => {
                 </Pressable>
                 <View style={[styles.profileEditChild2, styles.profileChildLayout]} />
                 <Text style={[styles.update, styles.updateTypo]}>Update</Text>
-                <Pressable onPress={handleChangePicture}>
+                <TouchableOpacity >
                     <Text style={[styles.changePicture, styles.yourTypo]}>
                         Change Picture
                     </Text>
-                </Pressable>
-                {selectedImage && (
-                    <Image
-                        source={{ uri: selectedImage.uri }}
-                        style={styles.profileImage}
-                    />
-                )}
+                    </TouchableOpacity>
+               
                 <TextInput
                     style={styles.name}
                     placeholder="Your Name"

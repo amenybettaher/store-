@@ -1,20 +1,21 @@
 import * as React from "react";
-import { StyleSheet, View, Text,Pressable} from "react-native";
-import { Image } from "expo-image";
+import { StyleSheet, View, Text,Pressable,TouchableOpacity} from "react-native";
+import { Image } from "react-native";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIconss } from '@expo/vector-icons';
 import ToggleSwitch from 'toggle-switch-react-native'
-import { useState } from 'react'; 
+import { useState,useEffect } from 'react'; 
 import { Ionicons } from '@expo/vector-icons';
 import { Ioniconss } from '@expo/vector-icons';
 import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import { useSelector } from 'react-redux';
-
+import { EvilIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker'
 const Profile = () => {
   const navigation = useNavigation(); 
   const user = useSelector((state) => state.user);
@@ -41,6 +42,29 @@ const Profile = () => {
     const toggleDarkMode = () => {
       setDarkMode(!darkMode);
     };
+    const [hasGalleryPermission,setHasGalleryPermission]=useState(null);
+    const [image,setImage]=useState(null);
+    useEffect(()=>{
+      (async()=>{
+        const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync()
+        setHasGalleryPermission(galleryStatus.status === 'granted');
+      })()
+    },[])
+    const pickImage = async () => {
+      let result = await ImagePicker .launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      })
+      console.log(result)
+      if(!result.cancelled){
+        setImage(result.uri)
+      }
+    }
+    if(hasGalleryPermission === false){
+      return <Text> No access to internal storage</Text>
+    }
   return (
 <View style={[styles.profil, darkMode ? styles.darkBackground : null]}>
       <View style={[styles.setting, styles.settingPosition]}>
@@ -48,11 +72,11 @@ const Profile = () => {
         <View style={[styles.settingItem, styles.settingLayout]} />
         <View style={[styles.settingInner, styles.settingLayout, darkMode ? { color: "red" } : null]} />
         <View style={[styles.rectangleView, styles.settingLayout]} />
-        <Image
+        {/* <Image
           style={styles.unsplashjmurdhtm7ngIcon}
-          contentFit="cover"
-          source={require("../assets/profilo.png")}
-        />
+          // source={require("../assets/profilo.png")}
+        /> */}
+        {image && <Image source={{uri:image}} style={styles.unsplashjmurdhtm7ngIcon}/>}
      <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
@@ -118,6 +142,7 @@ const Profile = () => {
         {fr.editProfile}
         </Text>
         </Pressable>
+        
         <Ionicons name="language-sharp" size={24} color="black" style={[styles.translateIcon, styles.iconPosition, darkMode ? { color: "white" } : null]}/>
         <MaterialCommunityIcons name="theme-light-dark" size={24} color="black" style={[styles.umoonIcon, darkMode ? { color: "white" } : null]}/>
         <MaterialCommunityIcons name="message-text-outline" size={24} color="black"style={[styles.wifiIcon, styles.wifiIconPosition, darkMode ? { color: "white" } : null]} />
@@ -141,6 +166,11 @@ const Profile = () => {
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon33, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon44, darkMode ? { color: "white" } : null]}/>
       <AntDesign name="right" size={20} color="black" style={[styles.rightIcon55, darkMode ? { color: "white" } : null]}/>
+      <TouchableOpacity 
+      onPress={()=> pickImage()}
+      >
+      <EvilIcons name="pencil" size={24} color="black" style={[styles.pen, darkMode ? { color: "white" } : null]}/>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -151,6 +181,10 @@ const styles = StyleSheet.create({
     top: 0,
     position: "absolute",
     
+  },
+  pen:{
+    top: 250,
+    marginLeft:260,
   },
   
   toggle1: {
