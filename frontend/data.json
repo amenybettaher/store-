@@ -1,0 +1,262 @@
+INSERT INTO `market`.`article` (`code`,`image`, `name`, `description`, `price`, `product_Num`, `category`)
+VALUES ("",'https://courses.monoprix.tn/lac/127054-large_default/chamia.jpg', 'Chamia', 'La barquette de 350 gr LE MOULIN', '5 .990 dt', '20', 'alimentaire'),
+       ("",'https://mg.tn/3-large_default/sauce-pizza.jpg', 'Sauce pizza', 'Le lot de 3*1/2 SICAM', '5.820 dt', '50', 'alimentaire'),
+       ("",'https://courses.monoprix.tn/lac/163464-large_default/boisson-au-jus.jpg', 'Boisson au jus', '1L Multi-fruit', '3.350 DT ', '60', 'boissons'),
+       ("",'https://courses.monoprix.tn/lac/130981-large_default/boisson-gazeuse.jpg', 'Boga', 'Boisson gazeuse 30cl', '1.120 dt ', '70', 'boissons'),
+       ("",'https://courses.monoprix.tn/sfaxAin/129082-large_default/boisson-gazeuse.jpg', 'PUNCH', 'cidre Boisson gazeuse ', '2.430 DT ', '90', 'boissons'),
+       ("",'https://courses.monoprix.tn/lac/128811-large_default/p%C3%A2te-mini-escargot.jpg', 'EL Warda', 'Mini Pâte d'Escargot 500GR', '0.410 DT ', '80', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/lac/130951-large_default/p%C3%A2te-spaghetti.jpg', ' SPIGA ', 'Spaghetti 500GR N°2', '0.410 DT ', '80', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/lac/154592-large_default/p%C3%A2te-plume.jpg', 'SPIGA Plume', ' 500GR N°1', '0.420 DT ', '150', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/ennasr/154611-large_default/p%C3%A2te-tagli.jpg', 'Pâte à tagliatelles', 'LEPIDOR 250GR N°2', '1.320 DT', '150', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/ennasr/131773-large_default/p%C3%A2te-nouasser-traditionnelle.jpg', 'Pâte à nouasser traditionnelle', 'DIARI 500GR', '1.790 DT ', '200', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/lac/128835-large_default/p%C3%A2te-penne-int%C3%A9gral.jpg', 'Rose Blanche', ' Pâtes penne entières  500GR', '1.650 DT', '250', 'Pâtes'),
+       ("",'https://courses.monoprix.tn/lac/164152-large_default/poudre-mains.jpg', 'CLEAN', 'Poudre mains 300g floral', '1.750 DT', '175', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/lac/130889-large_default/poudre-machine.jpg', 'LILAS', 'Poudre machine 5KG/1.25KG gratuit', '40.990 DT', '200', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/lac/158653-large_default/tampons-%C3%A0-r%C3%A9curer.jpg', 'Tampons à récurer', '10 pièces', '2.450 DT', '200', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/lac/135566-large_default/liquide-vaisselles-mains.jpg', 'JUDY', 'Liquide vaisselle mains 325ML', '3.150 DT ', '200', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/zayatine/154846-large_default/liquide-vaisselle-mains.jpg', 'LILAS', 'Liquide vaisselle mains 600 ML', '4.590 DT', '300', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/lac/127665-large_default/papier-hygi%C3%A9nique.jpg', 'KOTIS', 'Papier hygiénique 4 rouleaux', '4.290 DT', '160', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/ennasr/131126-large_default/papier-hygienique.jpg', 'TOUS LES JOURS', 'Papier hygiénique 12 rouleaux', '7.490 DT', '160', 'produits-ménagers'),
+       ("",'https://courses.monoprix.tn/lac/133269-large_default/distributeur-de-mouchoirs.jpg', 'LOTUS', 'Distributeur de mouchoirs 80 pièces', '4.350 DT', '200', 'produits-ménagers');
+
+
+
+
+       [
+        {
+          "id": 5,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/127054-large_default/chamia.jpg",
+          "name": "Chamia",
+          "description": "La barquette de 350 gr LE MOULIN",
+          "price": "5.990 dt",
+          "product_Num": "20",
+          "category": "alimentaire"
+        },
+        {
+          "id": 6,
+          "code": "",
+          "image": "https://mg.tn/3-large_default/sauce-pizza.jpg",
+          "name": "Sauce pizza",
+          "description": "Le lot de 3*1/2 SICAM",
+          "price": "5.820 dt",
+          "product_Num": "50",
+          "category": "alimentaire"
+        },
+        {
+          "id": 7,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/163464-large_default/boisson-au-jus.jpg",
+          "name": "Boisson au jus",
+          "description": "1L Multi-fruit",
+          "price": "3.350 DT ",
+          "product_Num": "60",
+          "category": "boissons"
+        },
+        {
+          "id": 8,
+          "code": "5449000226686",
+          "image": "https://courses.monoprix.tn/lac/130981-large_default/boisson-gazeuse.jpg",
+          "name": "Boga",
+          "description": "Boisson gazeuse 30cl",
+          "price": "1.120 dt ",
+          "product_Num": "70",
+          "category": "boissons"
+        },
+        {
+          "id": 9,
+          "code": "",
+          "image": "https://courses.monoprix.tn/sfaxAin/129082-large_default/boisson-gazeuse.jpg",
+          "name": "PUNCH",
+          "description": "cidre Boisson gazeuse ",
+          "price": "2.430 DT ",
+          "product_Num": "90",
+          "category": "boissons"
+        },
+        {
+          "id": 10,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/128811-large_default/p%C3%A2te-mini-escargot.jpg",
+          "name": "EL Warda",
+          "description": "Mini Pâte d'Escargot 500GR",
+          "price": "0.410 DT ",
+          "product_Num": "80",
+          "category": "Pâtes"
+        },
+        {
+          "id": 11,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/130951-large_default/p%C3%A2te-spaghetti.jpg",
+          "name": " SPIGA ",
+          "description": "Spaghetti 500GR N°2",
+          "price": "0.410 DT ",
+          "product_Num": "80",
+          "category": "Pâtes"
+        },
+        {
+          "id": 12,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/154592-large_default/p%C3%A2te-plume.jpg",
+          "name": "SPIGA Plume",
+          "description": " 500GR N°1",
+          "price": "0.420 DT ",
+          "product_Num": "150",
+          "category": "Pâtes"
+        },
+        {
+          "id": 13,
+          "code": "",
+          "image": "https://courses.monoprix.tn/ennasr/154611-large_default/p%C3%A2te-tagli.jpg",
+          "name": "Pâte à tagliatelles",
+          "description": "LEPIDOR 250GR N°2",
+          "price": "1.320 DT",
+          "product_Num": "150",
+          "category": "Pâtes"
+        },
+        {
+          "id": 14,
+          "code": "",
+          "image": "https://courses.monoprix.tn/ennasr/131773-large_default/p%C3%A2te-nouasser-traditionnelle.jpg",
+          "name": "Pâte à nouasser traditionnelle",
+          "description": "DIARI 500GR",
+          "price": "1.790 DT ",
+          "product_Num": "200",
+          "category": "Pâtes"
+        },
+        {
+          "id": 15,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/128835-large_default/p%C3%A2te-penne-int%C3%A9gral.jpg",
+          "name": "Rose Blanche",
+          "description": " Pâtes penne entières  500GR",
+          "price": "1.650 DT",
+          "product_Num": "250",
+          "category": "Pâtes"
+        },
+        {
+          "id": 16,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/164152-large_default/poudre-mains.jpg",
+          "name": "CLEAN",
+          "description": "Poudre mains 300g floral",
+          "price": "1.750 DT",
+          "product_Num": "175",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 17,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/130889-large_default/poudre-machine.jpg",
+          "name": "LILAS",
+          "description": "Poudre machine 5KG/1.25KG gratuit",
+          "price": "40.990 DT",
+          "product_Num": "200",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 18,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/158653-large_default/tampons-%C3%A0-r%C3%A9curer.jpg",
+          "name": "Tampons à récurer",
+          "description": "10 pièces",
+          "price": "2.450 DT",
+          "product_Num": "200",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 19,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/135566-large_default/liquide-vaisselles-mains.jpg",
+          "name": "JUDY",
+          "description": "Liquide vaisselle mains 325ML",
+          "price": "3.150 DT ",
+          "product_Num": "200",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 20,
+          "code": "",
+          "image": "https://courses.monoprix.tn/zayatine/154846-large_default/liquide-vaisselle-mains.jpg",
+          "name": "LILAS",
+          "description": "Liquide vaisselle mains 600 ML",
+          "price": "4.590 DT",
+          "product_Num": "300",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 21,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/127665-large_default/papier-hygi%C3%A9nique.jpg",
+          "name": "KOTIS",
+          "description": "Papier hygiénique 4 rouleaux",
+          "price": "4.290 DT",
+          "product_Num": "160",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 22,
+          "code": "",
+          "image": "https://courses.monoprix.tn/ennasr/131126-large_default/papier-hygienique.jpg",
+          "name": "TOUS LES JOURS",
+          "description": "Papier hygiénique 12 rouleaux",
+          "price": "7.490 DT",
+          "product_Num": "160",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 23,
+          "code": "",
+          "image": "https://courses.monoprix.tn/lac/133269-large_default/distributeur-de-mouchoirs.jpg",
+          "name": "LOTUS",
+          "description": "Distributeur de mouchoirs 80 pièces",
+          "price": "4.350 DT",
+          "product_Num": "200",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 24,
+          "code": "9109022154256",
+          "image": "https://courses.monoprix.tn/carthage/152483-large_default/mouchoir-blanc.jpg",
+          "name": "Mouchoirs",
+          "description": "TOUS LES JOURS 10x10 Pièces",
+          "price": "2.990 DT",
+          "product_Num": "200",
+          "category": "produits-ménagers"
+        },
+        {
+          "id": 25,
+          "code": "6191577600022",
+          "image": "https://media.carrefour.tn/catalog/product/cache/d626db0d4cde345f13ec29f764880d1d/6/1/6191496000019-1_1.jpg",
+          "name": "DÉLICE",
+          "description": "Eau minérale DÉLICE 0.5L",
+          "price": "0.420 DT",
+          "product_Num": "200",
+          "category": "boissons"
+        }
+      ]
+
+
+
+      INSERT INTO `market`.`article` (`id`, `code`, `image`, `name`, `description`, `price`, `product_Num`, `category`) 
+VALUES 
+(5, '', 'https://courses.monoprix.tn/lac/127054-large_default/chamia.jpg', 'Chamia', 'La barquette de 350 gr LE MOULIN', 5.990, 20, 'alimentaire'),
+(6, '', 'https://mg.tn/3-large_default/sauce-pizza.jpg', 'Sauce pizza', 'Le lot de 3*1/2 SICAM', 5.820, 50, 'alimentaire'),
+(7, '', 'https://courses.monoprix.tn/lac/163464-large_default/boisson-au-jus.jpg', 'Boisson au jus', '1L Multi-fruit', 3.350, 60, 'boissons'),
+(8, '5449000226686', 'https://courses.monoprix.tn/lac/130981-large_default/boisson-gazeuse.jpg', 'Boga', 'Boisson gazeuse 30cl', 1.120, 70, 'boissons'),
+(9, '', 'https://courses.monoprix.tn/sfaxAin/129082-large_default/boisson-gazeuse.jpg', 'PUNCH', 'cidre Boisson gazeuse', 2.430, 90, 'boissons'),
+(10, '', 'https://courses.monoprix.tn/lac/128811-large_default/p%C3%A2te-mini-escargot.jpg', 'EL Warda', 'Mini Pâte d\'Escargot 500GR', 0.410, 80, 'Pâtes'),
+(11, '', 'https://courses.monoprix.tn/lac/130951-large_default/p%C3%A2te-spaghetti.jpg', ' SPIGA ', 'Spaghetti 500GR N°2', 0.410, 80, 'Pâtes'),
+(12, '', 'https://courses.monoprix.tn/lac/154592-large_default/p%C3%A2te-plume.jpg', 'SPIGA Plume', ' 500GR N°1', 0.420, 150, 'Pâtes'),
+(13, '', 'https://courses.monoprix.tn/ennasr/154611-large_default/p%C3%A2te-tagli.jpg', 'Pâte à tagliatelles', 'LEPIDOR 250GR N°2', 1.320, 150, 'Pâtes'),
+(14, '', 'https://courses.monoprix.tn/ennasr/131773-large_default/p%C3%A2te-nouasser-traditionnelle.jpg', 'Pâte à nouasser traditionnelle', 'DIARI 500GR', 1.790, 200, 'Pâtes'),
+(15, '', 'https://courses.monoprix.tn/lac/128835-large_default/p%C3%A2te-penne-int%C3%A9gral.jpg', 'Rose Blanche', ' Pâtes penne entières 500GR', 1.650, 250, 'Pâtes'),
+(16, '', 'https://courses.monoprix.tn/lac/164152-large_default/poudre-mains.jpg', 'CLEAN', 'Poudre mains 300g floral', 1.750, 175, 'produits-ménagers'),
+(17, '', 'https://courses.monoprix.tn/lac/130889-large_default/poudre-machine.jpg', 'LILAS', 'Poudre machine 5KG/1.25KG gratuit', 40.990, 200, 'produits-ménagers'),
+(18, '', 'https://courses.monoprix.tn/lac/158653-large_default/tampons-%C3%A0-r%C3%A9curer.jpg', 'Tampons à récurer', '10 pièces', 2.450, 200, 'produits-ménagers'),
+(19, '', 'https://courses.monoprix.tn/lac/135566-large_default/liquide-vaisselles-mains.jpg', 'JUDY', 'Liquide vaisselle mains 325ML', 3.150, 200, 'produits-ménagers'),
+(20, '', 'https://courses.monoprix.tn/zayatine/154846-large_default/liquide-vaisselle-mains.jpg', 'LILAS', 'Liquide vaisselle mains 600 ML', 4.590, 300, 'produits-ménagers'),
+(21, '', 'https://courses.monoprix.tn/lac/127665-large_default/papier-hygi%C3%A9nique.jpg', 'KOTIS', 'Papier hygiénique 4 rouleaux', 4.290, 160, 'produits-ménagers'),
+(22, '', 'https://courses.monoprix.tn/ennasr/131126-large_default/papier-hygienique.jpg', 'TOUS LES JOURS', 'Papier hygiénique 12 rouleaux', 7.490, 160, 'produits-ménagers'),
+(23, '', 'https://courses.monoprix.tn/lac/133269-large_default/distributeur-de-mouchoirs.jpg', 'LOTUS', 'Distributeur de mouchoirs 80 pièces', 4.350, 200, 'produits-ménagers'),
+(24, '9109022154256', 'https://courses.monoprix.tn/carthage/152483-large_default/mouchoir-blanc.jpg', 'Mouchoirs', 'TOUS LES JOURS 10x10 Pièces', 2.990, 200, 'produits-ménagers'),
+(25, '6191577600022', 'https://media.carrefour.tn/catalog/product/cache/d626db0d4cde345f13ec29f764880d1d/6/1/6191496000019-1_1.jpg', 'DÉLICE', 'Eau minérale DÉLICE 0.5L', 0.420, 200, 'boissons');
