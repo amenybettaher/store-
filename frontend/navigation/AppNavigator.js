@@ -17,9 +17,9 @@ import Language from '../screens/Language.js';
 import EditProfile from '../screens/EditProfile.js';
 import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
-import AboutUs from '../screens/AboutUs.js';
-import Wallet from '../screens/Wallet.js';
+import AboutUs from '../screens/AboutUs.js';import Wallet from '../screens/Wallet.js';
 import Carte from '../screens/Carte.js';
+import ParentComponent from '../screens/fortuned';
 
 
 
@@ -28,6 +28,7 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
+<<<<<<< HEAD
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
 {/* <Stack.Screen name='welcome' component={Page} /> */}
       {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
@@ -35,6 +36,15 @@ function MainStack({ language }) {
       {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
       {/* <Stack.Screen name="SignUp" component={SignUp} />  */}
       {/* <Stack.Screen name="HomePage" component={Home} /> */}
+=======
+    <Stack.Navigator initialRouteName="fortuned" screenOptions={{ headerShown: false }}>
+<Stack.Screen name='welcome' component={Page} />
+      <Stack.Screen name='Onbording' component={Onbording} />
+      <Stack.Screen name='Onbording2' component={Onbording2} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="SignUp" component={SignUp} /> 
+      <Stack.Screen name="HomePage" component={Home} />
+>>>>>>> 70bb2e8d1929234d18fdffe885022865366a647b
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="AboutUs" component={AboutUs} />
@@ -47,6 +57,7 @@ function MainStack({ language }) {
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
+      <Stack.Screen name="fortuned" component={ParentComponent} />
     </Stack.Navigator>
   );
 }

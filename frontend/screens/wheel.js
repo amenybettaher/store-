@@ -1,179 +1,198 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text as RNText,
-  Dimensions,
-  Animated
-} from 'react-native';
-import { GestureHandler, Svg } from 'expo';
+import React, { Component } from 'react';
+import { View, StyleSheet, Dimensions, Animated, TouchableOpacity, Image } from 'react-native';
 import * as d3Shape from 'd3-shape';
-import color from 'randomcolor';
-import { snap } from '@popmotion/popcorn';
-import { View as ViewPropTypes } from 'deprecated-react-native-prop-types'; // Import ViewPropTypes
+import Svg, { G, Text, TSpan, Path } from 'react-native-svg';
 
-const { PanGestureHandler, State } = GestureHandler;
-const { Path, G, Text, TSpan } = Svg;
-const { width } = Dimensions.get('screen');
+const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
+const { width, height } = Dimensions.get('screen');
 
-
-
-const numberOfSegments = 12;
-const wheelSize = width * 0.95;
-const fontSize = 26;
-const oneTurn = 360;
-const angleBySegment = oneTurn / numberOfSegments;
-const angleOffset = angleBySegment / 2;
-const knobFill = color({ hue: 'purple' });
-
-const makeWheel = () => {
-  const data = Array.from({ length: numberOfSegments }).fill(1);
-  const arcs = d3Shape.pie()(data);
-  const colors = color({
-    luminosity: 'dark',
-    count: numberOfSegments
-  });
-
-  return arcs.map((arc, index) => {
-    const instance = d3Shape
-      .arc()
-      .padAngle(0.01)
-      .outerRadius(width / 2)
-      .innerRadius(20);
-
-    return {
-      path: instance(arc),
-      color: colors[index],
-      value: Math.round(Math.random() * 10 + 1) * 200, //[200, 2200]
-      centroid: instance.centroid(arc)
+class Wheel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      enabled: false,
+      started: false,
+      finished: false,
+      winner: null,
+      gameScreen: new Animated.Value(width - 40),
+      wheelOpacity: new Animated.Value(1),
+      imageLeft: new Animated.Value(width / 2 - 30),
+      imageTop: new Animated.Value(height / 2 - 70),
     };
-  });
-};
+    this.angle = 0;
 
-export default class App extends React.Component {
-  _wheelPaths = makeWheel();
-  _angle = new Animated.Value(0);
-  angle = 0;
+    this.prepareWheel();
+  }
 
-  state = {
-    enabled: true,
-    finished: false,
-    winner: null
+  prepareWheel = () => {
+    this.Rewards = this.props.options?.rewards || [];
+    this.RewardCount = this.Rewards.length;
+
+    this.numberOfSegments = this.RewardCount;
+    this.fontSize = 20;
+    this.oneTurn = 360;
+    this.angleBySegment = this.oneTurn / this.numberOfSegments;
+    this.angleOffset = this.angleBySegment / 2;
+    this.winner = this.props.options?.winner ?? Math.floor(Math.random() * this.numberOfSegments);
+
+    this._wheelPaths = this.makeWheel();
+    this._angle = new Animated.Value(0);
+
+    // Check if onRef exists before calling it
+    if (this.props.options?.onRef) {
+      this.props.options.onRef(this);
+    }
   };
 
-  componentDidMount() {
+  resetWheelState = () => {
+    this.setState({
+      enabled: false,
+      started: false,
+      finished: false,
+      winner: null,
+      gameScreen: new Animated.Value(width - 40),
+      wheelOpacity: new Animated.Value(1),
+      imageLeft: new Animated.Value(width / 2 - 30),
+      imageTop: new Animated.Value(height / 2 - 70),
+    });
+  };
+
+  _tryAgain = () => {
+    this.prepareWheel();
+    this.resetWheelState();
+    this.angleListener();
+    this._onPress();
+  };
+
+  angleListener = () => {
     this._angle.addListener(event => {
       if (this.state.enabled) {
         this.setState({
           enabled: false,
-          finished: false
+          finished: false,
         });
       }
 
       this.angle = event.value;
     });
+  };
+
+  componentWillUnmount() {
+    this.props.options.onRef(undefined);
   }
+
+  componentDidMount() {
+    this.angleListener();
+  }
+
+  makeWheel = () => {
+    const data = Array.from({ length: this.numberOfSegments }).fill(1);
+    const arcs = d3Shape.pie()(data);
+    var colors = this.props.options.colors
+      ? this.props.options.colors
+      : [
+        '#E07026',
+        '#E8C22E',
+        '#ABC937',
+        '#4F991D',
+        '#22AFD3',
+        '#5858D0',
+        '#7B48C8',
+        '#D843B9',
+        '#E23B80',
+        '#D82B2B',
+      ];
+    return arcs.map((arc, index) => {
+      const instance = d3Shape
+        .arc()
+        .padAngle(0.01)
+        .outerRadius(width / 2)
+        .innerRadius(this.props.options.innerRadius || 100);
+      return {
+        path: instance(arc),
+        color: colors[index % colors.length],
+        value: this.Rewards[index],
+        centroid: instance.centroid(arc),
+      };
+    });
+  };
 
   _getWinnerIndex = () => {
-    const deg = Math.abs(Math.round(this.angle % oneTurn));
+    const deg = Math.abs(Math.round(this.angle % this.oneTurn));
     // wheel turning counterclockwise
-    if(this.angle < 0) {
-      return Math.floor(deg / angleBySegment);
+    if (this.angle < 0) {
+      return Math.floor(deg / this.angleBySegment);
     }
     // wheel turning clockwise
-    return (numberOfSegments - Math.floor(deg / angleBySegment)) % numberOfSegments;
-};
+    return (
+      (this.numberOfSegments - Math.floor(deg / this.angleBySegment)) %
+      this.numberOfSegments
+    );
+  };
 
-  _onPan = ({ nativeEvent }) => {
-    if (nativeEvent.state === State.END) {
-      const { velocityY } = nativeEvent;
+  _onPress = () => {
+    const duration = this.props.options.duration || 10000;
 
-      Animated.decay(this._angle, {
-        velocity: velocityY / 1000,
-        deceleration: 0.999,
-        useNativeDriver: true
-      }).start(() => {
-        this._angle.setValue(this.angle % oneTurn);
-        const snapTo = snap(oneTurn / numberOfSegments);
-        Animated.timing(this._angle, {
-          toValue: snapTo(this.angle),
-          duration: 300,
-          useNativeDriver: true
-        }).start(() => {
-          const winnerIndex = this._getWinnerIndex();
-          this.setState({
-            enabled: true,
-            finished: true,
-            winner: this._wheelPaths[winnerIndex].value
-          });
-        });
-        // do something here;
+    this.setState({
+      started: true,
+    });
+    Animated.timing(this._angle, {
+      toValue:
+        365 -
+        this.winner * (this.oneTurn / this.numberOfSegments) +
+        360 * (duration / 1000),
+      duration: duration,
+      useNativeDriver: true,
+    }).start(() => {
+      const winnerIndex = this._getWinnerIndex();
+      this.setState({
+        finished: true,
+        winner: this._wheelPaths[winnerIndex].value,
       });
-    }
-  };
-  render() {
-    return (
-      <PanGestureHandler
-        onHandlerStateChange={this._onPan}
-        enabled={this.state.enabled}
-      >
-        <View style={styles.container}>
-          {this._renderSvgWheel()}
-          {this.state.finished && this.state.enabled && this._renderWinner()}
-        </View>
-      </PanGestureHandler>
-    );
-  }
-
-  _renderKnob = () => {
-    const knobSize = 30;
-    // [0, numberOfSegments]
-    const YOLO = Animated.modulo(
-      Animated.divide(
-        Animated.modulo(Animated.subtract(this._angle, angleOffset), oneTurn),
-        new Animated.Value(angleBySegment)
-      ),
-      1
-    );
-
-    return (
-      <Animated.View
-        style={{
-          width: knobSize,
-          height: knobSize * 2,
-          justifyContent: 'flex-end',
-          zIndex: 1,
-          transform: [
-            {
-              rotate: YOLO.interpolate({
-                inputRange: [-1, -0.5, -0.0001, 0.0001, 0.5, 1],
-                outputRange: ['0deg', '0deg', '35deg', '-35deg', '0deg', '0deg']
-              })
-            }
-          ]
-        }}
-      >
-        <Svg
-          width={knobSize}
-          height={(knobSize * 100) / 57}
-          viewBox={`0 0 57 100`}
-          style={{ transform: [{ translateY: 8 }] }}
-        >
-          <Path
-            d="M28.034,0C12.552,0,0,12.552,0,28.034S28.034,100,28.034,100s28.034-56.483,28.034-71.966S43.517,0,28.034,0z   M28.034,40.477c-6.871,0-12.442-5.572-12.442-12.442c0-6.872,5.571-12.442,12.442-12.442c6.872,0,12.442,5.57,12.442,12.442  C40.477,34.905,34.906,40.477,28.034,40.477z"
-            fill={knobFill}
-          />
-        </Svg>
-      </Animated.View>
-    );
+      if (this.props.getWinner) {
+        this.props.getWinner(this._wheelPaths[winnerIndex].value, winnerIndex);
+      } else {
+        this.props.options?.getWinner?.(
+          this._wheelPaths[winnerIndex].value,
+          winnerIndex
+        );
+      }
+    });
   };
 
-  _renderWinner = () => {
-    return (
-      <RNText style={styles.winnerText}>Winner is: {this.state.winner}</RNText>
-    );
-  };
+  _textRender = (x, y, number, i) => (
+    <Text
+      x={x - number.length * 5}
+      y={y - 80}
+      fill={
+        this.props.options.textColor ? this.props.options.textColor : '#fff'
+      }
+      textAnchor="middle"
+      fontSize={this.fontSize}>
+      {Array.from({ length: number.length }).map((_, j) => {
+        // Render reward text vertically
+        if (this.props.options.textAngle === 'vertical') {
+          return (
+            <TSpan x={x} dy={this.fontSize} key={`arc-${i}-slice-${j}`}>
+              {number.charAt(j)}
+            </TSpan>
+          );
+        }
+        // Render reward text horizontally
+        else {
+          return (
+            <TSpan
+              y={y - 40}
+              dx={this.fontSize * 0.07}
+              key={`arc-${i}-slice-${j}`}>
+              {number.charAt(j)}
+            </TSpan>
+          );
+        }
+      })}
+    </Text>
+  );
 
   _renderSvgWheel = () => {
     return (
@@ -186,19 +205,37 @@ export default class App extends React.Component {
             transform: [
               {
                 rotate: this._angle.interpolate({
-                  inputRange: [-oneTurn, 0, oneTurn],
-                  outputRange: [`-${oneTurn}deg`, `0deg`, `${oneTurn}deg`]
-                })
-              }
-            ]
-          }}
-        >
-          <Svg
-            width={wheelSize}
-            height={wheelSize}
+                  inputRange: [-this.oneTurn, 0, this.oneTurn],
+                  outputRange: [
+                    `-${this.oneTurn}deg`,
+                    `0deg`,
+                    `${this.oneTurn}deg`,
+                  ],
+                }),
+              },
+            ],
+            backgroundColor: this.props.options.backgroundColor
+              ? this.props.options.backgroundColor
+              : '#fff',
+            width: width - 20,
+            height: width - 20,
+            borderRadius: (width - 20) / 2,
+            borderWidth: this.props.options.borderWidth
+              ? this.props.options.borderWidth
+              : 2,
+            borderColor: this.props.options.borderColor
+              ? this.props.options.borderColor
+              : '#fff',
+            opacity: this.state.wheelOpacity,
+          }}>
+          <AnimatedSvg
+            width={this.state.gameScreen}
+            height={this.state.gameScreen}
             viewBox={`0 0 ${width} ${width}`}
-            style={{ transform: [{ rotate: `-${angleOffset}deg` }] }}
-          >
+            style={{
+              transform: [{ rotate: `-${this.angleOffset}deg` }],
+              margin: 10,
+            }}>
             <G y={width / 2} x={width / 2}>
               {this._wheelPaths.map((arc, i) => {
                 const [x, y] = arc.centroid;
@@ -206,53 +243,131 @@ export default class App extends React.Component {
 
                 return (
                   <G key={`arc-${i}`}>
-                    <Path d={arc.path} fill={arc.color} />
+                    <Path d={arc.path} strokeWidth={2} fill={arc.color} />
                     <G
-                      rotation={(i * oneTurn) / numberOfSegments + angleOffset}
-                      origin={`${x}, ${y}`}
-                    >
-                      <Text
-                        x={x}
-                        y={y - 70}
-                        fill="white"
-                        textAnchor="middle"
-                        fontSize={fontSize}
-                      >
-                        {Array.from({ length: number.length }).map((_, j) => {
-                          return (
-                            <TSpan
-                              x={x}
-                              dy={fontSize}
-                              key={`arc-${i}-slice-${j}`}
-                            >
-                              {number.charAt(j)}
-                            </TSpan>
-                          );
-                        })}
-                      </Text>
+                      rotation={
+                        (i * this.oneTurn) / this.numberOfSegments +
+                        this.angleOffset
+                      }
+                      origin={`${x}, ${y}`}>
+                      {this._textRender(x, y, number, i)}
                     </G>
                   </G>
                 );
               })}
             </G>
-          </Svg>
+          </AnimatedSvg>
         </Animated.View>
       </View>
     );
   };
+
+  _renderKnob = () => {
+    const knobSize = this.props.options.knobSize
+      ? this.props.options.knobSize
+      : 20;
+    // [0, this.numberOfSegments]
+    const YOLO = Animated.modulo(
+      Animated.divide(
+        Animated.modulo(
+          Animated.subtract(this._angle, this.angleOffset),
+          this.oneTurn,
+        ),
+        new Animated.Value(this.angleBySegment),
+      ),
+      1,
+    );
+
+    return (
+      <Animated.View
+        style={{
+          width: knobSize,
+          height: knobSize * 2,
+          justifyContent: 'flex-end',
+          zIndex: 1,
+          opacity: this.state.wheelOpacity,
+          transform: [
+            {
+              rotate: YOLO.interpolate({
+                inputRange: [-1, -0.5, -0.0001, 0.0001, 0.5, 1],
+                outputRange: [
+                  '0deg',
+                  '0deg',
+                  '35deg',
+                  '-35deg',
+                  '0deg',
+                  '0deg',
+                ],
+              }),
+            },
+          ],
+        }}>
+        <Svg
+          width={knobSize}
+          height={(knobSize * 100) / 57}
+          viewBox={`0 0 57 100`}
+          style={{
+            transform: [{ translateY: 8 }],
+          }}>
+          <Image
+            source={
+              this.props.options.knobSource
+                ? this.props.options.knobSource
+                : require('../assets/images/knob.png') // Update the path as needed
+            }
+            style={{ width: knobSize, height: (knobSize * 100) / 57 }}
+          />
+        </Svg>
+      </Animated.View>
+    );
+  };
+
+  _renderTopToPlay() {
+    if (this.state.started == false) {
+      return (
+        <TouchableOpacity onPress={() => this._onPress()}>
+          {this.props.options.playButton()}
+        </TouchableOpacity>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View
+          style={{
+            position: 'absolute',
+            width: width,
+            height: height / 2,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Animated.View style={[styles.content, { padding: 10 }]}>
+            {this._renderSvgWheel()}
+          </Animated.View>
+        </View>
+        {this.props.options.playButton ? this._renderTopToPlay() : null}
+      </View>
+    );
+  }
 }
+
+export default Wheel;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
   },
-  winnerText: {
-    fontSize: 32,
-    fontFamily: 'Menlo',
-    position: 'absolute',
-    bottom: 10
-  }
+  content: {},
+  startText: {
+    fontSize: 50,
+    color: '#fff',
+    fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
 });
