@@ -25,7 +25,7 @@ const Profile = ({ user, switchView }) => {
       <Sidebar switchView={switchView} />
 
       <div className="profile-card">
-        <div className="profile-avatar">
+        <div className="avatar">
           {/* Display user's avatar image */}
           <img src={avatarUrl} alt="User Avatar" />
           {/* Input for uploading a new avatar image */}

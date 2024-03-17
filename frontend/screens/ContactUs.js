@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, StyleSheet,Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import * as MailComposer from 'expo-mail-composer'; 
+import * as MailComposer from 'expo-mail-composer';
 import { useNavigation } from '@react-navigation/native';
 
 const ContactUs = () => {
