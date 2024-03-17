@@ -318,7 +318,7 @@ class WheelOfFortune extends Component {
             source={
               this.props.options.knobSource
                 ? this.props.options.knobSource
-                : require('../assets/images/knob.png')
+                : require('../assets/hh.png')
             }
             style={{ width: knobSize, height: (knobSize * 100) / 57 }}
           />
