@@ -14,6 +14,6 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 const auth = getAuth(app);
 const GoogleProvider = new GoogleAuthProvider();
-const FacebookProvider = new FacebookAuthProvider();
+const FacebookProvider = new FacebookAuthProvider(); 
 
-export { app, auth, GoogleProvider, FacebookProvider };
+export { app, auth, GoogleProvider, FacebookProvider }; 

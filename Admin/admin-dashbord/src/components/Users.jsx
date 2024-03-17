@@ -4,9 +4,9 @@ import '../css/user.css'
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
-
 function Users({switchView}) {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         // Fetch all users when the component mounts
@@ -32,13 +32,28 @@ function Users({switchView}) {
         }
     };
 
+    const filteredUsers = users.filter(user =>
+        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="users-container">
             <Navbar switchView={switchView}/>
-      <Sidebar switchView={switchView} />
+            <Sidebar switchView={switchView} />
 
             <h1>Users</h1>
+
+            <div className="search-container">
+                <input
+                    id="user-search"
+                    type="text"
+                    placeholder="Search by name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -50,7 +65,7 @@ function Users({switchView}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user => (
+                    {filteredUsers.map(user => (
                         <tr key={user.email}>
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
@@ -58,7 +73,6 @@ function Users({switchView}) {
                             <td>{user.birth}</td>
                             <td>
                                 <button onClick={() => deleteUser(user.email)}>Delete</button>
-                               
                             </td>
                         </tr>
                     ))}

@@ -1,23 +1,46 @@
-import React from 'react';
-// import '../css/profile.css';
+// Profile.js
 
-const Profile = ({ user }) => {
-  console.log('user:', user);
+import React, { useState } from 'react';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import '../css/profil.css';
+
+const Profile = ({ user, switchView }) => {
+  // State for avatar image URL
+  const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
+
+  // Function to handle avatar image upload
+  const handleAvatarUpload = (event) => {
+    const uploadedImageUrl = URL.createObjectURL(event.target.files[0]);
+    setAvatarUrl(uploadedImageUrl);
+  };
 
   if (!user) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="profile-container">
-      <h2>User Profile</h2>
-      <div className="profile-details">
-        <div className="profile-info">
-          <p><strong>Username:</strong> {user.username}</p>
-          <p><strong>Date of Birth:</strong> {user.birth}</p>
-          <p><strong>Email:</strong> {user.email}</p>
+    <div>
+      <Navbar />
+      <Sidebar switchView={switchView} />
+
+      <div className="profile-card">
+        <div className="profile-avatar">
+          {/* Display user's avatar image */}
+          <img src={avatarUrl} alt="User Avatar" />
+          {/* Input for uploading a new avatar image */}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleAvatarUpload}
+          />
         </div>
-        {/* You can add more details here */}
+        <div className="profile-info">
+          <h2>{user.username}</h2>
+          <p>Date of Birth: {user.birth}</p>
+          <p>Email: {user.email}</p>
+          {/* Add more user details here */}
+        </div>
       </div>
     </div>
   );

@@ -3,25 +3,24 @@ h1{
   margin-top: -43%;
 }
 body {
-    font-family: 'Arial', sans-serif;
-    background: #ffffff;
-    margin: 0;
-    padding: 20px;
-  }
+  font-family: 'Arial', sans-serif;
+  background: #ffffff;
+  margin: 0;
+  padding: 20px;
+}
   
   h1 {
     text-align: center;
     color: #382538;
   }
   
-  table {
+   table {
     width: 80%;
     border-collapse: collapse;
     margin: 25px 0;
     background: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.5s;
-  
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
@@ -32,7 +31,7 @@ body {
   
   
   /* Header styles */
-  thead th {
+  .article-table thead th {
     background-color: #7e035f;
     color: white;
     text-transform: uppercase;
@@ -42,12 +41,12 @@ body {
   }
   
   /* Hover effect for headers */
-  thead th:hover {
+  .article-table thead th:hover {
     background-color: #666;
   }
   
   /* Body styles */
-  tbody td {
+  .article-table tbody td {
     padding: 15px;
     text-align: center;
     position: relative;
@@ -55,18 +54,18 @@ body {
   }
   
   /* Hover effect for cells */
-  tbody td:hover {
+  .article-table tbody td:hover {
     background-color: #f5f5f5;
     transform: scale(1.02);
   }
   
   /* Zebra striping for rows */
-  tbody tr:nth-child(odd) {
+  .article-table tbody tr:nth-child(odd) {
     background-color: #eee;
   }
   
   /* Image styles */
-  img {
+  .article-table img {
     width: 50px;
     height: auto;
     border-radius: 50%;
@@ -74,12 +73,12 @@ body {
   }
   
   /* Hover effect for images */
-  img:hover {
+  .article-table img:hover {
     transform: rotate(360deg);
   }
   
   /* Input styles */
-  input[type='text'] {
+  .articles-container input[type='text'] {
     border: 2px solid #ddd;
     border-radius: 4px;
     padding: 10px;
@@ -119,10 +118,16 @@ body {
     to { opacity: 1; transform: translateY(0); }
   }
   
-  tbody tr {
+  .article-table tbody tr {
     animation: fadeIn 0.5s ease-in-out;
   }
-  
-
-  
-  
+ 
+  .articles-container input[type='search'] {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+    width: calc(20% - 24px);
+    margin-left: 20%;
+    margin-bottom: 50px;
+}

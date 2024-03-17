@@ -63,7 +63,7 @@ const SignUp = () => {
         throw new Error("Sign up successful");
       }
   
-      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.1.19:8000/users/register', {
         firstName,
         lastName,
         email,

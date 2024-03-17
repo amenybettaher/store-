@@ -3,7 +3,7 @@ import '../css/Login.css';
 import Validation from '../components/LoginValidation';
 import axios from 'axios';
 
-const Login = ({ switchView, setUser }) => {
+const LoginPage = ({ switchView, setUser }) => {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   
@@ -33,37 +33,46 @@ const Login = ({ switchView, setUser }) => {
   };
 
   return (
-    <div className='log'>
-      <form className='big-div' onSubmit={handleLogin}>
-        <label>
-          <p>Email</p>
-          <input
-            className='lgoin-email-input'
-            type="text"
-            name="email"
-            placeholder="Enter Email"
-            onChange={handleInput}
-          />
-          <span>{errors.email && <span>{errors.email}</span>}</span>
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            className='lgoin-pass-input'
-            type="password"
-            name="password"
-            placeholder="*********"
-            onChange={handleInput}
-          />
-          <span>{errors.password && <span>{errors.password}</span>}</span>
-        </label>
-        <button type='submit' className='login-button'>Log In</button>
+    <div className='login-page'> {/* Add the class name for the black background */}
+      <div className='login-box'>
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} className='login-form'>
+          <div className="user-box">
+            <input
+              type="text"
+              name="email"
+              required=""
+              value={loginData.email}
+              onChange={handleInput}
+            />
+            <label>Email</label>
+            <span>{errors.email && <span className="error">{errors.email}</span>}</span>
+          </div>
+          <div className="user-box">
+            <input
+              type="password"
+              name="password"
+              required=""
+              value={loginData.password}
+              onChange={handleInput}
+            />
+            <label>Password</label>
+            <span>{errors.password && <span className="error">{errors.password}</span>}</span>
+          </div>
+          <a type='submit'onClick={handleLogin}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Log IN
+          </a>
+        </form>
         <button onClick={() => switchView('SignIn')} className='change-view-Home'>
           Don't Have An Account? Sign In Here
         </button>
-      </form>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;
