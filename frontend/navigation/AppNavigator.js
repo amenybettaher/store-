@@ -28,6 +28,15 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
+<<<<<<< HEAD
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+{/* <Stack.Screen name='welcome' component={Page} /> */}
+      {/* <Stack.Screen name='Onbording' component={Onbording} /> */}
+      {/* <Stack.Screen name='Onbording2' component={Onbording2} /> */}
+      {/* <Stack.Screen name="SignIn" component={SignIn} /> */}
+      {/* <Stack.Screen name="SignUp" component={SignUp} />  */}
+      {/* <Stack.Screen name="HomePage" component={Home} /> */}
+=======
     <Stack.Navigator initialRouteName="fortuned" screenOptions={{ headerShown: false }}>
 <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
@@ -35,6 +44,7 @@ function MainStack({ language }) {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} /> 
       <Stack.Screen name="HomePage" component={Home} />
+>>>>>>> 70bb2e8d1929234d18fdffe885022865366a647b
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="AboutUs" component={AboutUs} />
