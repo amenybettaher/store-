@@ -461,6 +461,8 @@ import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import { useSelector } from 'react-redux';
 
+
+console.log('hi')
 const Profile = () => {
   const navigation = useNavigation(); 
   const user = useSelector((state) => state.user);
