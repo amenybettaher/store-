@@ -19,7 +19,8 @@ import ContactUs from '../screens/ContactUs.js';
 import PrivacyPolicy from '../screens/PrivacyPolicy.js';
 import AboutUs from '../screens/AboutUs.js';import Wallet from '../screens/Wallet.js';
 import Carte from '../screens/Carte.js';
-import ParentComponent from '../screens/fortuned';
+import Spinner from '../screens/fortuned';
+import Wheel from '../screens/wheel';
 
 
 
@@ -47,7 +48,7 @@ function MainStack({ language }) {
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
-      <Stack.Screen name="fortuned" component={ParentComponent} />
+      <Stack.Screen name="fortuned" component={ParentComponents} />
     </Stack.Navigator>
   );
 }
@@ -118,6 +119,14 @@ function Card({ navigation }) {
   return (
     <>
       <Carte />
+      <TabBar navigation={navigation} />
+    </>
+  );
+}
+function ParentComponents({ navigation }) {
+  return (
+    <>
+      <Spinner/>
       <TabBar navigation={navigation} />
     </>
   );

@@ -1,88 +1,359 @@
-import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
-import { Card } from 'react-native-elements';
-import axios from 'axios';
+import React, { Component } from 'react';
+import { View, StyleSheet, Dimensions, Animated, TouchableOpacity, Image } from 'react-native';
+import * as d3Shape from 'd3-shape';
+import Svg, { G, Text, TSpan, Path } from 'react-native-svg';
 
-const Carte = () => {
-  const [cardData, setCardData] = useState({
-    points: 0, // Initially set points to 0
-    number: '',
-    code: '',
-  });
+const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
-  const [inputCode, setInputCode] = useState('');
+const { width, height } = Dimensions.get('screen');
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+class Wheel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      enabled: false,
+      started: false,
+      finished: false,
+      winner: null,
+      gameScreen: new Animated.Value(width - 40),
+      wheelOpacity: new Animated.Value(1),
+      imageLeft: new Animated.Value(width / 2 - 30),
+      imageTop: new Animated.Value(height / 2 - 70),
+    };
+    this.angle = 0;
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`http://192.168.211.1:8000/carte/code/${inputCode}`);
-      const { points, number, code } = response.data[0]; // Adjust this according to your API response structure
-      setCardData({ points, number, code });
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    this.prepareWheel();
+  }
+
+  prepareWheel = () => {
+    this.Rewards = this.props.options?.rewards || [];
+    this.RewardCount = this.Rewards.length;
+
+    this.numberOfSegments = this.RewardCount;
+    this.fontSize = 20;
+    this.oneTurn = 360;
+    this.angleBySegment = this.oneTurn / this.numberOfSegments;
+    this.angleOffset = this.angleBySegment / 2;
+    this.winner = this.props.options?.winner ?? Math.floor(Math.random() * this.numberOfSegments);
+
+    this._wheelPaths = this.makeWheel();
+    this._angle = new Animated.Value(0);
+
+    // Check if onRef exists before calling it
+    if (this.props.options?.onRef) {
+      this.props.options.onRef(this);
     }
   };
 
-  const handleButtonPress = () => {
-    fetchData();
+  resetWheelState = () => {
+    this.setState({
+      enabled: false,
+      started: false,
+      finished: false,
+      winner: null,
+      gameScreen: new Animated.Value(width - 40),
+      wheelOpacity: new Animated.Value(1),
+      imageLeft: new Animated.Value(width / 2 - 30),
+      imageTop: new Animated.Value(height / 2 - 70),
+    });
   };
 
-  const handleJeuConcours = () => {
-    if (cardData.points >= 5000) {
-      // Navigate to Jeu Concours page
-      // Example: navigation.navigate('JeuConcoursPage');
-      console.log('Navigating to Jeu Concours page');
-    } else {
-      // Show alert that points are not enough
-      Alert.alert(
-        'Insufficient Points',
-        'You need at least 5000 points to participate in the Jeu Concours.'
+  _tryAgain = () => {
+    this.prepareWheel();
+    this.resetWheelState();
+    this.angleListener();
+    this._onPress();
+  };
+
+  angleListener = () => {
+    this._angle.addListener(event => {
+      if (this.state.enabled) {
+        this.setState({
+          enabled: false,
+          finished: false,
+        });
+      }
+
+      this.angle = event.value;
+    });
+  };
+
+  componentWillUnmount() {
+    this.props.options.onRef(undefined);
+  }
+
+  componentDidMount() {
+    this.angleListener();
+  }
+
+  makeWheel = () => {
+    const data = Array.from({ length: this.numberOfSegments }).fill(1);
+    const arcs = d3Shape.pie()(data);
+    var colors = this.props.options.colors
+      ? this.props.options.colors
+      : [
+        '#E07026',
+        '#E8C22E',
+        '#ABC937',
+        '#4F991D',
+        '#22AFD3',
+        '#5858D0',
+        '#7B48C8',
+        '#D843B9',
+        '#E23B80',
+        '#D82B2B',
+      ];
+    return arcs.map((arc, index) => {
+      const instance = d3Shape
+        .arc()
+        .padAngle(0.01)
+        .outerRadius(width / 2)
+        .innerRadius(this.props.options.innerRadius || 100);
+      return {
+        path: instance(arc),
+        color: colors[index % colors.length],
+        value: this.Rewards[index],
+        centroid: instance.centroid(arc),
+      };
+    });
+  };
+
+  _getWinnerIndex = () => {
+    const deg = Math.abs(Math.round(this.angle % this.oneTurn));
+    // wheel turning counterclockwise
+    if (this.angle < 0) {
+      return Math.floor(deg / this.angleBySegment);
+    }
+    // wheel turning clockwise
+    return (
+      (this.numberOfSegments - Math.floor(deg / this.angleBySegment)) %
+      this.numberOfSegments
+    );
+  };
+
+  _onPress = () => {
+    const duration = this.props.options.duration || 10000;
+
+    this.setState({
+      started: true,
+    });
+    Animated.timing(this._angle, {
+      toValue:
+        365 -
+        this.winner * (this.oneTurn / this.numberOfSegments) +
+        360 * (duration / 1000),
+      duration: duration,
+      useNativeDriver: true,
+    }).start(() => {
+      const winnerIndex = this._getWinnerIndex();
+      this.setState({
+        finished: true,
+        winner: this._wheelPaths[winnerIndex].value,
+      });
+      if (this.props.getWinner) {
+        this.props.getWinner(this._wheelPaths[winnerIndex].value, winnerIndex);
+      } else {
+        this.props.options?.getWinner?.(
+          this._wheelPaths[winnerIndex].value,
+          winnerIndex
+        );
+      }
+    });
+  };
+
+  _textRender = (x, y, number, i) => (
+    <Text
+      x={x - number.length * 5}
+      y={y - 80}
+      fill={
+        this.props.options.textColor ? this.props.options.textColor : '#fff'
+      }
+      textAnchor="middle"
+      fontSize={this.fontSize}>
+      {Array.from({ length: number.length }).map((_, j) => {
+        // Render reward text vertically
+        if (this.props.options.textAngle === 'vertical') {
+          return (
+            <TSpan x={x} dy={this.fontSize} key={`arc-${i}-slice-${j}`}>
+              {number.charAt(j)}
+            </TSpan>
+          );
+        }
+        // Render reward text horizontally
+        else {
+          return (
+            <TSpan
+              y={y - 40}
+              dx={this.fontSize * 0.07}
+              key={`arc-${i}-slice-${j}`}>
+              {number.charAt(j)}
+            </TSpan>
+          );
+        }
+      })}
+    </Text>
+  );
+
+  _renderSvgWheel = () => {
+    return (
+      <View style={styles.container}>
+        {this._renderKnob()}
+        <Animated.View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            transform: [
+              {
+                rotate: this._angle.interpolate({
+                  inputRange: [-this.oneTurn, 0, this.oneTurn],
+                  outputRange: [
+                    `-${this.oneTurn}deg`,
+                    `0deg`,
+                    `${this.oneTurn}deg`,
+                  ],
+                }),
+              },
+            ],
+            backgroundColor: this.props.options.backgroundColor
+              ? this.props.options.backgroundColor
+              : '#fff',
+            width: width - 20,
+            height: width - 20,
+            borderRadius: (width - 20) / 2,
+            borderWidth: this.props.options.borderWidth
+              ? this.props.options.borderWidth
+              : 2,
+            borderColor: this.props.options.borderColor
+              ? this.props.options.borderColor
+              : '#fff',
+            opacity: this.state.wheelOpacity,
+          }}>
+          <AnimatedSvg
+            width={this.state.gameScreen}
+            height={this.state.gameScreen}
+            viewBox={`0 0 ${width} ${width}`}
+            style={{
+              transform: [{ rotate: `-${this.angleOffset}deg` }],
+              margin: 10,
+            }}>
+            <G y={width / 2} x={width / 2}>
+              {this._wheelPaths.map((arc, i) => {
+                const [x, y] = arc.centroid;
+                const number = arc.value.toString();
+
+                return (
+                  <G key={`arc-${i}`}>
+                    <Path d={arc.path} strokeWidth={2} fill={arc.color} />
+                    <G
+                      rotation={
+                        (i * this.oneTurn) / this.numberOfSegments +
+                        this.angleOffset
+                      }
+                      origin={`${x}, ${y}`}>
+                      {this._textRender(x, y, number, i)}
+                    </G>
+                  </G>
+                );
+              })}
+            </G>
+          </AnimatedSvg>
+        </Animated.View>
+      </View>
+    );
+  };
+
+  _renderKnob = () => {
+    const knobSize = this.props.options.knobSize
+      ? this.props.options.knobSize
+      : 20;
+    // [0, this.numberOfSegments]
+    const YOLO = Animated.modulo(
+      Animated.divide(
+        Animated.modulo(
+          Animated.subtract(this._angle, this.angleOffset),
+          this.oneTurn,
+        ),
+        new Animated.Value(this.angleBySegment),
+      ),
+      1,
+    );
+
+    return (
+      <Animated.View
+        style={{
+          width: knobSize,
+          height: knobSize * 2,
+          justifyContent: 'flex-end',
+          zIndex: 1,
+          opacity: this.state.wheelOpacity,
+          transform: [
+            {
+              rotate: YOLO.interpolate({
+                inputRange: [-1, -0.5, -0.0001, 0.0001, 0.5, 1],
+                outputRange: [
+                  '0deg',
+                  '0deg',
+                  '35deg',
+                  '-35deg',
+                  '0deg',
+                  '0deg',
+                ],
+              }),
+            },
+          ],
+        }}>
+        <Svg
+          width={knobSize}
+          height={(knobSize * 100) / 57}
+          viewBox={`0 0 57 100`}
+          style={{
+            transform: [{ translateY: 8 }],
+          }}>
+          <Image
+            source={
+              this.props.options.knobSource
+                ? this.props.options.knobSource
+                : require('../assets/images/knob.png')
+            }
+            style={{ width: knobSize, height: (knobSize * 100) / 57 }}
+          />
+        </Svg>
+      </Animated.View>
+    );
+  };
+
+  _renderTopToPlay() {
+    if (this.state.started == false) {
+      return (
+        <TouchableOpacity onPress={() => this._onPress()}>
+          {this.props.options.playButton()}
+        </TouchableOpacity>
       );
     }
-  };
+  }
 
-  return (
-    <View style={styles.container}>
-      <Card containerStyle={styles.cardContainer}>
-        <Card.Title style={styles.title}>You're fidelite Card</Card.Title>
-        <Card.Divider />
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Enter Card Code :</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Card Code"
-            onChangeText={(text) => setInputCode(text)}
-            value={inputCode}
-          />
+  render() {
+    return (
+      <View style={styles.container}>
+        <View
+          style={{
+            position: 'absolute',
+            width: width,
+            height: height / 2,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Animated.View style={[styles.content, { padding: 10 }]}>
+            {this._renderSvgWheel()}
+          </Animated.View>
         </View>
-        <View style={styles.buttonContainer}>
-          <Button title="Fetch Data" onPress={handleButtonPress} />
-        </View>
-        <View style={styles.invitationContainer}>
-          <Image
-            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpwqDMBh_dvUcPb1Vb1SOoNm6U5eG0p1Mm4UxU2SqLREXUP1fqGiYGT7hui4fTDjwvpP8&usqp=CAU' }}
-            style={styles.backgroundImage}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.invitationText}>You're invited to an exclusive event!</Text>
-            <Text style={styles.text}>Card Number: {cardData.number}</Text>
-          </View>
-        </View>
-      </Card>
-      <View style={styles.pointsContainer}>
-        <Text style={styles.pointsText}>Points: {cardData.points}</Text>
-        {cardData.points >= 5000 && (
-          <View style={styles.buttonContainer}>
-            <Button title="Jeu Concours" onPress={handleJeuConcours} />
-          </View>
-        )}
+        {this.props.options.playButton ? this._renderTopToPlay() : null}
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
+
+export default Wheel;
 
 const styles = StyleSheet.create({
   container: {
@@ -90,79 +361,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  cardContainer: {
-    backgroundColor: '#fff8e1',
-    borderRadius: 10,
-    margin: 40,
-    top: -40,
-    elevation: 100,
-  },
-  title: {
-    fontSize: 35,
+  content: {},
+  startText: {
+    fontSize: 50,
+    color: '#fff',
     fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#673ab7',
-  },
-  inputContainer: {
-    marginVertical: 10,
-    alignItems: 'center',
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: '#673ab7',
-  },
-  input: {
-    height: 40,
-    width: 200,
-    borderColor: '#673ab7',
-    borderWidth: 1,
-    marginVertical: 10,
-    paddingLeft: 10,
-  },
-  buttonContainer: {
-    marginVertical: 10,
-  },
-  invitationContainer: {
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  backgroundImage: {
-    width: '100%',
-    height: 150,
-    resizeMode: 'cover',
-    borderRadius: 10,
-  },
-  textContainer: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-  },
-  invitationText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#673ab7',
-    marginBottom: 10,
-  },
-  text: {
-    fontSize: 16,
-    color: '#000',
-    marginBottom: 5,
-  },
-  pointsContainer: {
-    position: 'absolute',
-    bottom: 20,
-    right: 80,
-    top: 690,
-  },
-  pointsText: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    color: '#fff',  // Set font color to white
-    backgroundColor: '#673ab7',  // Set background color to purple
-    padding: 10,  // Add padding to the text
-    borderRadius: 5,  // Add border radius for rounded corners
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
 });
-
-export default Carte;
