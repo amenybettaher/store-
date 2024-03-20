@@ -47,7 +47,7 @@ function MainStack({ language }) {
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
-      <Stack.Screen name="fortuned" component={ParentComponent} />
+      {/* <Stack.Screen name="fortuned" component={ParentComponent} /> */}
     </Stack.Navigator>
   );
 }

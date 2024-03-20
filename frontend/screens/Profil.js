@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { StyleSheet, View, Text,Pressable} from "react-native";
 import { Image } from "expo-image";
@@ -53,7 +54,7 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
-          source={require("../assets/profilo.png")}
+          source={require("../assets/profil.png")}
         />
      <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
         <Pressable onPress={handleStartPressq}>
