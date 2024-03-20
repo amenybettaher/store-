@@ -20,7 +20,7 @@ import PrivacyPolicy from '../screens/PrivacyPolicy.js';
 import AboutUs from '../screens/AboutUs.js';
 import Wallet from '../screens/Wallet.js';
 import Carte from '../screens/Carte.js';
-
+import WheelOfLuck from '../screens/WheelOfLuck.js';
 
 
 const Stack = createStackNavigator();
@@ -28,7 +28,7 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Article" screenOptions={{ headerShown: false }}>
 <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
@@ -47,6 +47,7 @@ function MainStack({ language }) {
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
+      <Stack.Screen name="WheelOfLuck" component={WheelOfLuck} />
     </Stack.Navigator>
   );
 }

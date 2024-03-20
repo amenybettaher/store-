@@ -12,9 +12,11 @@ const ArticleDetails = ({ article, onClose }) => {
           <Image source={{ uri: article.image }} style={styles.image} />
           <View style={styles.articleDetails}>
             <Text style={styles.name}>{article.name}</Text>
-            <Text style={styles.price}>{article.price}</Text>
+            <Text style={styles.price}>Prix : {article.price}</Text>
             <Text style={styles.description}>Description : {article.description}</Text>
-            <Text style={styles.product_Num}>Product Num : {article.product_Num}</Text>
+            <Text style={styles.product_Num}>Quantite : {article.product_Num}</Text>
+            <Text style={styles.rayon}> Rayon : {article.rayon}</Text>
+            <Text style={styles.etage}>Etage : {article.etage}</Text>
           </View>
         </View>
       </View>

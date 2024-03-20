@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577220259820",
+    "project_id": "store-notification7",
+    "storage_bucket": "store-notification7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577220259820:android:97eabc3c6d69b45cf15ac9",
+        "android_client_info": {
+          "package_name": "com.BarcodeScannerApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuy6h6VbT5ynBKbSy3fJoTMD1reNqkXE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
