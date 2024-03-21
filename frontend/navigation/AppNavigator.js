@@ -30,6 +30,7 @@ function MainStack({ language }) {
   return (
 
     <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
+  
 <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
       <Stack.Screen name='Onbording2' component={Onbording2} />
@@ -48,7 +49,9 @@ function MainStack({ language }) {
       <Stack.Screen name="Article" component={Article} />
       <Stack.Screen name="ScannerScreen" component={ScannerScreen} initialParams={{ language }} />
       <Stack.Screen name="Wallet" component={Walleti} />
+
       <Stack.Screen name="fortuned" component={ParentComponents} />
+
     </Stack.Navigator>
   );
 }

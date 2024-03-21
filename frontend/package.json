@@ -41,6 +41,7 @@
     "expo-notifications": "~0.27.6",
     "expo-status-bar": "~1.11.1",
     "firebase": "^10.8.1",
+    "force": "^0.0.3",
     "geolib": "^3.3.4",
     "native-notify": "^4.0.0",
     "opencage-api-client": "^1.0.4",
