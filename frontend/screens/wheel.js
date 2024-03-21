@@ -313,7 +313,7 @@ class Wheel extends Component {
             source={
               this.props.options.knobSource
                 ? this.props.options.knobSource
-                : require('../assets/hh.png')
+                : require('../assets/images/knob.png')
             }
             style={{ width: knobSize, height: (knobSize * 100) / 57 }}
           />

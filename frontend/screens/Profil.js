@@ -15,13 +15,20 @@ import { MaterialCommunityIconss } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import { useSelector } from 'react-redux';
+import { EvilIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker'
 
 
-console.log('hi')
+
+
 const Profile = () => {
+
   const navigation = useNavigation(); 
   const user = useSelector((state) => state.user);
   console.log('Redux State:', user);
+
+
+
   const handleStartPress = () => {
     navigation.navigate('Notifications');
   };
@@ -53,10 +60,11 @@ const Profile = () => {
         <View style={[styles.rectangleView, styles.settingLayout]} />
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
-          contentFit="cover"
-          source={require("../assets/profil.png")}
-        />
-     <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
+          // source={require("../assets/profilo.png")}
+        /> */}
+        {image && <Image source={{uri:image}} style={styles.unsplashjmurdhtm7ngIcon}/>}
+     <Text style={styles.pro}>{user ? ` ${user.user.firstName} ${user.user.lastName}` : 'Welcome!'}</Text>
+
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}
@@ -408,6 +416,10 @@ const styles = StyleSheet.create({
   darkBackground: {
     backgroundColor: '#191919'
   },
+  pro:{
+    top:270,
+    left:22
+  }
 });
 
 export default Profile;
