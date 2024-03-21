@@ -18,7 +18,7 @@ const Magasine = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get('http://192.168.229.1:8000/article/get');
+        const response = await axios.get('http://192.168.248.233:8000/article/get');
 
         setArticles(response.data);
         setFilteredArticles(response.data);  // Update filteredArticles as well
@@ -53,7 +53,7 @@ const Magasine = () => {
   const fetchArticlesByCategory = async (category) => {
     try {
 
-      const response = await axios.get(`http://192.168.229.1:8000/article/getByCategory/${category}`);
+      const response = await axios.get(`http://192.168.248.233:8000/article/getByCategory/${category}`);
 
 
 
@@ -79,7 +79,7 @@ const Magasine = () => {
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
-      const response = await axios.get('http://192.168.229.1:8000/article/get');
+      const response = await axios.get('http://192.168.248.233:8000/article/get');
       setArticles(response.data);
       setFilteredArticles(response.data);
     } catch (error) {
@@ -116,8 +116,8 @@ return (
 <TouchableOpacity style={styles.circle} onPress={() => fetchArticlesByCategory('produits-ménagers')}>
   <Text>produits-ménagers</Text>
 </TouchableOpacity>
-<TouchableOpacity style={styles.circle} onPress={() => fetchArticlesByCategory('Middle East')}>
-  <Text>Middle East</Text>
+<TouchableOpacity style={styles.circle} onPress={() => fetchArticlesByCategory('produit-cuisinier')}>
+  <Text>produit-cuisinier</Text>
 </TouchableOpacity>
 </View>
         <View style={styles.searchContainer}>
