@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { StyleSheet, View, Text,Pressable} from "react-native";
 import { Image } from "expo-image";
@@ -15,6 +16,8 @@ import { AntDesign } from '@expo/vector-icons';
 import fr from "./fr.json"; 
 import { useSelector } from 'react-redux';
 
+
+console.log('hi')
 const Profile = () => {
   const navigation = useNavigation(); 
   const user = useSelector((state) => state.user);
@@ -51,7 +54,7 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           contentFit="cover"
-          source={require("../assets/profilo.png")}
+          source={require("../assets/profil.png")}
         />
      <Text>{user ? `Welcome, ${user.user.firstName} ${user.user.lastName}!` : 'Welcome!'}</Text>
         <Pressable onPress={handleStartPressq}>
