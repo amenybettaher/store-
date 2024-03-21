@@ -63,7 +63,7 @@ const SignUp = () => {
         throw new Error("Sign up successful");
       }
   
-      const registerResponse = await axios.post('http://192.168.43.151:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.248.151:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -132,7 +132,7 @@ const SignUp = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/hh.png")}
+      source={require("../assets/ll.jpg")}
       style={styles.backgroundImage}
       blurRadius={2}>
         
