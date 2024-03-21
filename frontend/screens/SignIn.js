@@ -44,7 +44,7 @@ const SignIn = () => {
         Alert.alert("Please enter both email and password.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.137.1:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.248.151:8000/users/login', {
         email,
         password,
       });
@@ -80,7 +80,7 @@ const SignIn = () => {
  
   return (
     <ImageBackground
-    source={require("../assets/hh.png")}
+    source={require("../assets/ll.jpg")}
     style={styles.backgroundImage}
     blurRadius={2}>
       <View style={styles.overlay} />
@@ -99,13 +99,12 @@ const SignIn = () => {
         <View style={styles.inputWithIcon}>
           <Feather name="lock" size={20} color="white" style={styles.icon1} />
           <TextInput
-            placeholder="Password"
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            secureTextEntry
-            style={styles.input}
-            placeholderTextColor="white"
-            // secureTextEntry={!showPassword} 
+              placeholder="Password"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry={!showPassword}
+              style={styles.input}
+              placeholderTextColor="white"
             />
         </View>
         

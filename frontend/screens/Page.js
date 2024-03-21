@@ -23,8 +23,8 @@ const Page = () => {
         <Image
           style={[styles.instanceChild, styles.instanceLayout]}
           contentFit="cover"
-          source={require("../assets/hh.png")}
-          blurRadius={1}
+          source={require("../assets/ll.jpg")}
+          blurRadius={0}
         />
         <Text style={[styles.echrili, styles.echriliPosition]} >E   HRILI</Text>
         <FontAwesome6 name="star-and-crescent" size={24} color="red" style={styles.flag} />
