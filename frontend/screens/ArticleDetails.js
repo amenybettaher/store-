@@ -36,7 +36,7 @@ const ArticleDetails = ({ article, onClose }) => {
             <Text style={styles.price}>Prix : {article.price} DT</Text>
             <Text style={styles.description}>Description : {article.description}</Text>
             <Text style={styles.product_Num}>Quantite : {article.product_Num}</Text>
-            <Text style={styles.rayon}> Rayon : {article.rayon}</Text>
+            <Text style={styles.rayon}>Rayon : {article.rayon}</Text>
             <Text style={styles.etage}>Etage : {article.etage}</Text>
           </View>
         </Animated.View>

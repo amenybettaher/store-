@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button, Alert, Image } from 'react-native';
+import { StyleSheet, View, Text, Button, Alert, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Card } from 'react-native-elements';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const backendUrl = 'http://192.168.229.1:8000';
+const { width, height } = Dimensions.get('window');
+
+const backendUrl = 'http://192.168.248.233:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -90,23 +92,23 @@ export default function ScannerScreen() {
         />
       )}
       {barcodeData && (
-        <View style={styles.container}>
+        <View style={styles.cardContainer}>
           <Card>
             <Card.Title>Product Details</Card.Title>
             <Card.Divider />
             {productDetails && (
               <>
                 <Image
-                  style={{ width: '100%', height: 100 }}
+                  style={styles.productImage}
                   resizeMode="contain"
                   source={{ uri: productDetails.image }}
                 />
-                <Text>Product Name: {productDetails.name}</Text>
-                <Text>Barcode: {productDetails.barcode}</Text>
-                <Text>Price: {productDetails.price}</Text>
-                <View style={styles.quantityContainer}>
-                  <Text>Select Quantity: </Text>
+                <Text style={styles.productDetails}>Product Name: {productDetails.name}</Text>
+                <Text style={styles.productDetails}>Price: {productDetails.price} DT</Text>
+                <View style={styles.pickerContainer}>
+                  <Text style={styles.pick}>Select Quantity: </Text>
                   <Picker
+                    style={styles.picker}
                     selectedValue={selectedQuantity}
                     onValueChange={(itemValue, itemIndex) => setSelectedQuantity(itemValue)}>
                     {Array.from({ length: 100 }, (_, i) => i + 1).map(quantity => (
@@ -114,10 +116,14 @@ export default function ScannerScreen() {
                     ))}
                   </Picker>
                 </View>
-                <Button title="Add to Wallet" onPress={addToWallet} />
+                <TouchableOpacity style={[styles.button, styles.addButton]} onPress={addToWallet}>
+  <Text style={styles.buttonText}>Add to Wallet</Text>
+</TouchableOpacity>
               </>
             )}
-            <Button title="Scan other product" onPress={startScanning} />
+           <TouchableOpacity style={[styles.button, styles.scanButton]} onPress={startScanning}>
+  <Text style={styles.buttonText}>Scan other product</Text>
+</TouchableOpacity>
           </Card>
         </View>
       )}
@@ -128,31 +134,68 @@ export default function ScannerScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#fff',
+    justifyContent: 'center'
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  cardContainer: {
+    margin: 20,
+    padding: 20,
+    borderRadius: 20,
+    backgroundColor: '#f9f9f9',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  productImage: {
+    width: '100%',
+    aspectRatio: 1, // Ensures the image maintains its aspect ratio
     marginBottom: 20,
+    resizeMode: 'contain', // Adjusts the image to fit within the specified dimensions while maintaining its aspect ratio
   },
-  scannerContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
+  productDetails: {
+    fontSize: 18,
+    marginBottom: 10,
+
   },
-  scanAgainButton: {
-    position: 'absolute',
-    bottom: 20,
-    alignSelf: 'center',
+  pickerContainer: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    marginBottom: 20,
+   
   },
-  torchButton: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: 10,
-    backgroundColor: '#eee',
+  picker: {
+    height: 50,
+    width: width - 40,
+    
   },
+  button: {
+    backgroundColor: '#5cb85c',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  scanButton: {
+    backgroundColor: 'black',
+  },
+  addButton: {
+    backgroundColor: '#7D0C43',
+  },
+  pick : {
+    marginLeft : 15,
+    marginTop : 10
+  }
 });

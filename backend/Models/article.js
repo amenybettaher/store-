@@ -1,4 +1,4 @@
-const con = require ('../database/index')
+ const con = require ('../database/index')
 const getAll = (callback) => {
   const q = 'SELECT * FROM `article`';
   con.query(q, (err, result) => {
