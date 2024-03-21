@@ -60,8 +60,8 @@ const Profile = () => {
         <View style={[styles.rectangleView, styles.settingLayout]} />
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
-          // source={require("../assets/profilo.png")}
-        /> */}
+          source={require("../assets/profilo.png")}
+        />
         {image && <Image source={{uri:image}} style={styles.unsplashjmurdhtm7ngIcon}/>}
      <Text style={styles.pro}>{user ? ` ${user.user.firstName} ${user.user.lastName}` : 'Welcome!'}</Text>
 

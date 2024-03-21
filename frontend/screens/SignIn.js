@@ -44,7 +44,7 @@ const SignIn = () => {
         Alert.alert("Please enter both email and password.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.1.16:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.248.151:8000/users/login', {
         email,
         password,
       });
@@ -80,7 +80,7 @@ const SignIn = () => {
  
   return (
     <ImageBackground
-    source={require("../assets/hh.png")}
+    source={require("../assets/ll.jpg")}
     style={styles.backgroundImage}
     blurRadius={2}>
       <View style={styles.overlay} />
