@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+
 import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Card } from 'react-native-elements';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+
 
 const Carte = () => {
   const navigation = useNavigation();
@@ -21,13 +23,16 @@ const Carte = () => {
 
   const fetchData = async () => {
     try {
+
       const response = await axios.get(`http://192.168.1.16:8000/carte/code/${inputCode}`);
       const { points, number, code } = response.data[0];
+
       setCardData({ points, number, code });
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
+
 
   const handleButtonPress = () => {
     fetchData();
@@ -68,12 +73,16 @@ const Carte = () => {
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.customButton} onPress={handleButtonPress}>
+
             <Text style={styles.buttonText}>Get Your Card</Text>
+
           </TouchableOpacity>
         </View>
         <View style={styles.invitationContainer}>
           <Image
+
             source={require('../assets/Card (3).png')}
+
             style={styles.backgroundImage}
           />
           <View style={styles.textContainer}>
@@ -98,6 +107,7 @@ const styles = StyleSheet.create({
   },
   topSection: {
     alignItems: 'center',
+
     paddingHorizontal: 20,
     paddingTop: 60,
     marginBottom: 20,
@@ -116,6 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 10,
     elevation: 5,
+
   },
   title: {
     fontSize: 35,
@@ -126,6 +137,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginVertical: 10,
     alignItems: 'center',
+    color:'#7D0C43'
   },
   label: {
     fontSize: 16,
@@ -158,6 +170,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  customButton: {
+    backgroundColor: '#7D0C43',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+   
   },
   invitationContainer: {
     marginTop: 20,
@@ -199,7 +223,18 @@ const styles = StyleSheet.create({
   codes: {
     fontSize: 13,
     color: 'black',
+
   },
+  cdContainer: {
+    right: -23,
+    top: -88,
+    height: 60},
+
+    codes:{
+    fontSize: 13,
+    color: 'black',  // Set font color to white
+
+  }
 });
 
 export default Carte;

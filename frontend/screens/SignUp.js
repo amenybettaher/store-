@@ -160,8 +160,6 @@ const SignUp = () => {
             onChangeText={setLast}
             placeholderTextColor="white"
             colors={['rgb(76, 160, 252)', 'rgb(224, 47, 238)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
           />
         </View>
         <View style={[styles.lineView1, styles.iphone13ChildLayout1]} />
