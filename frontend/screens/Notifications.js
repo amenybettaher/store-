@@ -98,16 +98,16 @@ const Notifications = ({ darkMode }) => {
       </View>
       <View style={[styles.component14Parent, styles.parentPosition]}>
         <View style={[styles.component14, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>General Notification</Text>
+          <Text style={styles.generalNotification}>Notification générale</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={[styles.rectangle, styles.toggleonPosition]} />
             </View>
           </View>
         </View>
-        <Text style={[styles.common, styles.commonTypo]}>Common</Text>
+        <Text style={[styles.common, styles.commonTypo]}>Commune</Text>
         <View style={[styles.component15, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>Sound</Text>
+          <Text style={styles.generalNotification}>Son</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={styles.rectanglePosition} />
@@ -115,7 +115,7 @@ const Notifications = ({ darkMode }) => {
           </View>
         </View>
         <View style={[styles.component16, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>Vibrate</Text>
+          <Text style={styles.generalNotification}>Vibrer</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={[styles.rectangle, styles.toggleonPosition]} />
@@ -125,7 +125,7 @@ const Notifications = ({ darkMode }) => {
       </View>
       <View style={[styles.component17Parent, styles.parentPosition]}>
         <View style={[styles.component17, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>App updates</Text>
+          <Text style={styles.generalNotification}>Mises à jour de l'application</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={styles.rectanglePosition} />
@@ -134,9 +134,9 @@ const Notifications = ({ darkMode }) => {
         </View>
         <Text
           style={[styles.systemServices, styles.commonTypo]}
-        >{`System & services update`}</Text>
+        >{`Mise à jour du système et des services`}</Text>
         <View style={[styles.component18, styles.componentLayout]}>
-      <Text style={[styles.generalNotification, { color: darkMode ? 'white' : 'black' }]}>Bill Reminder</Text>
+      <Text style={[styles.generalNotification, { color: darkMode ? 'white' : 'black' }]}>Rappel de facture</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={[styles.rectangle, styles.toggleonPosition]} />
@@ -152,7 +152,7 @@ const Notifications = ({ darkMode }) => {
           </View>
         </View>
         <View style={[styles.component20, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>Discount Avaiable</Text>
+          <Text style={styles.generalNotification}>Remise disponible</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={styles.rectanglePosition} />
@@ -160,7 +160,7 @@ const Notifications = ({ darkMode }) => {
           </View>
         </View>
         <View style={[styles.component21, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>Payment Request</Text>
+          <Text style={styles.generalNotification}>Demande de paiement</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={styles.rectanglePosition} />
@@ -172,16 +172,16 @@ const Notifications = ({ darkMode }) => {
       </View>
       <View style={[styles.component22Parent, styles.parentPosition]}>
         <View style={[styles.component22, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>New Service Available</Text>
+          <Text style={styles.generalNotification}>Nouveau service disponible</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={styles.rectanglePosition} />
             </View>
           </View>
         </View>
-        <Text style={[styles.commonn, styles.commonTypo]}>Others</Text>
+        <Text style={[styles.commonn, styles.commonTypo]}>Autres</Text>
         <View style={[styles.component23, styles.componentLayout]}>
-          <Text style={styles.generalNotification}>New Tips Available</Text>
+          <Text style={styles.generalNotification}>Nouveaux conseils disponibles</Text>
           <View style={styles.toggle}>
             <View style={styles.toggleonPosition}>
               <View style={[styles.rectangle, styles.toggleonPosition]} />

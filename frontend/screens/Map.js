@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity,Text} from 'react-native'
 import * as Location from 'expo-location';
 import { WebView } from 'react-native-webview';
 
-const backendURL = 'http:/192.168.248.151:8000';
+const backendURL = 'http:/192.168.229.1:8000';
 
 
 export default function MapPage() {
@@ -68,12 +68,12 @@ export default function MapPage() {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Enter country or supermarket name"
+        placeholder="Entrez le nom  du supermarché"
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
   <TouchableOpacity style={styles.Button} onPress={searchSupermarkets}>
-        <Text style={styles.buttonText}>Search</Text>
+        <Text style={styles.buttonText}>Recherche</Text>
       </TouchableOpacity>
 
       <WebView
@@ -88,6 +88,7 @@ export default function MapPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // marginLeft:10
   },
   map: {
     flex: 1,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     height: 30,
     borderColor: 'gray',
     borderWidth: 0.5,
-    paddingLeft: 10,
+    paddingLeft: 20,
     marginTop: 30,
     borderRadius: 10,
     width: 210,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   Button:{
     backgroundColor:'#7D0C43',
     height: 30,
-    width:160,
+    width:140,
     marginLeft:230,
     top:-10,
     borderRadius: 49,

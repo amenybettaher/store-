@@ -44,14 +44,14 @@ const Onbording2 = () => {
       <View style={styles.welcomeToEchriliParent}>
         <Text
           style={[styles.welcomeToEchrili, styles.welcomeToEchriliLayout]}
-        >{`Welcome to ECHRILI `}</Text>
+        >{`Bienvenue à ECHRILI `}</Text>
         <Text
           style={[styles.thisNewTechnologie, styles.welcomeToEchriliLayout]}
-        >{`this New technologie you can sacan our product and see more information about the product `}</Text>
+        >{`cette nouvelle technologie, vous pouvez Scan votre produit et voir plus d'informations sur le produit `}</Text>
       </View>
       <View style={styles.rectangleView} />
       <Pressable onPress={handle}>
-  <Text style={styles.getStarted}>Get Started</Text>
+  <Text style={styles.getStarted}>Commencer</Text>
 </Pressable>
 
     </LinearGradient>
@@ -70,10 +70,11 @@ const styles = StyleSheet.create({
   },
   welcomeToEchriliLayout: {
     width: 342,
-    textAlign: "left",
     color: "#DCDCDC",
     fontSize:19,
     top:-30,
+      // textAlign: 'center',
+
   },
   ramadanGroceryShoppingCovIcon: {
     top: 0,
@@ -114,20 +115,22 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_5xl,
     fontWeight: "800",
     fontFamily: FontFamily.manropeExtraBold,
+    marginBottom:20,
+   
   },
   thisNewTechnologie: {
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.outfitRegular,
-    marginTop: 2,
+    marginTop: -19,
     
   },
   welcomeToEchriliParent: {
     top: 653,
-    left: 48,
+    left: 37,
     position: "absolute",
   },
   rectangleView: {
-    top: 722,
+    top: 742,
     left: 97,
     borderRadius: Border.br_5xs,
     backgroundColor: "#7d0c42",
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   getStarted: {
-    top: 740,
+    top: 760,
     left: 169,
     fontSize: FontSize.size_mini,
     fontWeight: "600",

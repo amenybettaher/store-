@@ -4,7 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import image from '../assets/new.png';
 import axios from 'axios';
 import ArticleDetails from './ArticleDetails'; 
-
+import { AntDesign } from '@expo/vector-icons';
+import { AntDesigns } from '@expo/vector-icons';
 const Magasine = () => {
   const [searchText, setSearchText] = useState("");
   const [articles, setArticles] = useState([]);
@@ -18,7 +19,7 @@ const Magasine = () => {
     const fetchData = async () => {
       try {
 
-        const response = await axios.get('http://192.168.248.233:8000/article/get');
+        const response = await axios.get('http://192.168.229.1:8000/article/get');
 
         setArticles(response.data);
         setFilteredArticles(response.data);  // Update filteredArticles as well
@@ -53,7 +54,7 @@ const Magasine = () => {
   const fetchArticlesByCategory = async (category) => {
     try {
 
-      const response = await axios.get(`http://192.168.248.233:8000/article/getByCategory/${category}`);
+      const response = await axios.get(`http://192.168.229.1:8000/article/getByCategory/${category}`);
 
 
 
@@ -79,7 +80,7 @@ const Magasine = () => {
   const onRefresh = async () => {
     setRefreshing(true); // Set refreshing state to true
     try {
-      const response = await axios.get('http://192.168.248.233:8000/article/get');
+      const response = await axios.get('http://192.168.229.1:8000/article/get');
       setArticles(response.data);
       setFilteredArticles(response.data);
     } catch (error) {
@@ -144,11 +145,11 @@ return (
       </View> 
       <View style={styles.pagination}>
   <TouchableOpacity style={styles.paginationButton} onPress={() => setCurrent(current - 1)} disabled={current === 1}>
-    <Text style={styles.buttonText}>Previous</Text>
+    <AntDesign name="leftcircleo" size={29} color="#7d0c42" />
   </TouchableOpacity>
   <View style={{ flex: 1 }} /> 
   <TouchableOpacity style={styles.paginationButton} onPress={() => setCurrent(current + 1)} disabled={current === NBPage}>
-    <Text style={styles.buttonText}>Next</Text>
+    <AntDesign name="rightcircleo" size={29} color="#7d0c42" />
   </TouchableOpacity>
 </View>
       {selectedArticle && <ArticleDetails article={selectedArticle} onClose={closeArticleDetails} />}
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
   paginationButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#7d0c42',
+    // backgroundColor: '#7d0c42',
     borderRadius: 5,
     marginHorizontal: 5,
     

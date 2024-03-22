@@ -56,19 +56,19 @@ const ContactUs = () => {
       <Pressable onPress={handleStartPress}>
           <Ionicons name="arrow-back" size={26} color="white" style={styles.backIcon} />
 </Pressable>        
-<Text style={styles.headerText}>Contact Us</Text>
+<Text style={styles.headerText}>Contactez-nous</Text>
       </View>
 
       <TextInput
         style={styles.input}
-        placeholder="Your Name"
+        placeholder="votre nom"
         placeholderTextColor="#333"
         value={fullname}
         onChangeText={(text) => setFullname(text)}
       />
       <TextInput
         style={styles.input}
-        placeholder="Your Email"
+        placeholder="Votre e-mail"
         placeholderTextColor="#333"
         value={email}
         onChangeText={(text) => setEmail(text)}
@@ -76,7 +76,7 @@ const ContactUs = () => {
       />
       <TextInput
         style={[styles.input, styles.messageInput]}
-        placeholder="Tell us Your Story or Ask a Question"
+        placeholder="Racontez-nous votre histoire ou posez une question"
         placeholderTextColor="#333"
         multiline
         value={message}
@@ -91,7 +91,7 @@ const ContactUs = () => {
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text style={styles.buttonText}>Send </Text>
+          <Text style={styles.buttonText}>Envoyer </Text>
         )}
       </TouchableOpacity>
     </View>
