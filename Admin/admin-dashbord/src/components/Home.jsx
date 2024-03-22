@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { FaUsers, FaCreditCard, FaNewspaper } from 'react-icons/fa';
+import DailyUsageChart from './DailyUsageChart'
 import './home.css'
-import SimpleLineChart from './SimpleLineChart'
 
 const Card = ({ icon, title, count }) => {
   return (
@@ -29,8 +29,9 @@ const Home = ({ switchView }) => {
         <Card icon={<FaUsers />} title="Users" count={usersCount.toLocaleString()} />
         <Card icon={<FaCreditCard />} title="Cards" count={cardsCount.toLocaleString()} />
         <Card icon={<FaNewspaper />} title="Articles" count={articlesCount.toLocaleString()} />
+        
       </div>
-      <SimpleLineChart/>
+      <DailyUsageChart />
     </div>
   );
 };
