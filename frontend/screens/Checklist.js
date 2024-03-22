@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f7f7f7',
-    marginTop : 
+    marginTop : 50
   },
   inputContainer: {
     flexDirection: 'row',
