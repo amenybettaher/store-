@@ -31,7 +31,7 @@ class ParentComponent extends Component {
   render() {
     // Define options object with onRef and getWinner functions
     const options = {
-      rewards: ["bon d'achat 50D", 'Perdu', "bon d'achat 100D",'Paquet Lilas', 'perdu', 'chocolat'], // Example rewards array
+      rewards: ["bon d'achat 50D",'chocolat','Paquet Lilas','parfum','100Dt'], // Example rewards array
       // Other properties like colors, duration, etc. can be added here
       onRef: ref => {
         this.wheelRef.current = ref;
@@ -65,12 +65,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: -240,
-  
   },
   winnerText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#7D0C43', // Pink color for Fiesta style
+    color: 'transparent', // Make text transparent
     marginTop: 5,
     textAlign: 'center',
     textShadowColor: '#7D0C43',
@@ -78,5 +77,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 5,
   },
 });
+
 
 export default ParentComponent;
