@@ -31,7 +31,7 @@ class ParentComponent extends Component {
   render() {
     // Define options object with onRef and getWinner functions
     const options = {
-      rewards: ['Reward 1', 'Reward 2', 'Reward 3'], // Example rewards array
+      rewards: ["bon d'achat 50D", 'Perdu', "bon d'achat 100D",'Paquet Lilas', 'perdu', 'chocolat'], // Example rewards array
       // Other properties like colors, duration, etc. can be added here
       onRef: ref => {
         this.wheelRef.current = ref;
@@ -44,7 +44,9 @@ class ParentComponent extends Component {
         {/* Pass options object as prop to the Wheel component */}
         <Wheel options={options} />
         {/* Button to spin the wheel */}
-        <Button title="Spin Wheel" onPress={this.spinWheel} />
+        <View style={styles.buttonContainer}>
+          <Button title="Spin Wheel" onPress={this.spinWheel}  color="#7D0C43"  />
+        </View>
         {/* Display winner's text in a festive style */}
         {this.state.winner && (
           <Text style={styles.winnerText}>{this.state.winner}</Text>
@@ -59,14 +61,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    top: -220,
+  },
+  buttonContainer: {
+    marginTop: -240,
+  
   },
   winnerText: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#ff69b4', // Pink color for Fiesta style
-    marginTop: 20,
+    color: '#7D0C43', // Pink color for Fiesta style
+    marginTop: 5,
     textAlign: 'center',
-    textShadowColor: '#ff69b4',
+    textShadowColor: '#7D0C43',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 5,
   },

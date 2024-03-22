@@ -20,20 +20,20 @@ const AboutUs = () => {
         <Pressable onPress={handleStartPress}>
           <Ionicons name="arrow-back" size={26} color="white" style={styles.back}/>
         </Pressable>
-        <Text style={styles.notifications}>AboutUs</Text>
+        <Text style={styles.notifications}>À propos de nous</Text>
       </View>
-    <Text style={styles.titre}>Definition for Our Application</Text>
+    <Text style={styles.titre}>Définition pour notre application</Text>
 <Text style={styles.text}>
-Echrili is an innovative application designed to streamline the shopping experience by leveraging barcode scanning technology and integrated features. Primarily, Echrili functions as a comprehensive shopping assistant within supermarkets. Its core functionalities include:
-Our mission at Echrili is simple: to provide our customers with a wide selection of high-quality products at competitive prices, while maintaining a focus on sustainability and community engagement. We believe in fostering a culture of respect.
+Echrili est une application innovante conçue pour rationaliser l'expérience d'achat en tirant parti de la technologie de lecture de codes-barres et des fonctionnalités intégrées. Echrili fonctionne principalement comme un assistant commercial complet au sein des supermarchés. Ses fonctionnalités principales comprennent :
+Notre mission chez Echrili est simple : fournir à nos clients une large sélection de produits de haute qualité à des prix compétitifs, tout en mettant l'accent sur la durabilité et l'engagement communautaire.
 </Text>
-    <Text style={styles.titre2}>Team how create the Application</Text>
+    <Text style={styles.titre2}>l'équipe qui crée l'application</Text>
     <Text style={styles.text2}>Abdelhak Barbouche    </Text>
     <Text style={styles.text22}>Ameni Bethare </Text>
     <Text style={styles.text23}>Hama Hajri </Text>
     <Text style={styles.text24}>Hiba Jalleli  </Text>
-    <Text style={styles.titre3}>Thank You</Text>
-    <Text style={styles.text3}>From all of us at [Supermarket Name], thank you for choosing us as your preferred shopping destination. We appreciate your support and look forward to continuing to serve you for many years to come.
+    <Text style={styles.titre3}>Merci</Text>
+    <Text style={styles.text3}>De la part de nous tous chez Echrili, merci de nous avoir choisis comme destination de shopping préférée. Nous apprécions votre soutien et sommes impatients de continuer à vous servir pendant de nombreuses années à venir.
 </Text>    
     </View>
   );

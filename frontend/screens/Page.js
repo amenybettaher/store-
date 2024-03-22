@@ -11,7 +11,7 @@ const Page = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Onbording');
-    }, 8000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);

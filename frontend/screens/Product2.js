@@ -13,7 +13,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 const Product2 = () => {
   return (
     <View style={{ margin: 10 }}>
-      <Text style={ styles.get}>Products On Promotion</Text>
+      <Text style={ styles.get}>Produits en Promotion</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((item, index) => (
           <Pressable style={{ margin: 10 }} key={index}>
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "center",
     marginBottom: 10,
-    marginLeft: -210,
+    marginLeft: -189,
   },
 });
