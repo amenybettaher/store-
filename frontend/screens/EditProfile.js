@@ -42,17 +42,17 @@ const EditProfile = () => {
                 <View style={[styles.profileEditChild1, styles.profileChildLayout]} />
 
                 <Text style={[styles.editProfile1]}>
-                    Edit Profile
+                Editer le profil                
                 </Text>
                 <Pressable onPress={handleStartPresss}>
                     <Ionicons name="arrow-back" size={26} color="white" style={styles.back} />
                 </Pressable>
                 <View style={[styles.profileEditChild2, styles.profileChildLayout]} />
-                <Text style={[styles.update, styles.updateTypo]}>Update</Text>
+                <Text style={[styles.update, styles.updateTypo]}>Mise à jour</Text>
                 <Pressable onPress={handleChangePicture}>
                     <Text style={[styles.changePicture, styles.yourTypo]}>
-                        Change Picture
-                    </Text>
+                    Changer l'image                  
+                      </Text>
                 </Pressable>
                 {selectedImage && (
                     <Image
@@ -62,22 +62,22 @@ const EditProfile = () => {
                 )}
                 <TextInput
                     style={styles.name}
-                    placeholder="Your Name"
+                    placeholder="votre nom"
                     placeholderTextColor="black"
                 />
                 <TextInput
                     style={styles.name}
-                    placeholder="Your Email"
+                    placeholder="Votre e-mail"
                     placeholderTextColor="black"
                 />
                 <TextInput
                     style={styles.name}
-                    placeholder="Your Phone Number"
+                    placeholder="Votre numéro de téléphone"
                     placeholderTextColor="black"
                 />
                 <TextInput
                     style={styles.name}
-                    placeholder="Your Password"
+                    placeholder="Votre mot de passe"
                     placeholderTextColor="black"
                 />
             </View>
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     },
     update: {
         top: 681,
-        left: 180,
+        left: 167,
         fontWeight: "700",
         fontFamily: FontFamily.poppinsBold,
     },

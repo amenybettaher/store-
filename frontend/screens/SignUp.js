@@ -51,7 +51,7 @@ const SignUp = () => {
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
-        alert("Password must contain at least one capital letter, one number, and one symbol (!@#$%^&*)");
+        alert("Le mot de passe doit contenir au moins une lettre majuscule, un chiffre et un symbole(!@#$%^&*)");
         return;
       }
 
@@ -63,7 +63,7 @@ const SignUp = () => {
         throw new Error("Inscription réussie");
       }
   
-      const registerResponse = await axios.post('http://192.168.248.151:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.229.1:8000/users/register', {
         firstName,
         lastName,
         email,

@@ -41,16 +41,16 @@ const SignIn = () => {
     try {
       // Validate email and password
       if (!email || !password) {
-        Alert.alert("Please enter both email and password.");
+        Alert.alert("Veuillez saisir votre e-mail et votre mot de passe.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.248.151:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.229.1:8000/users/login', {
         email,
         password,
       });
       console.log('Login API response:', loginResponse);
       if (!loginResponse || !loginResponse.data || loginResponse.data.error) {
-        Alert.alert("Invalid email or password. Please try again.");
+        Alert.alert("Email ou mot de passe invalide. Veuillez réessayer.");
         return;
       }
   
@@ -70,7 +70,7 @@ const SignIn = () => {
     console.log(userData,"this is the user");
 
 
-    Alert.alert("Sign in successful");
+    Alert.alert("Connexion réussie");
   } catch (e) {
     console.error(e);
     Alert.alert("Sign in failed. Please try again.");
@@ -207,26 +207,30 @@ const styles = StyleSheet.create({
       },
       borderRadius: Border.br_31xl,
       backgroundColor: Color.themeWhiteThemeCoreTokensUiBackgroundWhite,
+      
     },
     radioButton: {
       width: 43,
       height: 24,
+      
     },
     radioButtonParent: {
       top: 460,
       alignItems: "center",
       flexDirection: "row",
       left: 40,
-      position: "absolute",
+      position: 'absolute',
     },
     rememberMe: {
       left: 0,
       top: 0,
+      
     },
     rememberMeWrapper: {
       width: 89,
       height: 21,
       marginLeft: 6,
+      
     },
 
     forgotPassword: {
