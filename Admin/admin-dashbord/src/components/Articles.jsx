@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import '../css/Article.css'; // Import the CSS file
+import '../css/Article.css'; 
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import AddArticleModal from './AddArticleModal';
@@ -87,6 +87,8 @@ const Articles = ({ switchView }) => {
             <th>Price</th>
             <th>Product Num</th>
             <th>Category</th>
+            <th>Rayon</th>
+            <th>Rayon</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -100,6 +102,8 @@ const Articles = ({ switchView }) => {
               <td><input type="text" defaultValue={article.price} className="article-price" onChange={e => article.price = e.target.value} /></td>
               <td><input type="text" defaultValue={article.product_Num} className="article-product-num" onChange={e => article.product_Num = e.target.value} /></td>
               <td><input type="text" defaultValue={article.category} className="article-category" onChange={e => article.category = e.target.value} /></td>
+              <td><input type="text" defaultValue={article.rayon} className="article-rayon" onChange={e => article.rayon = e.target.value} /></td>
+<td><input type="text" defaultValue={article.etage} className="article-etage" onChange={e => article.etage = e.target.value} /></td>
               <td>
                 <div className='hiba'>
                   <FontAwesomeIcon className="icon-save" icon={faSave} onClick={() => handleUpdate(article.id, article)} />
