@@ -48,7 +48,7 @@ function HomePage() {
           ImageComponentStyle={{ borderRadius: 15, width: "97%", marginTop: 5 }}
           imageLoadingColor="#2196F3"
         />
-        <Text style={styles.upc}>Upcoming Products</Text>
+        <Text style={styles.upc}>Produits à venir</Text>
         <Product />
         <Product2 />
         <Products3 />

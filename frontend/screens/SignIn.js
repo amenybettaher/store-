@@ -44,7 +44,7 @@ const SignIn = () => {
         Alert.alert("Please enter both email and password.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.1.16:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.248.1:8000/users/login', {
         email,
         password,
       });
@@ -89,7 +89,7 @@ const SignIn = () => {
         <View style={styles.inputWithIcon}>
           <Feather name="mail" size={20} color="white" style={styles.icon1} />
           <TextInput
-            placeholder="Email"
+            placeholder="E-mail"
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={styles.input}
@@ -99,7 +99,7 @@ const SignIn = () => {
         <View style={styles.inputWithIcon}>
           <Feather name="lock" size={20} color="white" style={styles.icon1} />
           <TextInput
-              placeholder="Password"
+              placeholder="Mot de passe"
               value={password}
               onChangeText={(text) => setPassword(text)}
               secureTextEntry={!showPassword}
@@ -116,22 +116,22 @@ const SignIn = () => {
           onPress={handleSignIn}
           style={styles.btn1}
           color={"#7D0C43"} >
-          <Text style={{ color: '#fff', textAlign: 'center' }}>Sign In</Text>
+          <Text style={{ color: '#fff', textAlign: 'center' }}>Se connecter</Text>
           
         </TouchableOpacity>
         <Text style={styles.dont}>
-          Don't have an account? <Text style={{ color: Color.colorMediumvioletred_100 }} onPress={() => navigation.navigate('SignUp')}>Sign Up</Text>
+        Vous n'avez pas de compte ? <Text style={{ color: Color.colorMediumvioletred_100 }} onPress={() => navigation.navigate('SignUp')}>S'inscrire</Text>
         </Text>
         <Text style={styles.by}>
-          By signing in, you agree to our <Text style={{ color: Color.colorMediumvioletred_100 }}>Terms of Service </Text> and <Pressable onPress={handleStartPressP}><Text style={[{ color: Color.colorMediumvioletred_100 }, styles.pr]}>Privacy Policy</Text></Pressable>
+        En vous connectant, vous acceptez notre<Text style={{ color: Color.colorMediumvioletred_100 }}>Conditions d'utilisation </Text> et <Pressable onPress={handleStartPressP}><Text style={[{ color: Color.colorMediumvioletred_100 }, styles.pr]}>politique de confidentialité</Text></Pressable>
         </Text>
       </View>
       <View style={styles.h2}>
-          <Text style={styles.signup1} >SignIn</Text>
+          <Text style={styles.signup1} >Login</Text>
         </View>
         <View style={styles.lineParent}>
             <View style={[styles.frameBorder, { backgroundColor: 'red' }]} />
-            <Text style={styles.orSignupWith}>Or signup with</Text>
+            <Text style={styles.orSignupWith}>Ou inscrivez-vous avec</Text>
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
           
@@ -140,8 +140,7 @@ const SignIn = () => {
           <AntDesign name="apple1" size={37} color="white" style={styles.apple} />
 
         <Text style={{ ...styles.forgotPassword, textDecorationLine: "underline" ,}}>
-          Forgot password?
-          </Text>
+        Mot de passe oublié?</Text>
           <View style={styles.radioButtonParent}>
             <View style={styles.radioButton}>
             </View>
@@ -287,7 +286,7 @@ const styles = StyleSheet.create({
     },
     h2: {
       top: 90,
-      left: 120,
+      left: 126,
       paddingHorizontal: 0,
       flexDirection: "row",
       position: "absolute",
@@ -300,7 +299,7 @@ const styles = StyleSheet.create({
       fontWeight: "700",
     },
     by:{
-      top: 383,
+      top: 410,
       color: "white",
       width: 390,
       marginLeft: -50,
@@ -366,7 +365,7 @@ const styles = StyleSheet.create({
    dont:{
 color:"white",
 top:150,
-left:40,
+left:30,
 fontSize:FontSize.size_17,
 fontWeight:"400",
 width:420,

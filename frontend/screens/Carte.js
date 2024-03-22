@@ -24,7 +24,7 @@ const Carte = () => {
   const fetchData = async () => {
     try {
 
-      const response = await axios.get(`http://192.168.1.16:8000/carte/code/${inputCode}`);
+      const response = await axios.get(`http://192.168.248.1:8000/carte/code/${inputCode}`);
       const { points, number, code } = response.data[0];
 
       setCardData({ points, number, code });

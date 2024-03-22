@@ -20,34 +20,32 @@ const PrivacyPolicy = () => {
         <Pressable onPress={handleStartPress}>
           <Ionicons name="arrow-back" size={26} color="white" style={styles.back}/>
         </Pressable>
-        <Text style={styles.notifications}>Privacy Policy</Text>
+        <Text style={styles.notifications}>Politique De Confidentialité</Text>
       </View>
       {/* Your ContactUs content here */}
-    <Text style={styles.titre}>Types of Data We Collect</Text>
-<Text style={styles.text}>When you use the Echri app, we may collect the following types of data:
+    <Text style={styles.titre}>Types de données que nous collectons</Text>
+<Text style={styles.text}>Lorsque vous utilisez l'application Echrili, nous pouvons collecter les types de données suivants :
 
-Information provided by you: This may include personal information such as your name, email address, and contact details when you register an account with us.
-Scanned Product Data: When you use the barcode scanning feature of the app, we collect data about the products you scan, such as product names, descriptions, and prices.
-Usage Data: We may collect information about how you interact with the app, including which features you use and how often you use them.
+Informations fournies par vous : cela peut inclure des informations personnelles telles que votre nom, votre adresse e-mail et vos coordonnées lorsque vous créez un compte chez nous.
+Données sur les produits numérisés : lorsque vous utilisez la fonction de lecture de codes-barres de l'application, nous collectons des données sur les produits que vous numérisez, telles que les noms des produits, leurs descriptions et leurs prix.
 </Text>
-    <Text style={styles.titre2}>Use of Your Personal Data</Text>
-    <Text style={styles.text2}>We use the personal data we collect for the following purposes:
+    <Text style={styles.titre2}>Utilisation de vos données personnelles</Text>
+    <Text style={styles.text2}>Nous utilisons les données personnelles que nous collectons aux fins suivantes :
 
-To provide and maintain the Echri app and its features.
-To personalize your experience and improve our services.
-To communicate with you, including sending important updates and notifications.
-To analyze usage trends and improve the functionality of the app.
+Fournir et maintenir l'application Echrili et ses fonctionnalités.
+Pour personnaliser votre expérience et améliorer nos services.
+Pour communiquer avec vous, notamment en envoyant des mises à jour et des notifications importantes.
 
 </Text>
-    <Text style={styles.titre3}>Disclosure of Your Personal Data</Text>
-    <Text style={styles.text3}>We may disclose your personal data in the following circumstances:
+    <Text style={styles.titre3}>Divulgation de vos données personnelles</Text>
+    <Text style={styles.text3}>Nous pouvons divulguer vos données personnelles dans les circonstances suivantes :
 
-To third-party service providers who assist us in operating the app and providing our services.
-To comply with legal obligations or respond to lawful requests from authorities.
-In connection with a merger, acquisition, or sale of assets, in which case your personal data may be transferred to another entity.
-We take all reasonable measures to protect your personal data and only retain it for as long as necessary to fulfill the purposes outlined in this Privacy Policy.
+Aux prestataires de services tiers qui nous aident à exploiter l’application et à fournir nos services.
+Pour se conformer aux obligations légales ou répondre aux demandes légales des autorités.
+Dans le cadre d'une fusion, d'une acquisition ou d'une vente d'actifs, auquel cas vos données personnelles peuvent être transférées à une autre entité.
+Nous prenons toutes les mesures raisonnables pour protéger vos données personnelles et ne les conservons que le temps nécessaire pour atteindre les objectifs décrits dans la présente politique de confidentialité.
 
-By using the Echri app, you consent to the collection, use, and disclosure of your personal data as described in this Privacy Policy. If you have any questions or concerns about our privacy practices, please contact us at [contact@email.com].
+En utilisant l'application Echri, vous consentez à la collecte, à l'utilisation et à la divulgation de vos données personnelles comme décrit dans la présente politique de confidentialité.
 
 
 

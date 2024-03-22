@@ -64,7 +64,7 @@ const TabBar = ({navigation}) => {
                             source={require("../assets/home.jpg")}
                         />
                     </TouchableOpacity>
-                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',fontSize: 10 }}>Home</Text>
+                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',fontSize: 10 }}>Accueil</Text>
                 </View>
 
                 <View style={{
@@ -78,7 +78,7 @@ const TabBar = ({navigation}) => {
                             source={require("../assets/map.jpg")}
                         />
                     </TouchableOpacity>
-                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',top:-1 ,fontSize: 10}}>Map </Text>
+                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',top:-1 ,fontSize: 10}}>Carte</Text>
                 </View>
 
                 <View style={{
@@ -93,7 +93,7 @@ const TabBar = ({navigation}) => {
                             containerStyle={{ marginHorizontal: 16 }}
                         />
                     </TouchableOpacity>
-                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',top:-1 ,fontSize: 10}}>Article </Text>
+                    <Text style={{ justifyContent: 'center', alignItems: 'center', color: 'white',top:-1 ,fontSize: 10}}>Article</Text>
                 </View>
 
                 <View style={{
