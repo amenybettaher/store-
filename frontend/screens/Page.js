@@ -26,7 +26,7 @@ const Page = () => {
           source={require("../assets/ll.jpg")}
           blurRadius={0}
         />
-        <Text style={[styles.echrili, styles.echriliPosition]} >E   HRILI</Text>
+        <Text style={[styles.echrili, styles.echriliPosition]} >E   HRiLi</Text>
         <FontAwesome6 name="star-and-crescent" size={24} color="red" style={styles.flag} />
         <Image
           style={[styles.instanceItem, styles.echriliPosition]}

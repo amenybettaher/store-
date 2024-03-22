@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffff',
+    top:40,
   },
   topSection: {
     alignItems: 'center',
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: 10,
     elevation: 5,
+    top:30,
 
   },
   title: {
