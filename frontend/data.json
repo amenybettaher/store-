@@ -11,7 +11,7 @@
   (13, '', 'https://courses.monoprix.tn/ennasr/154611-large_default/p%C3%A2te-tagli.jpg', 'Pâte à tagliatelles', 'LEPIDOR 250GR N°2', 1.320, 150, 'Pâtes' , 'rayon Pâtes' , 2),
   (14, '', 'https://courses.monoprix.tn/ennasr/131773-large_default/p%C3%A2te-nouasser-traditionnelle.jpg', 'Pâte à nouasser traditionnelle', 'DIARI 500GR', 1.790, 200, 'Pâtes' , 'rayon Pâtes' , 6),
   (15, '', 'https://courses.monoprix.tn/lac/128835-large_default/p%C3%A2te-penne-int%C3%A9gral.jpg', 'Rose Blanche', ' Pâtes penne entières 500GR', 1.650, 250, 'Pâtes' , 'rayon Pâtes' , 1),
-  (16, '', 'https://courses.monoprix.tn/lac/164152-large_default/poudre-mains.jpg', 'CLEAN', 'Poudre mains 300g floral', 1.750, 175, 'produits-ménagers' , 'rayon produits-ménagers'),
+  (16, '', 'https://courses.monoprix.tn/lac/164152-large_default/poudre-mains.jpg', 'CLEAN', 'Poudre mains 300g floral', 1.750, 175, 'produits-ménagers' , 'rayon produits-ménagers' , 5),
   (17, '', 'https://courses.monoprix.tn/lac/130889-large_default/poudre-machine.jpg', 'LILAS', 'Poudre machine 5KG/1.25KG gratuit', 40.990, 200, 'produits-ménagers' , 'rayon produits-ménagers' , 1),
   (18, '', 'https://courses.monoprix.tn/lac/158653-large_default/tampons-%C3%A0-r%C3%A9curer.jpg', 'Tampons à récurer', '10 pièces', 2.450, 200, 'produits-ménagers' , 'rayon produits-ménagers' , 2),
   (19, '', 'https://courses.monoprix.tn/lac/135566-large_default/liquide-vaisselles-mains.jpg', 'JUDY', 'Liquide vaisselle mains 325ML', 3.150, 200, 'produits-ménagers' , 'rayon produits-ménagers' , 3),
@@ -33,5 +33,5 @@
   (35, '', 'https://mg.tn/84-thickbox_default/biscottes.jpg', 'Biscottes', 'Existe en plusieurs goûts le paquet de 160 gr GOLDENSEED', 2.590 , 150, 'alimentaire' , 'rayon alimentaire' , 7 ),
   (36, '', 'https://courses.monoprix.tn/lac/129791-large_default/eau-min%C3%A9rale.jpg', 'MIRA', 'Eau minérale 0.6L', 0.365 , 200, 'boissons' , 'rayon boissons' , 3 ),
   (37, '', 'https://courses.monoprix.tn/lac/143917-large_default/boisson-au-jus.jpg', 'STIL', 'Boisson au jus 20CL peche', 1.000 , 200, 'boissons' , 'rayon boissons' , 4),
-  (38, '', 'https://courses.monoprix.tn/lac/134897-large_default/boisson-gazeuse.jpg', 'PUNCH', 'Boisson gazeuse 30cl pomme', 1.200 , 300, 'boissons' , 'rayon boissons' , 7);
+  (38, '', 'https://courses.monoprix.tn/lac/134897-large_default/boisson-gazeuse.jpg', 'PUNCH', 'Boisson gazeuse 30cl pomme', 1.200 , 300, 'boissons' , 'rayon boissons' , 7),
   (39, '', 'https://courses.monoprix.tn/lac/129119-large_default/boisson-au-jus.jpg', 'STIL', 'Boisson au jus 25CL tropical', 1.320 , 300, 'boissons' , 'rayon boissons' , 1);
