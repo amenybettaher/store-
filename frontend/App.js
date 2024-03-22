@@ -111,7 +111,7 @@ async function schedulePushNotification() {
   });
 } 
 
-
+console.log('hellloooo');
 
 const BACKGROUND_FETCH_TASK = 'background-fetch-task-hiba';
 
