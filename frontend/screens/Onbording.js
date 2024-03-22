@@ -17,7 +17,7 @@ Onbording = () => {
       <Image
         style={[styles.screenshot20240226At349, styles.onboridngChildPosition]}
         contentFit="cover"
-        source={require("../assets/e1d6088d-4dec-4f9d-874d-5b76a628434a_1708962751169401312.png")}
+        source={require("../assets/mm.jpg")}
       />
       <Image
         style={styles.subwayG895f9138419201Icon}

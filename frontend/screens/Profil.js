@@ -61,8 +61,8 @@ const Profile = () => {
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
           source={require("../assets/profilo.png")}
-        /> 
-        {/* {image && <Image source={{uri:image}} style={styles.unsplashjmurdhtm7ngIcon}/>} */}
+        />
+        {image && <Image source={{uri:image}} style={styles.unsplashjmurdhtm7ngIcon}/>}
      <Text style={styles.pro}>{user ? ` ${user.user.firstName} ${user.user.lastName}` : 'Welcome!'}</Text>
 
         <Pressable onPress={handleStartPressq}>
