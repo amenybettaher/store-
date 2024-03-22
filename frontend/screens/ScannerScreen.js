@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
-const backendUrl = 'http://192.168.248.233:8000';
+const backendUrl = 'http://192.168.229.1:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -59,11 +59,11 @@ export default function ScannerScreen() {
       const productToAdd = { barcode, name, price: totalPrice.toFixed(3), image, quantity: selectedQuantity };
 
       if (wallet[barcode]) {
-        Alert.alert("Error", "Product already in wallet");
+        Alert.alert("Erreur", "Produit déjà dans le portefeuille");
       } else {
         wallet[barcode] = productToAdd;
         await AsyncStorage.setItem('wallet', JSON.stringify(wallet));
-        Alert.alert("Success", "Product added to wallet");
+        Alert.alert("Succès", "Produit ajouté au portefeuille");
       }
     }
   };
@@ -94,7 +94,7 @@ export default function ScannerScreen() {
       {barcodeData && (
         <View style={styles.cardContainer}>
           <Card>
-            <Card.Title>Product Details</Card.Title>
+            <Card.Title>détails du produit</Card.Title>
             <Card.Divider />
             {productDetails && (
               <>
@@ -103,10 +103,10 @@ export default function ScannerScreen() {
                   resizeMode="contain"
                   source={{ uri: productDetails.image }}
                 />
-                <Text style={styles.productDetails}>Product Name: {productDetails.name}</Text>
-                <Text style={styles.productDetails}>Price: {productDetails.price} DT</Text>
+                <Text style={styles.productDetails}>Nom du produit: {productDetails.name}</Text>
+                <Text style={styles.productDetails}>Prix: {productDetails.price} DT</Text>
                 <View style={styles.pickerContainer}>
-                  <Text style={styles.pick}>Select Quantity: </Text>
+                  <Text style={styles.pick}>Sélectionnez la quantité: </Text>
                   <Picker
                     style={styles.picker}
                     selectedValue={selectedQuantity}
@@ -117,12 +117,12 @@ export default function ScannerScreen() {
                   </Picker>
                 </View>
                 <TouchableOpacity style={[styles.button, styles.addButton]} onPress={addToWallet}>
-  <Text style={styles.buttonText}>Add to Wallet</Text>
+  <Text style={styles.buttonText}>Ajouter au portefeuille</Text>
 </TouchableOpacity>
               </>
             )}
            <TouchableOpacity style={[styles.button, styles.scanButton]} onPress={startScanning}>
-  <Text style={styles.buttonText}>Scan other product</Text>
+  <Text style={styles.buttonText}>Scanner un autre produit</Text>
 </TouchableOpacity>
           </Card>
         </View>

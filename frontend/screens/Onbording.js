@@ -36,7 +36,7 @@ Onbording = () => {
       />
       <Text
         style={[styles.getThePrice, styles.getThePriceClr]}
-      >{`Get the Price By Your Self`}</Text>
+      >{`Obtenez le prix par vous-même`}</Text>
       <Image
         style={styles.onboridngInner}
         contentFit="cover"
@@ -60,8 +60,7 @@ Onbording = () => {
       </Pressable>
 
       <Text style={[styles.scanYourProduct, styles.getThePriceClr]}>
-        Scan Your Product
-      </Text>
+      Scannez votre produit      </Text>
     </View>
   );
 };
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   },
   scanYourProduct: {
     top: 800,
-    left: 146,
+    left: 137,
     fontSize: FontSize.size_xl,
     fontFamily: FontFamily.outfitRegular,
     textAlign: "left",

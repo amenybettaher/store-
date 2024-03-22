@@ -13,7 +13,7 @@ import {
   const Products3 = () => {
     return (
       <View style={{ margin: 10 }}>
-        <Text style={ styles.get}>Products non available</Text>
+        <Text style={ styles.get}>Produits non disponibles</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {data2.map((item, index) => (
             <Pressable style={{ margin: 10 }} key={index}>
@@ -24,7 +24,7 @@ import {
               >
           
               </ImageBackground>
-              <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "700",marginLeft:30 }}>
+              <Text style={{ marginTop: 10, fontSize: 16, fontWeight: "700",marginLeft:40 }}>
                 {item.name}
               </Text>
               <View style={{flexDirection:"row",alignItems:"center",marginTop:3}}>
@@ -45,7 +45,7 @@ import {
       color: "black",
       textAlign: "center",
       marginBottom: 10,
-      marginLeft: -210,
+      marginLeft: -177,
     },
   });
   

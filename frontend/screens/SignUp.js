@@ -51,7 +51,7 @@ const SignUp = () => {
 
       const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
       if (!passwordRegex.test(password)) {
-        alert("Password must contain at least one capital letter, one number, and one symbol (!@#$%^&*)");
+        alert("Le mot de passe doit contenir au moins une lettre majuscule, un chiffre et un symbole(!@#$%^&*)");
         return;
       }
 
@@ -60,10 +60,10 @@ const SignUp = () => {
       const res = await createUserWithEmailAndPassword(email, password);
   
       if (!res || !res.user) {
-        throw new Error("Sign up successful");
+        throw new Error("Inscription réussie");
       }
   
-      const registerResponse = await axios.post('http://192.168.248.151:8000/users/register', {
+      const registerResponse = await axios.post('http://192.168.229.1:8000/users/register', {
         firstName,
         lastName,
         email,
@@ -141,7 +141,7 @@ const SignUp = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="First Name"
+            placeholder="Prénom"
             value={firstName}
             onChangeText={setFirst}
             placeholderTextColor="white"
@@ -155,7 +155,7 @@ const SignUp = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Last Name"
+            placeholder="Nom de famille"
             value={lastName}
             onChangeText={setLast}
             placeholderTextColor="white"
@@ -167,7 +167,7 @@ const SignUp = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Email"
+            placeholder="E-mail"
             value={email}
             onChangeText={setEmail}
             placeholderTextColor="white"
@@ -178,7 +178,7 @@ const SignUp = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Birth"
+            placeholder=" Date de Naissance"
             value={birth}
             onChangeText={setBirth}
             placeholderTextColor="white"
@@ -189,7 +189,7 @@ const SignUp = () => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
-            placeholder="Password"
+            placeholder="Mot de passe"
             value={password}
             onChangeText={setPassword}
             placeholderTextColor="white"
@@ -203,7 +203,7 @@ const SignUp = () => {
           onPress={handleSignUp}
           style={styles.btn1}
           color={"#7D0C43"} >
-          <Text style={{ color: '#fff', textAlign: 'center' }}>SignUp</Text>
+          <Text style={{ color: '#fff', textAlign: 'center' }}>S'inscrire</Text>
           
         </TouchableOpacity>
       </View>
@@ -219,7 +219,7 @@ const SignUp = () => {
         <View style={styles.frameParent}>
           <View style={styles.lineParent}>
             <View style={[styles.frameBorder]} />
-            <Text style={styles.orSignupWith}>Or signup with</Text>
+            <Text style={styles.orSignupWith}>Ou inscrivez-vous avec</Text>
             <View style={[styles.frameItem, styles.frameBorder, ]} />
           </View>
         </View>
@@ -230,8 +230,8 @@ const SignUp = () => {
           <AntDesign name="apple1" size={37} color="white" style={styles.apple} />
         {/* <Button title="Sign In" onPress={handleSignIn} color="#7D0C43" /> */}
         <Text style={styles.alreadyHaveAnContainer}>
-        <Text style={styles.alreadyHaveAn}>{`Already have an account! `}</Text>
-        <Text style={styles.login} onPress={handleSignIn}>Login</Text>
+        <Text style={styles.alreadyHaveAn}>{`Vous avez déjà un compte! `}</Text>
+        <Text style={styles.login} onPress={handleSignIn}>Se connecter</Text>
       </Text>
       </View>
     </ImageBackground>
@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
   },
   alreadyHaveAnContainer: {
     top: 720,
-    left: 50,
+    left: 30,
     lineHeight: 26,
     letterSpacing: 0.2,
     fontSize: FontSize.size_base,
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     top: -0,
-    left: 100,
+    left: 90,
     paddingHorizontal: 0,
     flexDirection: "row",
     position: "absolute",

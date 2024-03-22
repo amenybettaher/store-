@@ -41,13 +41,13 @@ const Wallet = () => {
             <Image source={{uri: item.image}} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
           </View>
-          <Text style={styles.price}>{item.price}</Text>
+          <Text style={styles.price}>   {item.price}</Text>
           <TouchableOpacity onPress={() => deleteItem(item.barcode)}>
-            <Text style={styles.deleteButton}>Delete</Text>
+            <Text style={styles.deleteButton}>Supprimer</Text>
           </TouchableOpacity>
         </View>
       ))}
-      <Text style={styles.totalPrice}>Total Price: {totalPrice.toFixed(3)} DT</Text>
+      <Text style={styles.totalPrice}>Prix ​​Total: {totalPrice.toFixed(3)} DT</Text>
     </View>
   );
 };
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   image: {
     width: 50, 
@@ -77,16 +77,18 @@ const styles = StyleSheet.create({
   },
   price: {
     marginLeft: 'auto',
-    fontSize: 16,
-    color: '#555'
+    fontSize: 19,
+    color: '#555',
+    fontWeight: 'bold',
+
   },
   deleteButton: {
     color: 'red',
     marginLeft: 10
   },
   totalPrice: {
-    marginTop: 20,
-    fontSize: 20,
+    marginTop: -410,
+    fontSize: 35,
     fontWeight: 'bold'
   }
 });

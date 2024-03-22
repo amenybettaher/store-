@@ -42,8 +42,8 @@ const Carte = () => {
       navigation.navigate('fortuned');
     } else {
       Alert.alert(
-        'Insufficient Points',
-        'You need at least 5000 points to participate in the Jeu Concours.'
+        'Points insuffisants',
+        'Vous avez besoin d au moins 5000 points pour participer au Jeu Concours.'
       );
     }
   };
@@ -62,10 +62,10 @@ const Carte = () => {
         <Card.Title style={styles.title}>Votre Carte Fidélité</Card.Title>
         <Card.Divider />
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Enter Card Code :</Text>
+          <Text style={styles.label}>Entrez le code de la carte :</Text>
           <TextInput
             style={styles.input}
-            placeholder="Card Code"
+            placeholder="Code de la carte"
             onChangeText={(text) => setInputCode(text)}
             value={inputCode}
           />
@@ -73,7 +73,7 @@ const Carte = () => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.customButton} onPress={handleButtonPress}>
 
-            <Text style={styles.buttonText}>Get Your Card</Text>
+            <Text style={styles.buttonText}>Obtenez votre carte</Text>
 
           </TouchableOpacity>
         </View>
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     color: '#ccc',
     padding: 10,
     borderRadius: 5,
+    top:-130
   },
   cdContainer: {
     position: 'absolute',

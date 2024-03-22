@@ -34,9 +34,9 @@ const getByCategory = (category, callback) => {
 
 
 const add = (Newdata, callback) => {
-  const q = 'INSERT INTO `article` (code, image, name, description, price, product_Num, category , rayon , etage) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
-  const { code, image, name, description, price, product_Num, category , rayon , etage} = Newdata;
-  con.query(q, [code, image, name, description, price, product_Num, category , rayon  , etage], (err, result) => {
+  const q = 'INSERT INTO `article` (code, image, name, description, price, product_Num, category, rayon, etage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const { code, image, name, description, price, product_Num, category, rayon, etage } = Newdata;
+  con.query(q, [code, image, name, description, price, product_Num, category, rayon, etage], (err, result) => {
     if (err)
       return callback(err, null);
     else {
@@ -57,9 +57,9 @@ const add = (Newdata, callback) => {
 };
 
 const update = (articleId, updatedData, callback) => {
-  const q = 'UPDATE `article` SET image=?, code=?, description=?, price=?, product_Num=?, category=?, rayon=? , etage=? ,  WHERE id=?';
-  const { image, code, description, price, product_Num, category , rayon , etage } = updatedData;
-  con.query(q, [image, code, description, price, product_Num, category, rayon , etage ,  articleId], (err, result) => {
+  const q = 'UPDATE `article` SET image=?, code=?, description=?, price=?, product_Num=?, category=?, rayon=?, etage=? WHERE id=?';
+  const { image, code, description, price, product_Num, category, rayon, etage } = updatedData;
+  con.query(q, [image, code, description, price, product_Num, category, rayon, etage, articleId], (err, result) => {
       if (err) {
           callback(err, null);
       } else {
