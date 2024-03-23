@@ -30,8 +30,8 @@ class Wheel extends Component {
     this.RewardCount = this.Rewards.length;
 
     this.numberOfSegments = this.RewardCount;
-    this.fontSize = 20;
-    this.oneTurn = 360;
+    this.fontSize = 14;
+    this.oneTurn = 1;
     this.angleBySegment = this.oneTurn / this.numberOfSegments;
     this.angleOffset = this.angleBySegment / 2;
     this.winner = this.props.options?.winner ?? Math.floor(Math.random() * this.numberOfSegments);
@@ -53,7 +53,7 @@ class Wheel extends Component {
       winner: null,
       gameScreen: new Animated.Value(width - 40),
       wheelOpacity: new Animated.Value(1),
-      imageLeft: new Animated.Value(width / 2 - 30),
+      imageLeft: new Animated.Value(width / 2 - 40),
       imageTop: new Animated.Value(height / 2 - 70),
     });
   };
@@ -87,7 +87,7 @@ class Wheel extends Component {
   }
 
   makeWheel = () => {
-    const data = Array.from({ length: this.numberOfSegments + 3 }).fill(1); // Adding three more parts
+    const data = Array.from({ length: this.numberOfSegments +1 }).fill(1); // Adding three more parts
     const arcs = d3Shape.pie()(data);
     var colors = this.props.options.colors
       ? this.props.options.colors
@@ -116,7 +116,7 @@ class Wheel extends Component {
       return {
         path: instance(arc),
         color: colors[index % colors.length],
-        value: this.Rewards[index] || "New Reward", // Added fallback reward for new parts
+        value: this.Rewards[index] || "perdu", // Added fallback reward for new parts
         centroid: instance.centroid(arc),
       };
     });
@@ -168,10 +168,10 @@ class Wheel extends Component {
 
   _textRender = (x, y, number, i) => (
     <Text
-      x={x - number.length * 5}
+      x={x - number.length * 4}
       y={y - 80}
       fill={
-        this.props.options.textColor ? this.props.options.textColor : '#fff'
+        this.props.options.textColor ? this.props.options.textColor : 'black'
       }
       textAnchor="middle"
       fontSize={this.fontSize}>
@@ -188,7 +188,7 @@ class Wheel extends Component {
         else {
           return (
             <TSpan
-              y={y - 40}
+              y={y - -10}
               dx={this.fontSize * 0.07}
               key={`arc-${i}-slice-${j}`}>
               {number.charAt(j)}
@@ -221,7 +221,7 @@ class Wheel extends Component {
             ],
             backgroundColor: this.props.options.backgroundColor
               ? this.props.options.backgroundColor
-              : '#fff',
+              : 'black',
             width: width - 20,
             height: width - 20,
             borderRadius: (width - 20) / 2,
@@ -230,7 +230,7 @@ class Wheel extends Component {
               : 2,
             borderColor: this.props.options.borderColor
               ? this.props.options.borderColor
-              : '#fff',
+              : 'black',
             opacity: this.state.wheelOpacity,
           }}>
           <AnimatedSvg

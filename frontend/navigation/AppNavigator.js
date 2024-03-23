@@ -21,7 +21,7 @@ import AboutUs from '../screens/AboutUs.js';import Wallet from '../screens/Walle
 import Carte from '../screens/Carte.js';
 import Spinner from '../screens/fortuned';
 import Wheel from '../screens/wheel';
-
+import Checklist  from '../screens/Checklist.js';
 
 
 const Stack = createStackNavigator();
@@ -29,7 +29,7 @@ const Stack = createStackNavigator();
 function MainStack({ language }) {
   return (
 
-    <Stack.Navigator initialRouteName="Page" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="HomePage" screenOptions={{ headerShown: false }}>
   
 <Stack.Screen name='welcome' component={Page} />
       <Stack.Screen name='Onbording' component={Onbording} />
@@ -51,6 +51,7 @@ function MainStack({ language }) {
       <Stack.Screen name="Wallet" component={Walleti} />
 
       <Stack.Screen name="fortuned" component={ParentComponents} />
+      <Stack.Screen name="Checklist" component={Checklist} />
 
     </Stack.Navigator>
   );
