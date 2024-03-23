@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Make sure to install the expo vector icons package
-
+import { Ionicons } from '@expo/vector-icons';
 
 const Checklist = () => {
   const [item, setItem] = useState('');
@@ -39,7 +38,7 @@ const Checklist = () => {
           onChangeText={(text) => setItem(text)}
         />
         <TouchableOpacity onPress={addItem}>
-          <Ionicons name="add-circle-outline" size={24} color="green" />
+          <Ionicons name="add-circle-outline" size={24} color="black" />
         </TouchableOpacity>
       </View>
       
@@ -54,17 +53,15 @@ const Checklist = () => {
                 color="black"
               />
             </TouchableOpacity>
-            <Text style={item.checked ? styles.itemChecked : null}>{item.name}</Text>
-            <TouchableOpacity onPress={() => removeItem(index)}>
+            <Text style={[styles.itemText, item.checked && styles.itemChecked]}>{item.name}</Text>
+            <TouchableOpacity onPress={() => removeItem(index)} style={styles.trashIcon}>
               <Ionicons name="trash-bin-outline" size={24} color="red" />
             </TouchableOpacity>
           </View>
         )}
         keyExtractor={(_, index) => index.toString()}
       />
-     
     </View>
-    
   );
 };
 
@@ -88,17 +85,26 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingHorizontal: 15,
     fontSize: 16,
-    backgroundColor: 'white', // White input background
+    backgroundColor: 'white',
     marginRight: 10,
   },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
+    justifyContent: 'space-between', // Align items horizontally
+  },
+  itemText: {
+    flex: 1, // Allow text to take remaining space
+    marginLeft: 10, // Add some space between checkbox and text
+    fontWeight: 'bold'
+  },
+  trashIcon: {
+    marginLeft: 10,
   },
   itemChecked: {
-    textDecorationLine: 'line-through', // Strikethrough for checked items
-    color: '#aaa', // Greyed out text
+    textDecorationLine: 'line-through',
+    color: '#aaa',
   },
 });
 
