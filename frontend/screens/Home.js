@@ -4,18 +4,22 @@ import { SliderBox } from "react-native-image-slider-box";
 import Product from "./Product";
 import Product2 from "./Product2";
 import Products3 from "./products3";
+import Draggable from 'react-native-draggable';
+import { useNavigation } from '@react-navigation/native';
+
 function HomePage() {
+  const navigation = useNavigation();
+
   const images = [
     "https://cdn4.vectorstock.com/i/1000x1000/74/98/promotion-sign-in-modern-supermarket-background-vector-22427498.jpg",
     "https://img.freepik.com/premium-vector/ramadan-sale-discount-banner-template-promotion_7087-1099.jpg",
     "https://www.foodrepublic.com/img/gallery/how-to-decode-tricky-sale-gimmicks-at-the-grocery-store/l-intro-1684196212.jpg",
     "https://www.jeu-concours.biz/content/img/ig-noel.png",
-    
   ];
 
   return (
     <ScrollView>
-      <View style={{ marginTop: 45, marginBottom: 100 }}>
+      <View style={{ position: 'relative', marginTop: 45, marginBottom: 100 }}>
         <SliderBox
           images={images}
           sliderBoxHeight={200}
@@ -52,6 +56,16 @@ function HomePage() {
         <Product />
         <Product2 />
         <Products3 />
+        <Draggable
+          x={75}
+          y={100}
+          renderSize={56}
+          renderColor='black'
+          renderText='List'
+          isCircle
+          onShortPressRelease={() => navigation.navigate('Checklist')}
+          style={{ position: 'absolute', zIndex: 9999 }} // Ensure the button is above everything
+        />
       </View>
     </ScrollView>
   );

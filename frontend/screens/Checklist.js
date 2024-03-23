@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Make sure to install the expo vector icons package
 
+
 const Checklist = () => {
   const [item, setItem] = useState('');
   const [itemsList, setItemsList] = useState([]);
@@ -61,7 +62,9 @@ const Checklist = () => {
         )}
         keyExtractor={(_, index) => index.toString()}
       />
+     
     </View>
+    
   );
 };
 
