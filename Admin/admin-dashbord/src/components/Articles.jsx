@@ -68,11 +68,11 @@ const Articles = ({ switchView }) => {
     <div className="articles-container">
       <Navbar />
       <Sidebar switchView={switchView} />
-      <h1>Articles</h1>
+      <h1>Produites</h1>
       <AddArticleModal addArticle={addArticle} />
       <input
         type="search"
-        placeholder="Search by name..."
+        placeholder="Rechercher par Nom..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className="search-input"
@@ -82,11 +82,11 @@ const Articles = ({ switchView }) => {
           <tr>
             <th>Code</th>
             <th>Image</th>
-            <th>Name</th>
+            <th>Nom</th>
             <th>Description</th>
-            <th>Price</th>
-            <th>Product Num</th>
-            <th>Category</th>
+            <th>prix</th>
+            <th>Numéro de produit</th>
+            <th>Catégorie</th>
             <th>Action</th>
           </tr>
         </thead>

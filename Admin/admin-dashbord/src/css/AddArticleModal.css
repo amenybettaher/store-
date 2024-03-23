@@ -75,7 +75,7 @@ input[type="text"]:focus {
   padding: 15px;
   border: none;
   border-radius: 30px;
-  background-color: #22a6b3;
+  background-color: #2cb322;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -91,13 +91,13 @@ input[type="text"]:focus {
 .PUP_UP .add-button {
   cursor: pointer;
   padding: 10px 20px;
-  background-color: #926d9a;
+  background-color: rgb(255, 0, 0);
   color: white;
   border: none;
   border-radius: 30px;
   transition: background-color 0.3s, transform 0.2s;
   align-self: flex-end;
-  margin-top: 20px;
+  margin-top: -20px;
   font-weight: 600;
   letter-spacing: 1px;
   width: 10%;

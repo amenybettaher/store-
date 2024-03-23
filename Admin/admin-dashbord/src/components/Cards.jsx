@@ -114,11 +114,11 @@ export default function CustomCard({ name, switchView }) {
           onChange={(e) => setNewCardCode(e.target.value)}
         />
         <TextField
-          label="Number"
+          label="Nombre"
           value={newCardNumber}
           onChange={(e) => setNewCardNumber(e.target.value)}
         />
-        <Button onClick={addNewCard}>Add new card</Button>
+        <Button onClick={addNewCard}>Ajouter une nouvelle carte</Button>
       </div>
       <div className="card-container">
         {cards.map((card) => (
@@ -143,13 +143,12 @@ export default function CustomCard({ name, switchView }) {
                   size="small"
                   onClick={() => deleteCard(card.id)}
                 >
-                  Delete this card
-                </Button>
+                  Supprimer cette carte               
+                  </Button>
                 <Button
                   size="small"
                   onClick={() => openEditPopup(card)}
-                >
-                  Update this card
+                > Mettre à jour cette carte               
                 </Button>
               </CardActions>
             </Card>

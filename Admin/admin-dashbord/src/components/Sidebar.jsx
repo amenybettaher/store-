@@ -24,30 +24,30 @@ const Sidebar = ({switchView}) => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">PRINCIPALE</p>
       
           <li onClick={() => switchView('Home')}>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
-          <p className="title">LISTS</p>
+          <p className="title">LISTES</p>
       
          <li onClick={() => switchView('Articles')}>
             <CreditCardIcon className="icon" />
-            <span>Articles</span>
+            <span>Produit</span>
           </li>
           <li onClick={() => switchView('Cards')}>
             <CreditCardIcon className="icon" />
-            <span>Cards</span>
+            <span>Carts</span>
           </li>
           <li onClick={() => switchView('Users')}>
             <CreditCardIcon className="icon" />
-            <span>Users</span>
+            <span>Utilisateurs</span>
           </li>
-          <p className="title">USEFUL</p>
+          <p className="title">UTILE</p>
           <li>
             <InsertChartIcon className="icon" />
-            <span>Stats</span>
+            <span>Statistiques</span>
           </li>
           <li>
             <NotificationsNoneIcon className="icon" />
@@ -55,18 +55,10 @@ const Sidebar = ({switchView}) => {
           </li>
           <p className="title">SERVICE</p>
           <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
             <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
+            <span>Paramètres</span>
           </li>
-          <p className="title">Admin</p>
+          <p className="title">Administrateur</p>
 
           <li onClick={() => switchView('Profile')}>
             <AccountCircleOutlinedIcon className="icon" />
@@ -74,7 +66,7 @@ const Sidebar = ({switchView}) => {
           </li>
           <li onClick={() => switchView('Login')}>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span>Se déconnecter</span>
           </li>
         </ul>
       </div>

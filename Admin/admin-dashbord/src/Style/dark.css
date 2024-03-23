@@ -1,13 +1,15 @@
 .app.dark {
     /* background-color: #ff0000; */
     color: rgb(156, 156, 156);
-    min-height: 100vh;
+    min-height: 110vh;
     width: 102%;
     margin: 0;
     padding: 0;
-    background-image: url("https://i.pinimg.com/originals/10/5b/18/105b18b8db617d4c02aa417cadbdae57.jpg");
-    filter: blur(0px);
-    backdrop-filter: blur(25px); 
+    background-image: url("https://lh3.googleusercontent.com/1NMbGJNeO4JoVkzQEZdHQJ_9WJ7_UejG_u-bW8PWoff1376cmRSkVHOQqTpcQAIDUV_wHbjIoEOnhHzzy6scl4HawA=w640-h400-e365-rj-sc0x00ffffff");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 1500px;
+  height: 00%;
 
   
     .chartGrid {
@@ -33,7 +35,7 @@
   
     .sidebar {
       background-color: #000000;
-      background-image: url("https://i.pinimg.com/originals/10/5b/18/105b18b8db617d4c02aa417cadbdae57.jpg");
+      background-image: url("https://lh3.googleusercontent.com/1NMbGJNeO4JoVkzQEZdHQJ_9WJ7_UejG_u-bW8PWoff1376cmRSkVHOQqTpcQAIDUV_wHbjIoEOnhHzzy6scl4HawA=w640-h400-e365-rj-sc0x00ffffff");
       /* filter: blur(3px); */
       /* -webkit-filter: blur(7px); */
       /* backdrop-filter: blur(35px); */

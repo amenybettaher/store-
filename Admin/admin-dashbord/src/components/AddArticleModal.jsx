@@ -37,23 +37,23 @@ const AddArticleModal = ({ addArticle }) => {
     <div className='PUP_UP'>
       <button className="add-button" onClick={toggleModal}>
         <FontAwesomeIcon icon={faPlus} />
-        Add Article
+        Ajouter  produit
       </button>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={toggleModal}>&times;</span>
-            <h2>Add New Article</h2>
+            <h2>Ajouter Nouveau produit</h2>
             <form onSubmit={handleSubmit}>
             <span> Code</span>
               <input type="text" name="code" placeholder="Code" value={formData.code} onChange={handleChange} />
               <input type="text" name="image" placeholder="Image URL" value={formData.image} onChange={handleChange} />
-              <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
+              <input type="text" name="name" placeholder="Nom" value={formData.name} onChange={handleChange} />
               <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
-              <input type="text" name="price" placeholder="Price" value={formData.price} onChange={handleChange} />
-              <input type="text" name="product_Num" placeholder="Product Number" value={formData.product_Num} onChange={handleChange} />
-              <input type="text" name="category" placeholder="Category" value={formData.category} onChange={handleChange} />
-              <button type="submit">Add</button>
+              <input type="text" name="price" placeholder="Prix" value={formData.price} onChange={handleChange} />
+              <input type="text" name="product_Num" placeholder="Numéro de produit" value={formData.product_Num} onChange={handleChange} />
+              <input type="text" name="category" placeholder="Catégorie" value={formData.category} onChange={handleChange} />
+              <button type="submit">Ajouter</button>
             </form>
           </div>
         </div>

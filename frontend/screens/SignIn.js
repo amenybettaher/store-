@@ -44,7 +44,7 @@ const SignIn = () => {
         Alert.alert("Veuillez saisir votre e-mail et votre mot de passe.");
         return;
       }
-      const loginResponse = await axios.post('http://192.168.229.1:8000/users/login', {
+      const loginResponse = await axios.post('http://192.168.1.4:8000/users/login', {
         email,
         password,
       });

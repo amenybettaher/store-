@@ -42,13 +42,13 @@ function Users({switchView}) {
             <Navbar switchView={switchView}/>
             <Sidebar switchView={switchView} />
 
-            <h1>Users</h1>
+            <h1>Utilisateurs</h1>
 
             <div className="search-container">
                 <input
                     id="user-search"
                     type="text"
-                    placeholder="Search by name"
+                    placeholder="Rechercher par nom"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -57,10 +57,10 @@ function Users({switchView}) {
             <table>
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Birth</th>
+                        <th>Prénom</th>
+                        <th>Nom de famille</th>
+                        <th>E-mail</th>
+                        <th> Date de Naissance</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -72,7 +72,7 @@ function Users({switchView}) {
                             <td>{user.email}</td>
                             <td>{user.birth}</td>
                             <td>
-                                <button onClick={() => deleteUser(user.email)}>Delete</button>
+                                <button onClick={() => deleteUser(user.email)}>Supprimer</button>
                             </td>
                         </tr>
                     ))}

@@ -60,9 +60,9 @@ const Profile = () => {
         <View style={[styles.rectangleView, styles.settingLayout]} />
         <Image
           style={styles.unsplashjmurdhtm7ngIcon}
-          source={require("../assets/profilo.png")}
+          source={require("../assets/profil.png")}
         />
-     <Text style={styles.pro}>{user ? ` ${user.user.firstName} ${user.user.lastName}` : 'Welcome!'}</Text>
+     <Text style={styles.pro}>{user ? ` ${user.user.firstName} ${user.user.lastName}` : ''}</Text>
         <Pressable onPress={handleStartPressq}>
         <Text style={[styles.language, styles.downloadTypo, darkMode ? { color: "white" } : null]}>
             {fr.language}

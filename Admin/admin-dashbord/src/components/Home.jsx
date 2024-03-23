@@ -46,25 +46,25 @@ const StatCard = ({ title, value, icon }) => {
 
 const Dashboard = () => {
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={2}  marginTop={-100} marginLeft={9} padding={10}>
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="Earnings" value="$63,448.78" icon={<DownloadIcon />} />
+        <StatCard title="Gains" value="63,448.78 DT" icon={<DownloadIcon />} />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="Customers" value="39,354" icon={<UserIcon />} />
+        <StatCard title="Clients" value="39,354" icon={<UserIcon />} />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="Growth" value="+4.3%" icon={<GrowthIcon />} />
+        <StatCard title="Croissance" value="+4.3%" icon={<GrowthIcon />} />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="Orders" value="42,339" icon={<OrderIcon />} />
+        <StatCard title="Ordres" value="42,339" icon={<OrderIcon />} />
       </Grid>
       {/* New statistics */}
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="New Visitors" value="1,234" icon={<FaUserPlus />} />
+        <StatCard title="Nouveaux visiteurs" value="1,234" icon={<FaUserPlus />} />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <StatCard title="Total Sales" value="$93,234" icon={<FaDollarSign />} />
+        <StatCard title="Ventes totales" value="93,234 DT" icon={<FaDollarSign />} />
       </Grid>
     </Grid>
   );

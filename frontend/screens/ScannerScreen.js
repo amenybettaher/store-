@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
-const backendUrl = 'http://192.168.229.1:8000';
+const backendUrl = 'http://192.168.1.4:8000';
 
 export default function ScannerScreen() {
   const [hasPermission, setHasPermission] = useState(null);

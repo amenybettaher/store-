@@ -68,12 +68,12 @@
 }
 
 #user-search {
-    width: 10%;
+    width: 11%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-left: 45%;
+    border-radius: 14px;
+    margin-left: 44%;
 }
 
 /* Style even and odd rows */
